@@ -95,13 +95,7 @@
     margin-top: 0.5rem;
   }
   .quiz button:hover { opacity: 0.9; }
-  .feedback {
-    display: none;
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    font-size: 0.95rem;
-  }
+  .feedback { display: none; margin-top: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem; }
   .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
   .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
   .reminder {
@@ -125,10 +119,6 @@
   }
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
-  .checklist { list-style: none; padding: 0; }
-  .checklist li { padding: 0.25rem 0; }
-  .checklist li::before { content: "☐ "; color: var(--accent); }
-  .checklist li.done::before { content: "☑ "; }
 </style>
 </head>
 <body>
@@ -279,6 +269,7 @@
 </div>
 
 <footer>
+  <span>课程 1 / 6</span>
   <span>来源：王力宏 30 天唱歌课程 Day 01</span>
   <a href="0002-听力与模仿.html">下一课：听力与模仿 →</a>
 </footer>
