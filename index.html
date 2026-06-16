@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>唱歌练习站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Mobile hamburger -->
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1 class="site-title">唱歌练习</h1>
+    <p class="site-sub">系统化声乐训练</p>
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-item active" data-page="welcome.html" onclick="navigate(this)">
+      <span class="nav-icon">&#9751;</span>
+      <span>首页</span>
+    </a>
+
+    <a class="nav-item" data-page="app/index.html" onclick="navigate(this)">
+      <span class="nav-icon">&#9835;</span>
+      <span>音准练习</span>
+    </a>
+
+    <div class="nav-group">
+      <div class="nav-group-title">唱歌技巧</div>
+      <a class="nav-item sub" data-page="daily/index.html" onclick="navigate(this)">
+        <span>每日例程</span>
+      </a>
+      <a class="nav-item sub" data-page="courses/0001-呼吸与声音的健康.html" onclick="navigate(this)">
+        <span>第 1 课 &middot; 呼吸与声音的健康</span>
+      </a>
+      <a class="nav-item sub" data-page="courses/0002-听力与模仿.html" onclick="navigate(this)">
+        <span>第 2 课 &middot; 听力与模仿</span>
+      </a>
+      <a class="nav-item sub" data-page="courses/0003-声音的五个元素.html" onclick="navigate(this)">
+        <span>第 3 课 &middot; 声音的五个元素</span>
+      </a>
+      <a class="nav-item sub" data-page="courses/0004-胸部区混声区头部区.html" onclick="navigate(this)">
+        <span>第 4 课 &middot; 胸部区混声区头部区</span>
+      </a>
+      <a class="nav-item sub" data-page="courses/0005-扩大音域.html" onclick="navigate(this)">
+        <span>第 5 课 &middot; 扩大音域</span>
+      </a>
+      <a class="nav-item sub" data-page="courses/0006-速度与灵活性.html" onclick="navigate(this)">
+        <span>第 6 课 &middot; 速度与灵活性</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <span>基于王力宏 30 天课程</span>
+  </div>
+</nav>
+
+<!-- Overlay for mobile -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Main content iframe -->
+<main class="content">
+  <iframe id="contentFrame" src="welcome.html" frameborder="0"></iframe>
+</main>
+
+<script>
+const BASE = window.location.pathname.replace(/\/index\.html$/, '/');
+
+function navigate(el) {
+  const page = el.dataset.page;
+  document.getElementById('contentFrame').src = BASE + page;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  // Close sidebar on mobile
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+</script>
+</body>
+</html>

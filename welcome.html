@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F0EB;
+    --surface: #FFFFFF;
+    --accent: #D97757;
+    --accent-soft: rgba(217, 119, 87, 0.10);
+    --success: #6B8F71;
+    --ink: #2D3436;
+    --hairline: #E0DBD4;
+    --muted: #8a8580;
+    --serif: "Noto Serif SC", "Source Serif 4", Georgia, serif;
+    --sans: "Inter", -apple-system, system-ui, sans-serif;
+  }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.8;
+    padding: 3rem 2.5rem;
+    max-width: 680px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(217, 119, 87, 0.08);
+  }
+  .card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .card-badge {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  .quote {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 2rem;
+  }
+  .quote p {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .quote cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 500px) {
+    body { padding: 2rem 1.25rem; }
+    .cards { grid-template-columns: 1fr; }
+    .overview { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>唱歌练习站</h1>
+<p class="subtitle">从呼吸到速度，系统化提升你的声乐能力</p>
+
+<div class="cards">
+  <a class="card" href="app/index.html" target="_parent">
+    <div class="card-icon">&#9835;</div>
+    <div class="card-title">音准练习</div>
+    <div class="card-desc">交互式音感训练，25 关循序渐进，8 节理论课程，自由练习模式</div>
+    <div class="card-badge">25 关 &middot; 8 课 &middot; 5 种乐器</div>
+  </a>
+  <a class="card" href="daily/index.html" target="_parent">
+    <div class="card-icon">&#9836;</div>
+    <div class="card-title">每日例程</div>
+    <div class="card-desc">六天课程浓缩为 1 小时日常练习，内置音频示范和节拍器</div>
+    <div class="card-badge">60 min &middot; 含节拍器</div>
+  </a>
+</div>
+
+<h2>学习路径</h2>
+<div class="overview">
+  <div class="stat">
+    <div class="stat-num">6</div>
+    <div class="stat-label">节课程</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">25</div>
+    <div class="stat-label">个关卡</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">30</div>
+    <div class="stat-label">天周期</div>
+  </div>
+</div>
+
+<p style="color: var(--muted); font-size: 0.9rem;">
+  先用左侧导航的「唱歌技巧」课程了解理论和练习方法，然后每天按照「每日例程」的流程练习 1 小时。同时用「音准练习」训练你的耳朵对音高的感知力。三条线并行推进，30 天后你的声音会明显不同。
+</p>
+
+<div class="quote">
+  <p>&ldquo;任何的一个音从我嘴巴里出来之前，都是我事先几秒钟在我脑子里面先听到的，然后我尽量百分之一百去唱到刚才的想象。&rdquo;</p>
+  <cite>&mdash; Luciano Pavarotti</cite>
+</div>
+
+</body>
+</html>

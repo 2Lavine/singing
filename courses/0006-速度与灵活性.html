@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 6 课：速度与灵活性</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --accent: #c45a3d;
+    --muted: #6b6b6b;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --highlight: #fef6f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .lesson-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .lesson-num { font-size: 0.85rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .objective { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0.75rem auto 0; }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); display: inline-block; }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
+  p { margin-bottom: 1rem; }
+  .concept-box {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-box strong { color: var(--accent); }
+  .practice {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .practice h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+  .practice h3::before { content: "🎤"; font-size: 1.2rem; }
+  .practice ol { padding-left: 1.25rem; }
+  .practice li { margin-bottom: 0.5rem; }
+  .habit-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+  .habit-card h4 { margin: 0 0 0.5rem; color: var(--accent); }
+  .quiz {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .quiz h3 { margin-top: 0; }
+  .quiz .q { margin-bottom: 1.25rem; }
+  .quiz .q p { font-weight: 600; margin-bottom: 0.5rem; }
+  .quiz label { display: block; padding: 0.35rem 0; cursor: pointer; }
+  .quiz input[type="radio"] { margin-right: 0.5rem; }
+  .quiz button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .quiz button:hover { opacity: 0.9; }
+  .feedback { display: none; margin-top: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem; }
+  .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
+  .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
+  .reminder {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .reminder::before { content: "💬 有问题？"; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.25rem; }
+  .week-summary {
+    background: linear-gradient(135deg, #fef6f0 0%, #faf9f6 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .week-summary h2 { border: none; display: block; margin-top: 0; }
+  .path { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+  .path span { background: var(--card-bg); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border); }
+  .path span.done { background: var(--accent); color: #fff; border-color: var(--accent); }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="lesson-header">
+  <div class="lesson-num">课程 6 / 6 · 第一周完结</div>
+  <h1>速度与灵活性</h1>
+  <p class="objective">学习目标：理解声音速度与灵活度的三个维度，掌握组块学习（Chunking）方法，建立用节拍器训练的习惯</p>
+</div>
+
+<section>
+  <h2>一、从走路到跑步</h2>
+
+  <p>呼吸和扩大音域 = <strong>学走路</strong>。今天 = <strong>学跑步</strong>。</p>
+
+  <p>运动员训练四大块：力气、柔软、耐力、<strong>速度</strong>。你的声音也需要速度和灵活度——不只是把声音练"大"，还要练"快"和"准"。</p>
+</section>
+
+<section>
+  <h2>二、声音的速度与灵活度是什么？</h2>
+
+  <div class="concept-box">
+    <strong>三个维度</strong>
+    <ol>
+      <li><strong>音准准确度</strong>：转音越快，每个音越要在音准正中央 + 节奏里</li>
+      <li><strong>音与音一次到位</strong>：跳远从这个音直接到那个音，不是滑过去——一次到位到音准正中央</li>
+      <li><strong>快速而准确</strong>：快但不准 = 没用。首先要标准，再追求快</li>
+    </ol>
+  </div>
+
+  <div class="concept-box">
+    <strong>像阿里拳王一样</strong><br>
+    不要变成健美先生——肌肉很大但硬邦邦。阿里说："像蝴蝶飘，像蜜蜂蛰。"有速度、有灵活度、有力量。
+  </div>
+</section>
+
+<section>
+  <h2>三、速度的秘密：组块学习（Chunking）</h2>
+
+  <p>第一次听"子鼠丑牛寅虎卯兔辰龙巳蛇午马未羊申猴酉鸡戌狗亥猪"——24 个字，很难背。</p>
+  <p>但背熟了以后，大脑自动把 24 个字 → 12 块 → 6 块 → 4 块 → 最终变成<strong>一块</strong>。这就是<strong>组块学习（chunking）</strong>。</p>
+
+  <div class="concept-box">
+    <strong>核心概念：95% 的行为都是习惯</strong><br>
+    包括唱歌。刷牙、开车回家——你根本不用想。唱歌也是一样：<strong>重复练习 → 组块 → 变成肌肉记忆 → 想都不用想</strong>。
+  </div>
+
+  <p>这就是为什么 30 天课程的设计是有原因的——30 天足够建立新的习惯。完成了这 30 天，你的声音会不一样，新的习惯会<strong>粘住</strong>。</p>
+</section>
+
+<section>
+  <h2>四、好习惯 vs 坏习惯</h2>
+
+  <div class="habit-card">
+    <h4>常见唱歌坏习惯</h4>
+    <ul>
+      <li><strong>吸气有声音</strong>（像惊叹）：声带变干 + 肌肉紧绷</li>
+      <li><strong>前鼻音后鼻音不分</strong>：比如"朋友"变成"朋有"</li>
+      <li><strong>唱得越高下巴抬越高</strong>：紧张传递到喉咙</li>
+    </ul>
+  </div>
+
+  <div class="habit-card">
+    <h4>今日小挑战</h4>
+    <p>想一个你想培养的<strong>好习惯</strong>，和想改掉的<strong>一个坏习惯</strong>（唱歌或生活中都可以）。</p>
+    <p>力宏的答案：想咬嘴唇时 → 吸一口气 → 边笑边哼 → 既矫正了声带，又没法同时咬嘴唇。</p>
+  </div>
+</section>
+
+<section>
+  <h2>五、今日练习</h2>
+
+  <div class="practice">
+    <h3>速度与灵活度练习（每天 20 分钟）</h3>
+    <ol>
+      <li>下载一个<strong>节拍器 App</strong>（免费的一大堆）</li>
+      <li>从 <strong>70 bpm</strong>（一分钟 70 下）开始</li>
+      <li>用"U——"的音做音阶练习：慢 2 次 → 快 3 次 → 慢 1 次</li>
+      <li>保证每个音<strong>先准再快</strong>——不准就退回更慢</li>
+      <li>完美后才允许自己<strong>加快一格</strong>（可以 5 bpm 一格）</li>
+      <li>到了快速时——那种三十二分之一拍、六十四分之一拍的精准——你会觉得自己超厉害</li>
+    </ol>
+    <p><em>参考音频：video_wang/Day 06/速度与灵活度-男.mp3 / 速度与灵活度-女.mp3</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="week-summary">
+    <h2>🎉 第一周完成！</h2>
+    <p>你已经系统地学完了唱歌的六个基础板块：</p>
+    <div class="path">
+      <span class="done">呼吸</span>
+      <span class="done">模仿</span>
+      <span class="done">音色</span>
+      <span class="done">换声区</span>
+      <span class="done">扩大音域</span>
+      <span class="done">速度灵活</span>
+    </div>
+    <p style="margin-top: 1rem;"><strong>接下来做什么？</strong></p>
+    <p>把这六天的练习变成你的<strong>每日例程</strong>：三度哼唱（暖嗓）→ 弹嘴唇/Mum → Tee 断奏 → 节拍器音阶。每天 1 小时，持续 30 天。</p>
+    <p>有疑问随时回到任何一课复习，或者问 Claude。</p>
+  </div>
+</section>
+
+<section>
+  <div class="quiz">
+    <h3>自检小测验</h3>
+    <div class="q">
+      <p>1. 组块学习（chunking）是什么意思？</p>
+      <label><input type="radio" name="q1" value="a"> A. 把大任务拆成小块永远不合并</label>
+      <label><input type="radio" name="q1" value="b"> B. 把多个小单元合并为一个"块"来记忆和执行</label>
+      <label><input type="radio" name="q1" value="c"> C. 每次只学一个音</label>
+      <p class="feedback" id="q1-fb"></p>
+    </div>
+    <div class="q">
+      <p>2. 速度和灵活度练习中，如果还不准怎么办？</p>
+      <label><input type="radio" name="q2" value="a"> A. 继续加快，准不准不重要</label>
+      <label><input type="radio" name="q2" value="b"> B. 退回更慢，先保证标准再加快</label>
+      <label><input type="radio" name="q2" value="c"> C. 跳过这部分</label>
+      <p class="feedback" id="q2-fb"></p>
+    </div>
+    <div class="q">
+      <p>3. 力宏设计 30 天课程的原因是什么？</p>
+      <label><input type="radio" name="q3" value="a"> A. 30 天刚好够把所有歌学一遍</label>
+      <label><input type="radio" name="q3" value="b"> B. 30 天足够建立新的习惯</label>
+      <label><input type="radio" name="q3" value="c"> C. 30 天是他的幸运数字</label>
+      <p class="feedback" id="q3-fb"></p>
+    </div>
+    <button onclick="checkQuiz()">检查答案</button>
+  </div>
+</section>
+
+<div class="reminder">
+  六课都学完了！接下来有问题随时回来问。比如："我练了一周，感觉高音还是上不去，怎么判断是哪里出了问题？" 或者 "帮我制定一个每日 1 小时的练习时间表？"
+</div>
+
+<footer>
+  <span>← <a href="0005-扩大音域.html">上一课：扩大音域</a></span>
+  <span>来源：王力宏 30 天唱歌课程 Day 06</span>
+  <span><a href="0001-呼吸与声音的健康.html">回到第一课</a></span>
+</footer>
+
+<script>
+function checkQuiz() {
+  const answers = { q1: 'b', q2: 'b', q3: 'b' };
+  for (const [q, ans] of Object.entries(answers)) {
+    const fb = document.getElementById(q + '-fb');
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    fb.className = 'feedback';
+    if (!selected) {
+      fb.className = 'feedback wrong';
+      fb.textContent = '请选择一个答案';
+      fb.style.display = 'block';
+    } else if (selected.value === ans) {
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ 正确！';
+      fb.style.display = 'block';
+    } else {
+      fb.className = 'feedback wrong';
+      fb.textContent = '❌ 再想想。';
+      fb.style.display = 'block';
+    }
+  }
+}
+</script>
+</body>
+</html>

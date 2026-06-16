@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 3 课：声音的五个元素</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --accent: #c45a3d;
+    --muted: #6b6b6b;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --highlight: #fef6f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .lesson-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .lesson-num {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .objective { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0.75rem auto 0; }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); display: inline-block; }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
+  p { margin-bottom: 1rem; }
+  .concept-box {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-box strong { color: var(--accent); }
+  .elements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .element-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .element-card .num {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .element-card .name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem; }
+  .element-card .desc { color: var(--muted); font-size: 0.9rem; }
+  .practice {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .practice h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+  .practice h3::before { content: "🎤"; font-size: 1.2rem; }
+  .practice ol { padding-left: 1.25rem; }
+  .practice li { margin-bottom: 0.5rem; }
+  .quiz {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .quiz h3 { margin-top: 0; }
+  .quiz .q { margin-bottom: 1.25rem; }
+  .quiz .q p { font-weight: 600; margin-bottom: 0.5rem; }
+  .quiz label { display: block; padding: 0.35rem 0; cursor: pointer; }
+  .quiz input[type="radio"] { margin-right: 0.5rem; }
+  .quiz button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .quiz button:hover { opacity: 0.9; }
+  .feedback { display: none; margin-top: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem; }
+  .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
+  .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
+  .reminder {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .reminder::before { content: "💬 有问题？"; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.25rem; }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  @media (max-width: 500px) { .elements-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="lesson-header">
+  <div class="lesson-num">课程 3 / 6</div>
+  <h1>声音的五个元素</h1>
+  <p class="objective">学习目标：理解音色的概念，掌握音色的五个可调节维度，学会弹嘴唇练习</p>
+</div>
+
+<section>
+  <h2>一、什么是音色</h2>
+
+  <p>闭着眼睛，听人弹钢琴的中间 C——你无法判断弹的人是大师还是小孩。但两个不同的人唱<strong>同一个音</strong>，可以天差地别：一个亮而清脆，一个暗沉，一个带气颤抖，一个又平又直。</p>
+
+  <p>这些成千上万的差别，统称叫做<strong>音色</strong>。"音"+"色"——就是声音的<strong>颜色</strong>。</p>
+
+  <div class="concept-box">
+    <strong>核心概念：音色 = 调色板</strong><br>
+    你能想象画家只有一个颜色吗？唱歌也是一样——你的音色就是调色板，要够丰富。我们要从<strong>说话的声音（胸腔音）</strong>这个起点开始，慢慢扩大调色板。
+  </div>
+
+  <p>耳朵对人的音色极其敏感：妈妈叫你一声，七分之一秒你就知道是妈妈。你的音色是什么？你的"声音指纹"长什么样？</p>
+</section>
+
+<section>
+  <h2>二、音色的五个元素</h2>
+
+  <div class="elements-grid">
+    <div class="element-card">
+      <div class="num">元素 1</div>
+      <div class="name">共鸣的大小</div>
+      <div class="desc">小共鸣 → 大共鸣<br>改变声音的饱满度和空间感</div>
+    </div>
+    <div class="element-card">
+      <div class="num">元素 2</div>
+      <div class="name">气声</div>
+      <div class="desc">加入气息 → 柔和<br>在声音中混入气流产生质感</div>
+    </div>
+    <div class="element-card">
+      <div class="num">元素 3</div>
+      <div class="name">能量 Power</div>
+      <div class="desc">≠ 音量大<br>是你推了多少气给听众</div>
+    </div>
+    <div class="element-card">
+      <div class="num">元素 4</div>
+      <div class="name">发音</div>
+      <div class="desc">不同的咬字方式<br>改变声音的清晰度和质感</div>
+    </div>
+    <div class="element-card" style="grid-column: 1 / -1; max-width: 50%; margin: 0 auto;">
+      <div class="num">元素 5</div>
+      <div class="name">颤音 Vibrato</div>
+      <div class="desc">音高的规律微小波动<br>R&B、摇滚、美声中很常见</div>
+    </div>
+  </div>
+
+  <p>你今天就可以开始有意识地注意：你喜欢的歌手在这五个元素上各自有什么特点？</p>
+</section>
+
+<section>
+  <h2>三、持续练习的理念</h2>
+  <div class="concept-box">
+    <strong>持续性 &gt; 强度</strong><br>
+    每天做，声音就会慢慢进步。不能说今天做了明天不做，后天做两倍——身体不是这样锻炼的。建议<strong>一周六次</strong>，给自己一天休息日让肌肉成长。
+  </div>
+</section>
+
+<section>
+  <h2>四、弹嘴唇练习</h2>
+
+  <p>这是力宏最喜欢的一个练习——走在路上也在弹。</p>
+
+  <h3>为什么有效？</h3>
+  <p>每次嘴唇闭合把声音停住 → 产生喉咙里的气压 → <strong>让声带无法被吹开</strong> → 维持声带的闭合度。</p>
+
+  <div class="practice">
+    <h3>弹嘴唇练习（每天 15 分钟）</h3>
+    <ol>
+      <li>单手或双手把脸颊的肉轻轻提起来（用手比较容易，也可以不用）</li>
+      <li>嘴唇闭合，用气流吹开——"brrrrrr——"</li>
+      <li><strong>越慢越好</strong>，越放松越好（别像摩托车那样又紧又快）</li>
+      <li>保持气流<strong>等速</strong>——不是忽快忽慢</li>
+      <li>如果嘴唇某个时候弹不了、停了 → 说明那个气不顺，没等速</li>
+      <li>弹嘴唇时后面的母音是"呃"（笨笨的那个声音）</li>
+    </ol>
+    <p><strong>训练目标</strong>：加强呼吸的支撑力，习惯等速吐气，控制呼吸变得均衡。</p>
+  </div>
+</section>
+
+<section>
+  <div class="quiz">
+    <h3>自检小测验</h3>
+    <div class="q">
+      <p>1. "音色"这个词的字面意思是什么？</p>
+      <label><input type="radio" name="q1" value="a"> A. 声音的音量</label>
+      <label><input type="radio" name="q1" value="b"> B. 声音的颜色</label>
+      <label><input type="radio" name="q1" value="c"> C. 声音的速度</label>
+      <p class="feedback" id="q1-fb"></p>
+    </div>
+    <div class="q">
+      <p>2. 以下哪个不是音色的五个元素之一？</p>
+      <label><input type="radio" name="q2" value="a"> A. 共鸣的大小</label>
+      <label><input type="radio" name="q2" value="b"> B. 音域的宽度</label>
+      <label><input type="radio" name="q2" value="c"> C. 气声</label>
+      <p class="feedback" id="q2-fb"></p>
+    </div>
+    <div class="q">
+      <p>3. 弹嘴唇练习的主要目标是？</p>
+      <label><input type="radio" name="q3" value="a"> A. 唱得更高</label>
+      <label><input type="radio" name="q3" value="b"> B. 练出颤音</label>
+      <label><input type="radio" name="q3" value="c"> C. 等速吐气、加强呼吸支撑力</label>
+      <p class="feedback" id="q3-fb"></p>
+    </div>
+    <button onclick="checkQuiz()">检查答案</button>
+  </div>
+</section>
+
+<div class="reminder">
+  不确定自己弹嘴唇做得对不对？录一段给 Claude 描述你的感觉。比如："我只能弹 3 秒就停了，正常吗？" 或者 "弹的时候喉咙发紧怎么办？"
+</div>
+
+<footer>
+  <span>← <a href="0002-听力与模仿.html">上一课：听力与模仿</a></span>
+  <span>来源：王力宏 30 天唱歌课程 Day 03</span>
+  <span><a href="0004-胸部区混声区头部区.html">下一课：胸部区、混声区、头部区 →</a></span>
+</footer>
+
+<script>
+function checkQuiz() {
+  const answers = { q1: 'b', q2: 'b', q3: 'c' };
+  for (const [q, ans] of Object.entries(answers)) {
+    const fb = document.getElementById(q + '-fb');
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    fb.className = 'feedback';
+    if (!selected) {
+      fb.className = 'feedback wrong';
+      fb.textContent = '请选择一个答案';
+      fb.style.display = 'block';
+    } else if (selected.value === ans) {
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ 正确！';
+      fb.style.display = 'block';
+    } else {
+      fb.className = 'feedback wrong';
+      fb.textContent = '❌ 再想想。';
+      fb.style.display = 'block';
+    }
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 1 课：呼吸与声音的健康</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --accent: #c45a3d;
+    --muted: #6b6b6b;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --highlight: #fef6f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .lesson-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .lesson-num {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .objective {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0.75rem auto 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
+  p { margin-bottom: 1rem; }
+  .concept-box {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-box strong { color: var(--accent); }
+  .practice {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .practice h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+  .practice h3::before { content: "🎤"; font-size: 1.2rem; }
+  .practice ol { padding-left: 1.25rem; }
+  .practice li { margin-bottom: 0.5rem; }
+  .quiz {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .quiz h3 { margin-top: 0; }
+  .quiz .q { margin-bottom: 1.25rem; }
+  .quiz .q p { font-weight: 600; margin-bottom: 0.5rem; }
+  .quiz label { display: block; padding: 0.35rem 0; cursor: pointer; }
+  .quiz input[type="radio"] { margin-right: 0.5rem; }
+  .quiz button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .quiz button:hover { opacity: 0.9; }
+  .feedback {
+    display: none;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
+  .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
+  .reminder {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .reminder::before { content: "💬 有问题？"; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.25rem; }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 0.25rem 0; }
+  .checklist li::before { content: "☐ "; color: var(--accent); }
+  .checklist li.done::before { content: "☑ "; }
+</style>
+</head>
+<body>
+
+<div class="lesson-header">
+  <div class="lesson-num">课程 1 / 6</div>
+  <h1>呼吸与声音的健康</h1>
+  <p class="objective">学习目标：掌握腹式呼吸法，理解声带结构，建立声音健康的基本习惯</p>
+</div>
+
+<section>
+  <h2>一、唱歌从呼吸开始</h2>
+  <p>学唱歌的第一步，不是唱——是<strong>呼吸</strong>。</p>
+
+  <div class="concept-box">
+    <strong>核心概念：唱歌是一种"气功"</strong><br>
+    我们运用气的能量去打动观众。你<strong>能把气控制得多好，直接反映着你能把声音控制得多好</strong>。
+  </div>
+
+  <p>你分配给每句歌词的气量，一定要刚刚好：</p>
+  <ul>
+    <li><strong>气太少</strong> → 句子没唱完就断气</li>
+    <li><strong>气太多</strong> → 唱完了还堆着气，身体产生紧绷感</li>
+  </ul>
+</section>
+
+<section>
+  <h2>二、第一步：学会放松</h2>
+  <p>身体紧绷的时候——驼背、圆肩、上腹变硬——肺部其实被束缚了。本来容量是 10，限制后变 7，呼吸就变浅了。</p>
+
+  <div class="concept-box">
+    <strong>放松清单（从头到脚）</strong><br>
+    肩膀放 → 脖子放 → 脸部放 → 下巴放 → 舌头放 → 嘴唇放 → 全身放
+  </div>
+
+  <p>想象自己像孩子的布娃娃一样，没有骨头、没有肌肉。站起来<strong>抖一抖</strong>，让所有紧绷感放掉。正确的姿势：<strong>胸要挺、肩膀往后</strong>（不是往前），让肺部自由扩张。</p>
+</section>
+
+<section>
+  <h2>三、腹式呼吸法（丹田呼吸）</h2>
+
+  <h3>吸气：肚子像气球变大</h3>
+  <p>想象肚子里有个气球。吸气时，<strong>腹部变大</strong>——这不是小腹跑出来，这<strong>是正确的方式</strong>。</p>
+  <p>❌ <strong>错误</strong>：吸气耸肩、上胸紧张<br>
+  ✅ <strong>正确</strong>：用丹田（横膈膜）。横膈膜下沉 → 肺部产生真空 → 大气压力让空气自然进入</p>
+
+  <h3>吐气：肚子匀速内缩</h3>
+  <p>吐气时肚子往内缩，气球越来越小，回到放松状态。<strong>不要吐过头</strong>，否则肚子变硬。</p>
+
+  <div class="concept-box">
+    <strong>关键细节：吸气不要有声音</strong><br>
+    发出声音的吸气 → 脖子肌肉紧张 + 声带变干。<br>
+    练习时尽量<strong>鼻息</strong>（像闻玫瑰花一样），保持声带湿润。
+  </div>
+</section>
+
+<section>
+  <h2>四、了解你的"乐器"：声带</h2>
+  <ul>
+    <li>声带只有 <strong>1~2 公分</strong>长</li>
+    <li>有 <strong>5 对肌肉</strong>控制它：变长（音高↑）、变短（音低↓）、拉开、闭合</li>
+    <li>声带是<strong>完全裸露的</strong>——不像其他肌肉有脂肪、皮肤保护</li>
+  </ul>
+
+  <p>因此声带极易被环境影响：空气干湿、冷热、污染、过敏、脱水、你吃了什么喝了什么……全部影响你的声音。</p>
+
+  <div class="concept-box">
+    <strong>⚠️ 特别注意：胃酸逆流</strong><br>
+    早上起床喉咙发痒？可能是胃酸逆流。胃酸 pH 1.5~3.5，晚上躺着时烧你的声带。<br>
+    应对：避免太辣/太蒜/碳酸饮料/太多咖啡/酒；多吃绿色生菜、燕麦；喝碱性水。
+  </div>
+</section>
+
+<section>
+  <h2>五、声音健康三条铁律</h2>
+  <ol>
+    <li><strong>睡够</strong>：最好一天 8 小时</li>
+    <li><strong>喝够</strong>：一天 3000~3500cc 水（保持声带水分和弹性）</li>
+    <li><strong>别作</strong>：别练完唱又去喝酒、大叫、抽烟——声音没了就没法练</li>
+  </ol>
+</section>
+
+<section>
+  <h2>六、今日练习（约 30 分钟）</h2>
+
+  <div class="practice">
+    <h3>练习 1：肺活量测试 & 训练（10 分钟）</h3>
+    <ol>
+      <li>鼻吸一口气，肚子变大气球</li>
+      <li>慢慢吐气（用"嘶——"声），看能吐多久</li>
+      <li>记录秒数，这是你的基准线</li>
+      <li>每天测一次，争取每天多 1~2 秒</li>
+    </ol>
+    <p><em>配合有氧运动（跑步/快走）效果更好。如果头晕就休息。</em></p>
+  </div>
+
+  <div class="practice">
+    <h3>练习 2：吹蜡烛（10 分钟）</h3>
+    <ol>
+      <li>想象今天是 5 岁生日，面前有 5 根蜡烛</li>
+      <li>短促有力地吹气——"呼！呼！呼！呼！呼！"</li>
+      <li>手放在肚子上，感受每一次吹气时腹肌的收缩</li>
+      <li>做对的话：肚子在工作，肩膀和脖子完全放松</li>
+    </ol>
+  </div>
+
+  <div class="practice">
+    <h3>练习 3：腹部支撑感训练（10 分钟）</h3>
+    <ol>
+      <li>鼻吸一口气</li>
+      <li>用稳定的气流发"嘶——"声</li>
+      <li>中途突然给多一点气（像唱歌时要做表情），再回到稳定气流</li>
+      <li>全程感受腹部控制气流，但腹部不要变硬</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="quiz">
+    <h3>自检小测验</h3>
+    <div class="q">
+      <p>1. 腹式呼吸中，吸气时正确反应是？</p>
+      <label><input type="radio" name="q1" value="a"> A. 肩膀抬起，胸腔扩张</label>
+      <label><input type="radio" name="q1" value="b"> B. 腹部变大，横膈膜下沉</label>
+      <label><input type="radio" name="q1" value="c"> C. 收腹，小腹内缩</label>
+      <p class="feedback" id="q1-fb"></p>
+    </div>
+    <div class="q">
+      <p>2. 声带大约多长？有几对肌肉控制它？</p>
+      <label><input type="radio" name="q2" value="a"> A. 5 公分，3 对</label>
+      <label><input type="radio" name="q2" value="b"> B. 1~2 公分，5 对</label>
+      <label><input type="radio" name="q2" value="c"> C. 10 公分，2 对</label>
+      <p class="feedback" id="q2-fb"></p>
+    </div>
+    <div class="q">
+      <p>3. 吸气时应该注意什么？</p>
+      <label><input type="radio" name="q3" value="a"> A. 大口用力吸，越快越好</label>
+      <label><input type="radio" name="q3" value="b"> B. 不要有声音，尽量用鼻子</label>
+      <label><input type="radio" name="q3" value="c"> C. 必须有声音才算吸得深</label>
+      <p class="feedback" id="q3-fb"></p>
+    </div>
+    <button onclick="checkQuiz()">检查答案</button>
+  </div>
+</section>
+
+<div class="reminder">
+  学完这课有不明白的地方？直接问 Claude——它就是你的私人声乐老师。可以问："我做腹式呼吸时肩膀还是会动，怎么办？" 或者 "我怎么知道自己吸气有没有声音？"
+</div>
+
+<footer>
+  <span>来源：王力宏 30 天唱歌课程 Day 01</span>
+  <a href="0002-听力与模仿.html">下一课：听力与模仿 →</a>
+</footer>
+
+<script>
+function checkQuiz() {
+  const answers = { q1: 'b', q2: 'b', q3: 'b' };
+  for (const [q, ans] of Object.entries(answers)) {
+    const fb = document.getElementById(q + '-fb');
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    fb.className = 'feedback';
+    if (!selected) {
+      fb.className = 'feedback wrong';
+      fb.textContent = '请选择一个答案';
+      fb.style.display = 'block';
+    } else if (selected.value === ans) {
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ 正确！';
+      fb.style.display = 'block';
+    } else {
+      fb.className = 'feedback wrong';
+      fb.textContent = '❌ 再想想，回顾一下上面的内容。';
+      fb.style.display = 'block';
+    }
+  }
+}
+</script>
+</body>
+</html>

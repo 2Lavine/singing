@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 2 课：听力与模仿</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --accent: #c45a3d;
+    --muted: #6b6b6b;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --highlight: #fef6f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .lesson-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .lesson-num {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .objective {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0.75rem auto 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
+  p { margin-bottom: 1rem; }
+  .concept-box {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-box strong { color: var(--accent); }
+  .quote {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    border-radius: 8px;
+    font-style: italic;
+    position: relative;
+  }
+  .quote::before { content: """; font-size: 3rem; color: var(--accent); position: absolute; top: -0.5rem; left: 0.5rem; opacity: 0.3; }
+  .quote .attribution { font-style: normal; color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; }
+  .practice {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .practice h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+  .practice h3::before { content: "🎤"; font-size: 1.2rem; }
+  .practice ol { padding-left: 1.25rem; }
+  .practice li { margin-bottom: 0.5rem; }
+  .quiz {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .quiz h3 { margin-top: 0; }
+  .quiz .q { margin-bottom: 1.25rem; }
+  .quiz .q p { font-weight: 600; margin-bottom: 0.5rem; }
+  .quiz label { display: block; padding: 0.35rem 0; cursor: pointer; }
+  .quiz input[type="radio"] { margin-right: 0.5rem; }
+  .quiz button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .quiz button:hover { opacity: 0.9; }
+  .feedback {
+    display: none;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+  .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
+  .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
+  .reminder {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .reminder::before { content: "💬 有问题？"; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.25rem; }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  th { font-weight: 600; color: var(--accent); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<div class="lesson-header">
+  <div class="lesson-num">课程 2 / 6</div>
+  <h1>听力与模仿</h1>
+  <p class="objective">学习目标：理解模仿在学习唱歌中的核心作用，启动"五位歌手模仿"项目，掌握三度哼唱暖嗓练习</p>
+</div>
+
+<section>
+  <h2>一、听和模仿——你从小就在做</h2>
+  <p>想想你是怎么学会说话的？小 baby 的时候，你<strong>听到</strong>爸爸妈妈的声音，然后<strong>模仿</strong>那个声音——一个字一个字，慢慢变成语言。</p>
+
+  <div class="concept-box">
+    <strong>核心概念：你的声音本身就是模仿的结果</strong><br>
+    口音、说话腔调、笑的方式——都是你的大脑通过无数次的"听→模仿"计算，最终形成的独一无二的声音。
+  </div>
+
+  <p>关键问题是：<strong>有很多声音和唱歌风格，是你小时候没有接触到的</strong>。你的声音真正的可能性，可能远超现在的想象。</p>
+</section>
+
+<section>
+  <h2>二、模仿 ≠ 变成别人</h2>
+
+  <p>模仿是工具，不是目的。重点：</p>
+  <ul>
+    <li>✅ 萃取好歌手声音里的<strong>质感和表情</strong>，放到自己的调色板里</li>
+    <li>❌ 连偶像的说话方式、穿衣、生活方式都跟着学——这太过头了</li>
+  </ul>
+
+  <div class="concept-box">
+    <strong>正确的态度</strong><br>
+    我绝对不要你努力变成另外一个人，但同时我要你不断地努力<strong>变成最好的自己</strong>。
+  </div>
+</section>
+
+<section>
+  <h2>三、力宏的亲身经历</h2>
+  <p>刚出道时，唱片公司老板直接说："我们找下一个张学友。"于是他开始听张学友所有的歌，一句一句模仿。在这个过程中，他同时在训练和探索自己的声音，萃取张学友声音里的质感和表情。</p>
+  <p>如果去听 1996 年的《好像你》第一遍主歌，很明显能听到他在模仿张学友——但后来他慢慢发展出了自己的独特声音。</p>
+</section>
+
+<section>
+  <h2>四、模仿的最高境界</h2>
+
+  <div class="quote">
+    <p>"任何的一个音从我嘴巴里出来之前，都是我事先几秒钟在我脑子里面先听到的，然后我尽量百分之一百去唱到刚才的想象。"</p>
+    <p class="attribution">— Luciano Pavarotti，过去一百年公认最好的男歌手之一</p>
+  </div>
+
+  <p>Pavarotti 还说：你不可能边唱边即兴创造声音——已经来不及了。你要<strong>先在脑子里听到</strong>，然后唱出来。</p>
+
+  <div class="concept-box">
+    <strong>模仿的最高境界：能模仿你的想象</strong><br>
+    久了之后，你将有能力在脑子里想象一个声音，然后一模一样地唱出来。模仿训练的是<strong>耳朵与声音之间的协调性</strong>。
+  </div>
+</section>
+
+<section>
+  <h2>五、本周项目：模仿五位歌手</h2>
+
+  <div class="practice">
+    <h3>五位歌手模仿挑战</h3>
+    <p><strong>目标</strong>：扩大声音的各种可能性，增加音色、质感、风格</p>
+    <p><strong>规则</strong>：选 <strong>5 位风格完全不同</strong>的歌手，每位选 1 首歌，逐句模仿</p>
+    <p><strong>建议分类</strong>（参考力宏的歌单策略）：</p>
+    <table>
+      <tr><th>练习重点</th><th>推荐模仿对象</th></tr>
+      <tr><td>混声区</td><td>方大同、林俊杰、Luther Vandross</td></tr>
+      <tr><td>假声/轻柔</td><td>Sam Smith、John Mayer、吴青峰</td></tr>
+      <tr><td>共鸣/力量</td><td>陈奕迅、Adele、Pavarotti</td></tr>
+      <tr><td>转音/灵活</td><td>陶喆、Beyoncé、Bruno Mars</td></tr>
+      <tr><td>摇滚/撕裂</td><td>信、Linkin Park、萧敬腾</td></tr>
+    </table>
+    <p><em>这只是参考——选你真正喜欢的、风格不同的歌手。</em></p>
+  </div>
+</section>
+
+<section>
+  <h2>六、三度哼唱（暖嗓练习）</h2>
+
+  <p>这是力宏起床后做的第一个练习，也是每次表演前的暖嗓——因为<strong>非常轻松又很有效</strong>。</p>
+
+  <div class="concept-box">
+    <strong>练习原理</strong><br>
+    就像举重第一组先做空的（不加重量），目的是让血液开始循环到声带，慢慢启动声带的协调——<strong>叫醒那五对肌肉</strong>，让它们开始互相协调。
+  </div>
+
+  <h3>通过这个练习找到你的换声区</h3>
+  <p>做哼唱时你会发现：大部分音很舒服，但有一个区域<strong>特别不容易</strong>——那就是你的<strong>换声区（混声区）</strong>。</p>
+  <ul>
+    <li>男声一般在 <strong>降 E4</strong> 附近</li>
+    <li>女声一般在 <strong>A4</strong> 附近</li>
+    <li>因人而异，通过练习找到自己的</li>
+  </ul>
+
+  <div class="practice">
+    <h3>三度哼唱练习（每天 10 分钟）</h3>
+    <ol>
+      <li>嘴唇轻闭，用"嗯——"的哼唱</li>
+      <li>从低音开始往上，再从上往下回到低音</li>
+      <li>保持<strong>最舒服、最轻、最柔顺</strong>的声音</li>
+      <li>注意感受：脸部的振动（嘴巴、鼻腔）</li>
+      <li>感受共鸣的转换：低音胸腔 → 高音头部 → 回到胸腔</li>
+    </ol>
+    <p><strong>⚠️ 安全守则</strong>：不应有任何疼痛或吃力。喉咙发痒想咳嗽 → 立刻停 → 休息几秒 → 深呼吸 → 重来。低音别挖、高音别勉强。</p>
+  </div>
+</section>
+
+<section>
+  <div class="quiz">
+    <h3>自检小测验</h3>
+    <div class="q">
+      <p>1. 模仿练习的目的是什么？</p>
+      <label><input type="radio" name="q1" value="a"> A. 完全变成另一个歌手</label>
+      <label><input type="radio" name="q1" value="b"> B. 扩大自己声音的可能性和音色</label>
+      <label><input type="radio" name="q1" value="c"> C. 证明自己比原唱唱得好</label>
+      <p class="feedback" id="q1-fb"></p>
+    </div>
+    <div class="q">
+      <p>2. Pavarotti 说唱歌前，先在哪里听到声音？</p>
+      <label><input type="radio" name="q2" value="a"> A. 在音响里</label>
+      <label><input type="radio" name="q2" value="b"> B. 在自己的脑子里</label>
+      <label><input type="radio" name="q2" value="c"> C. 在别人的反馈里</label>
+      <p class="feedback" id="q2-fb"></p>
+    </div>
+    <div class="q">
+      <p>3. 三度哼唱时应该保持怎样的状态？</p>
+      <label><input type="radio" name="q3" value="a"> A. 越用力越好</label>
+      <label><input type="radio" name="q3" value="b"> B. 最舒服、最轻、最柔顺</label>
+      <label><input type="radio" name="q3" value="c"> C. 越快越好</label>
+      <p class="feedback" id="q3-fb"></p>
+    </div>
+    <button onclick="checkQuiz()">检查答案</button>
+  </div>
+</section>
+
+<div class="reminder">
+  不知道怎么选 5 位歌手？或者不确定自己有没有在做"对"的模仿？把问题告诉 Claude——它可以帮你分析你的声音特点和适合的模仿对象。
+</div>
+
+<footer>
+  <span>← <a href="0001-呼吸与声音的健康.html">上一课：呼吸与声音的健康</a></span>
+  <span>来源：王力宏 30 天唱歌课程 Day 02</span>
+  <span><a href="0003-声音的五个元素.html">下一课：声音的五个元素 →</a></span>
+</footer>
+
+<script>
+function checkQuiz() {
+  const answers = { q1: 'b', q2: 'b', q3: 'b' };
+  for (const [q, ans] of Object.entries(answers)) {
+    const fb = document.getElementById(q + '-fb');
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    fb.className = 'feedback';
+    if (!selected) {
+      fb.className = 'feedback wrong';
+      fb.textContent = '请选择一个答案';
+      fb.style.display = 'block';
+    } else if (selected.value === ans) {
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ 正确！';
+      fb.style.display = 'block';
+    } else {
+      fb.className = 'feedback wrong';
+      fb.textContent = '❌ 再想想，回顾一下上面的内容。';
+      fb.style.display = 'block';
+    }
+  }
+}
+</script>
+</body>
+</html>

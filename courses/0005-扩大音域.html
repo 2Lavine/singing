@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 5 课：扩大音域</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --accent: #c45a3d;
+    --muted: #6b6b6b;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --highlight: #fef6f0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .lesson-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .lesson-num { font-size: 0.85rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .objective { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0.75rem auto 0; }
+  h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); display: inline-block; }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
+  p { margin-bottom: 1rem; }
+  .concept-box {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-box strong { color: var(--accent); }
+  .story-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+  }
+  .story-box .tag { font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; }
+  .practice {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .practice h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
+  .practice h3::before { content: "🎤"; font-size: 1.2rem; }
+  .practice ol { padding-left: 1.25rem; }
+  .practice li { margin-bottom: 0.5rem; }
+  .quiz {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .quiz h3 { margin-top: 0; }
+  .quiz .q { margin-bottom: 1.25rem; }
+  .quiz .q p { font-weight: 600; margin-bottom: 0.5rem; }
+  .quiz label { display: block; padding: 0.35rem 0; cursor: pointer; }
+  .quiz input[type="radio"] { margin-right: 0.5rem; }
+  .quiz button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .quiz button:hover { opacity: 0.9; }
+  .feedback { display: none; margin-top: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem; }
+  .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
+  .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
+  .reminder {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .reminder::before { content: "💬 有问题？"; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.25rem; }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .compare > div { padding: 1rem; border-radius: 8px; }
+  .compare .good { background: #e8f5e9; }
+  .compare .bad { background: #fbe9e7; }
+  .compare h4 { margin: 0 0 0.5rem; font-size: 0.95rem; }
+  @media (max-width: 500px) { .compare { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="lesson-header">
+  <div class="lesson-num">课程 5 / 6</div>
+  <h1>扩大音域</h1>
+  <p class="objective">学习目标：建立扩大音域的正确心态，掌握增强式训练（Plyometrics）方法，开始挑战更高/更低的音</p>
+</div>
+
+<section>
+  <h2>一、扩大音域是探索未知</h2>
+
+  <p>刚开始可能会感觉奇怪、不确定、不舒服、会害怕——这都正常。但力宏用这些练习把自己的音域<strong>扩大到四个八度</strong>。</p>
+
+  <div class="concept-box">
+    <strong>核心事实</strong><br>
+    如果你有些歌唱不了因为音太高或太低——这些练习可以让你唱到你<strong>本来以为唱不到的音</strong>。<br>
+    大部分人远远低估自己的潜力——不只是唱歌，整体的潜力。
+  </div>
+</section>
+
+<section>
+  <h2>二、天赋 vs 努力：谁笑到最后？</h2>
+
+  <div class="story-box">
+    <div class="tag">Michael Jordan</div>
+    <p>很多人认为史上最伟大的篮球选手。但他的天赋在 NBA 标准<strong>只能算普普通通</strong>——高度、力气、速度都不是特别出众。</p>
+    <p>让他伟大的不是天赋，是<strong>心态、饥饿感、自律</strong>——一天又一天、一年又一年的恒心。</p>
+  </div>
+
+  <div class="story-box">
+    <div class="tag">长青树歌手 vs 昙花一现</div>
+    <p>多数歌手最好的专辑是第一张、第二张——后来声音慢慢瓦解。</p>
+    <p>但像陈奕迅、林俊杰、五月天、Coldplay……二十年前的歌和现在比，<strong>几乎在听两个不一样的歌手</strong>——他们越唱越好。因为他们努力了、付出了代价、没有放弃。</p>
+  </div>
+
+  <div class="story-box">
+    <div class="tag">力宏的亲身经历</div>
+    <p>"我绝对不是天才型的歌手。刚开始唱歌的时候高音唱不上去，音色也不是那么特别。我是<strong>靠后天的努力塑造自己的声音</strong>——这些要教你的东西，是我三十年学习的一切。"</p>
+  </div>
+
+  <div class="concept-box">
+    <strong>天赋是一把双刃剑</strong><br>
+    天赋可能让你一开始快速成功，但它不会强迫你发展自律、恒心、努力——没有这些，成功只会非常短暂。
+  </div>
+</section>
+
+<section>
+  <h2>三、增强式训练（Plyometrics）</h2>
+
+  <p>Plyometrics 是奥运选手常用的训练方式——<strong>用又短又快的爆发性动作让肌肉快速到极限，然后快速放松</strong>。蹲跳、跳远都是增强式训练。</p>
+
+  <div class="concept-box">
+    <strong>应用到声音</strong><br>
+    要唱一些拉长肯定很难的高音？<strong>先快速碰一下，然后快速放掉</strong>。<br>
+    目标是增强<strong>肌肉记忆</strong>——让那些现在只能短暂碰到的音，越来越稳定。
+  </div>
+</section>
+
+<section>
+  <h2>四、高音为什么难？</h2>
+
+  <p>前几天的课一直在强调让声音<strong>平顺、舒服、连贯</strong>——哪怕是比较轻和温柔的声音。</p>
+  <p>但现在要开始把声音<strong>拉得更远</strong>。低音接近说话区，比较习惯。高音难是因为共鸣腔要完全换到头部——需要肌肉协调。</p>
+
+  <div class="concept-box">
+    <strong>怎么确保高音唱到、音又准、又不吃力、又是你要的音色？</strong><br>
+    答案：<strong>持续做扩大音域的练习，天天做。</strong>
+  </div>
+</section>
+
+<section>
+  <h2>五、今日练习</h2>
+
+  <div class="practice">
+    <h3>Tee 五度断奏练习（每天 15 分钟）</h3>
+    <ol>
+      <li>用"Tee"这个音（短促、清晰）</li>
+      <li>在五度音程范围内做断奏（staccato）——每个音快速碰一下就走</li>
+      <li>从舒服的音区开始，逐步向上/向下扩展</li>
+      <li>关键是：<strong>快速碰一下 → 快速放掉</strong></li>
+      <li>宁可短而准，不要长而勉强</li>
+    </ol>
+    <p><em>参考音频：video_wang/Day 05/Tee五度断奏-男.mp3 / Tee五度断奏-女.mp3</em></p>
+  </div>
+
+  <div class="practice">
+    <h3>心态练习（配合每天训练）</h3>
+    <ol>
+      <li>记录你今天能唱到的<strong>最高音</strong>和<strong>最低音</strong></li>
+      <li>第二天尝试多一个半音（向上或向下）</li>
+      <li>不要急——一周多一个半音就是巨大的进步</li>
+      <li>不要和别人比——和你昨天的自己比</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="quiz">
+    <h3>自检小测验</h3>
+    <div class="q">
+      <p>1. Michael Jordan 的例子用来说明什么？</p>
+      <label><input type="radio" name="q1" value="a"> A. 天赋决定一切</label>
+      <label><input type="radio" name="q1" value="b"> B. 自律和恒心比天赋更重要</label>
+      <label><input type="radio" name="q1" value="c"> C. 篮球和唱歌没有关系</label>
+      <p class="feedback" id="q1-fb"></p>
+    </div>
+    <div class="q">
+      <p>2. 增强式训练（Plyometrics）的核心是什么？</p>
+      <label><input type="radio" name="q2" value="a"> A. 长时间持续用力</label>
+      <label><input type="radio" name="q2" value="b"> B. 又短又快的爆发 + 快速放松</label>
+      <label><input type="radio" name="q2" value="c"> C. 完全不费力的声音</label>
+      <p class="feedback" id="q2-fb"></p>
+    </div>
+    <div class="q">
+      <p>3. 力宏说他自己是什么样的歌手？</p>
+      <label><input type="radio" name="q3" value="a"> A. 天才型歌手</label>
+      <label><input type="radio" name="q3" value="b"> B. 靠后天努力塑造声音的歌手</label>
+      <label><input type="radio" name="q3" value="c"> C. 出道就会唱四个八度</label>
+      <p class="feedback" id="q3-fb"></p>
+    </div>
+    <button onclick="checkQuiz()">检查答案</button>
+  </div>
+</section>
+
+<div class="reminder">
+  做 Tee 断奏时总觉得高音"卡住"或"出不来"？描述给 Claude 听——在哪个音出的问题？感觉是喉咙紧还是气不够？针对性的诊断比盲目练习有用 100 倍。
+</div>
+
+<footer>
+  <span>← <a href="0004-胸部区混声区头部区.html">上一课：胸部区、混声区、头部区</a></span>
+  <span>来源：王力宏 30 天唱歌课程 Day 05</span>
+  <span><a href="0006-速度与灵活性.html">下一课：速度与灵活性 →</a></span>
+</footer>
+
+<script>
+function checkQuiz() {
+  const answers = { q1: 'b', q2: 'b', q3: 'b' };
+  for (const [q, ans] of Object.entries(answers)) {
+    const fb = document.getElementById(q + '-fb');
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    fb.className = 'feedback';
+    if (!selected) {
+      fb.className = 'feedback wrong';
+      fb.textContent = '请选择一个答案';
+      fb.style.display = 'block';
+    } else if (selected.value === ans) {
+      fb.className = 'feedback correct';
+      fb.textContent = '✅ 正确！';
+      fb.style.display = 'block';
+    } else {
+      fb.className = 'feedback wrong';
+      fb.textContent = '❌ 再想想。';
+      fb.style.display = 'block';
+    }
+  }
+}
+</script>
+</body>
+</html>

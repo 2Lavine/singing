@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日声乐练习例程</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #2c2c2c;
+    --accent: #c45a3d;
+    --muted: #6b6b6b;
+    --card-bg: #fff;
+    --border: #e8e4df;
+    --highlight: #fef6f0;
+    --success: #6b8f71;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  .page-header {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .page-header .tag {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0.75rem auto 0;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
+  p { margin-bottom: 1rem; }
+
+  .routine-overview {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .routine-overview h2 { border: none; display: block; margin-top: 0; }
+  .flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+  }
+  .flow-step {
+    background: var(--highlight);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #f0e0d4;
+  }
+  .flow-arrow { color: var(--muted); font-size: 1.2rem; }
+  .time-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    margin-left: 0.25rem;
+    font-weight: 600;
+  }
+
+  .exercise {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .exercise-header h3 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.15rem;
+  }
+  .exercise-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .exercise ol { padding-left: 1.25rem; }
+  .exercise li { margin-bottom: 0.5rem; }
+
+  /* Audio player */
+  .audio-player {
+    background: var(--highlight);
+    border: 1px solid #f0e0d4;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .audio-player .play-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.1s;
+  }
+  .audio-player .play-btn:hover { transform: scale(1.05); }
+  .audio-player .play-btn:active { transform: scale(0.95); }
+  .audio-player .play-btn svg { fill: #fff; }
+  .audio-player .track-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .audio-player .track-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+  .audio-player .progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #e8e4df;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+  }
+  .audio-player .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .audio-player .time-display {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    min-width: 70px;
+    text-align: right;
+  }
+
+  /* Metronome */
+  .metronome {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .metronome h3 {
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .metro-beats {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  .metro-beat {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.08s;
+  }
+  .metro-beat.active {
+    background: var(--accent);
+    transform: scale(1.3);
+    box-shadow: 0 0 12px rgba(196, 90, 61, 0.4);
+  }
+  .metro-beat.strong.active {
+    background: var(--accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 16px rgba(196, 90, 61, 0.5);
+  }
+  .metro-beat.strong {
+    width: 22px; height: 22px;
+    border-color: #d4cec7;
+    background: #e8e4df;
+  }
+  .metro-bpm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .metro-bpm-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+    min-width: 100px;
+  }
+  .metro-bpm-unit {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .metro-bpm-btn {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s;
+  }
+  .metro-bpm-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .metro-slider {
+    width: 100%;
+    max-width: 300px;
+    margin: 0.5rem auto;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+  }
+  .metro-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .metro-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0 0.5rem;
+  }
+  .metro-play-btn {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s;
+    box-shadow: 0 2px 8px rgba(196, 90, 61, 0.3);
+  }
+  .metro-play-btn:hover { transform: scale(1.05); }
+  .metro-play-btn:active { transform: scale(0.95); }
+  .metro-play-btn svg { fill: #fff; }
+  .metro-ts {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 0.75rem 0;
+  }
+  .metro-ts-btn {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: all 0.1s;
+  }
+  .metro-ts-btn.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+  .metro-ts-btn:hover:not(.active) { border-color: var(--accent); }
+
+  .concept-box {
+    background: var(--highlight);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-box strong { color: var(--accent); }
+
+  .warning-box {
+    background: #fff8f6;
+    border: 1px solid #f5c6b3;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 8px;
+  }
+  .warning-box strong { color: #c45a3d; }
+
+  .source-tag {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: "";
+    display: inline-block;
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .checklist li.done::before {
+    background: var(--success);
+    border-color: var(--success);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 8l3 3 5-6' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .checklist li.done { color: var(--muted); text-decoration: line-through; }
+
+  .tips-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .tips-section h3 { margin-top: 0; }
+
+  .progress-tracker {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .progress-tracker h3 { margin: 0 0 1rem; }
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .day-cell {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .day-cell:hover { border-color: var(--accent); }
+  .day-cell.completed {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+  }
+  .day-cell .day-num { font-size: 1.1rem; font-weight: 700; }
+  .day-cell .day-label { font-size: 0.7rem; color: var(--muted); }
+  .day-cell.completed .day-label { color: rgba(255,255,255,0.8); }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    .day-grid { grid-template-columns: repeat(4, 1fr); }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+    .metro-beats { gap: 0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="tag">DAILY ROUTINE</div>
+  <h1>每日声乐练习例程</h1>
+  <p class="subtitle">六天课程的精华浓缩为每日 1 小时的固定流程，持续 30 天建立肌肉记忆</p>
+</div>
+
+<section class="routine-overview">
+  <h2>练习流程</h2>
+  <p>四个步骤，从暖嗓到精进，循序渐进</p>
+  <div class="flow">
+    <span class="flow-step">三度哼唱 <span class="time-badge">10min</span></span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">弹嘴唇 / Mum <span class="time-badge">15min</span></span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Tee 断奏 <span class="time-badge">15min</span></span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">节拍器音阶 <span class="time-badge">20min</span></span>
+  </div>
+  <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">总计约 60 分钟 &middot; 一周六次 &middot; 给自己一天休息日</p>
+</section>
+
+<section>
+  <h2>开始前：放松与呼吸</h2>
+  <p>在开始任何声音练习之前，先花 1&ndash;2 分钟让身体进入状态：</p>
+  <ul style="padding-left: 1.25rem;">
+    <li><strong>放松清单</strong>：肩膀放 &rarr; 脖子放 &rarr; 脸部放 &rarr; 下巴放 &rarr; 舌头放 &rarr; 嘴唇放</li>
+    <li>站起来抖一抖，让紧绷感释放</li>
+    <li>做 3 次腹式呼吸：鼻吸（肚子变大气球）&rarr; 嘴吐（肚子匀速内缩）</li>
+    <li>吸气不要有声音，尽量用鼻子（像闻玫瑰花一样）</li>
+  </ul>
+</section>
+
+<!-- ==================== STEP 1 ==================== -->
+<section>
+  <h2>Step 1：三度哼唱（暖嗓）</h2>
+  <span class="source-tag">来源：第 2 课 &middot; 听力与模仿</span>
+
+  <div class="concept-box">
+    <strong>为什么从这里开始？</strong><br>
+    就像举重第一组先做空的——让血液开始循环到声带，慢慢启动那五对控制声带的肌肉，让它们开始互相协调。这是力宏起床后做的第一个练习，也是每次表演前的暖嗓。
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <h3><span class="exercise-num">1</span> 三度哼唱 &middot; 10 分钟</h3>
+    </div>
+    <ol>
+      <li>嘴唇轻闭，用&ldquo;嗯&mdash;&mdash;&rdquo;的哼唱</li>
+      <li>从低音开始往上，再从上往下回到低音</li>
+      <li>保持<strong>最舒服、最轻、最柔顺</strong>的声音</li>
+      <li>注意感受：脸部的振动（嘴巴、鼻腔）</li>
+      <li>感受共鸣的转换：低音胸腔 &rarr; 高音头部 &rarr; 回到胸腔</li>
+      <li>特别留意：有没有某个区域<strong>特别不容易</strong>？那就是你的换声区</li>
+    </ol>
+    <div class="audio-player" data-src="../audio/三度哼唱.mp3">
+      <button class="play-btn" onclick="toggleAudio(this)">
+        <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-label">参考音频 &middot; 跟着练</div>
+        <div class="progress-bar" onclick="seekAudio(this, event)"><div class="progress-fill"></div></div>
+      </div>
+      <span class="time-display">0:00</span>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <strong>安全守则</strong>：不应有任何疼痛或吃力。喉咙发痒想咳嗽 &rarr; 立刻停 &rarr; 休息几秒 &rarr; 深呼吸 &rarr; 重来。低音别挖、高音别勉强。
+  </div>
+</section>
+
+<!-- ==================== STEP 2 ==================== -->
+<section>
+  <h2>Step 2：弹嘴唇 / Mum 练习</h2>
+  <span class="source-tag">来源：第 3 课 &middot; 声音的五个元素 + 第 4 课 &middot; 胸部区混声区头部区</span>
+
+  <div class="concept-box">
+    <strong>练习演进逻辑</strong><br>
+    哼唱（最少气，声带闭合）&rarr; <strong>弹嘴唇</strong>（多一点气，快速哼&harr;呃）&rarr; <strong>Mum 练习</strong>（真正开始唱！一半哼、一半唱）。弹嘴唇每次嘴唇闭合把声音停住，产生喉咙里的气压，让声带无法被吹开，维持声带的闭合度。Mum 练习用十二度大跨度，强迫你快速穿过三个声区。
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <h3><span class="exercise-num">2</span> 弹嘴唇 &middot; 7 分钟</h3>
+    </div>
+    <ol>
+      <li>单手或双手把脸颊的肉轻轻提起来</li>
+      <li>嘴唇闭合，用气流吹开&mdash;&mdash;&ldquo;brrrrrr&mdash;&mdash;&rdquo;</li>
+      <li><strong>越慢越好</strong>，越放松越好（别像摩托车那样又紧又快）</li>
+      <li>保持气流<strong>等速</strong>&mdash;&mdash;不是忽快忽慢</li>
+      <li>如果嘴唇某个时候弹不了、停了 &rarr; 说明那个气不顺，没等速</li>
+      <li>弹嘴唇时后面的母音是&ldquo;呃&rdquo;（笨笨的那个声音）</li>
+    </ol>
+    <div class="audio-player" data-src="../audio/弹嘴唇.mp3">
+      <button class="play-btn" onclick="toggleAudio(this)">
+        <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-label">参考音频 &middot; 跟着练</div>
+        <div class="progress-bar" onclick="seekAudio(this, event)"><div class="progress-fill"></div></div>
+      </div>
+      <span class="time-display">0:00</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <h3><span class="exercise-num">3</span> 十二度 Mum 练习 &middot; 8 分钟</h3>
+    </div>
+    <ol>
+      <li>嘴唇轻闭发&ldquo;Mmm&mdash;&mdash;&rdquo;，然后打开到&ldquo;呃&mdash;&mdash;&rdquo;</li>
+      <li>M 的部分 = 在哼唱（感受脸部鼻腔振动）</li>
+      <li>&ldquo;呃&rdquo;的部分 = 在唱歌（那个笨笨的声音、关键母音）</li>
+      <li>从低音开始，上行 12 度穿过换声区，再下行回来</li>
+      <li>全程保持：嘴唇放松、下巴放松（不要到高音时下巴往上抬）</li>
+      <li>目标是<strong>一个声音</strong>&mdash;&mdash;从胸部区到换声区到头部区，平顺、连贯</li>
+    </ol>
+    <p><em>给胸部区很强的人：先让胸部区变小一点、弱一点、轻一点，直到能把两个共鸣腔温柔地衔接起来。</em></p>
+    <div class="audio-player" data-src="../audio/十二度Mum.mp3">
+      <button class="play-btn" onclick="toggleAudio(this)">
+        <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-label">参考音频 &middot; 跟着练</div>
+        <div class="progress-bar" onclick="seekAudio(this, event)"><div class="progress-fill"></div></div>
+      </div>
+      <span class="time-display">0:00</span>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <strong>桥梁比喻</strong><br>
+    换声区是一座需要搭建的桥梁。当它又强壮又坚固，你就可以在上面跑来跑去、跳来跳去，永远不用担心失去平衡。本质上，这只是一个<strong>肌肉协调问题</strong>&mdash;&mdash;需要每天练习才能习惯。
+  </div>
+</section>
+
+<!-- ==================== STEP 3 ==================== -->
+<section>
+  <h2>Step 3：Tee 五度断奏</h2>
+  <span class="source-tag">来源：第 5 课 &middot; 扩大音域</span>
+
+  <div class="concept-box">
+    <strong>增强式训练（Plyometrics）</strong><br>
+    奥运选手用又短又快的爆发性动作让肌肉快速到极限，然后快速放松。应用到声音：要唱一些拉长肯定很难的高音？<strong>先快速碰一下，然后快速放掉。</strong>目标是增强肌肉记忆&mdash;&mdash;让那些现在只能短暂碰到的音，越来越稳定。
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <h3><span class="exercise-num">4</span> Tee 断奏练习 &middot; 15 分钟</h3>
+    </div>
+    <ol>
+      <li>用&ldquo;Tee&rdquo;这个音（短促、清晰）</li>
+      <li>在五度音程范围内做断奏（staccato）&mdash;&mdash;每个音快速碰一下就走</li>
+      <li>从舒服的音区开始，逐步向上/向下扩展</li>
+      <li>关键是：<strong>快速碰一下 &rarr; 快速放掉</strong></li>
+      <li>宁可短而准，不要长而勉强</li>
+      <li>记录今天能唱到的最高音和最低音，明天尝试多一个半音</li>
+    </ol>
+    <p><em>一周多一个半音就是巨大的进步。不要和别人比&mdash;&mdash;和你昨天的自己比。</em></p>
+    <div class="audio-player" data-src="../audio/Tee五度断奏.mp3">
+      <button class="play-btn" onclick="toggleAudio(this)">
+        <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-label">参考音频 &middot; 跟着练</div>
+        <div class="progress-bar" onclick="seekAudio(this, event)"><div class="progress-fill"></div></div>
+      </div>
+      <span class="time-display">0:00</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STEP 4 ==================== -->
+<section>
+  <h2>Step 4：节拍器音阶</h2>
+  <span class="source-tag">来源：第 6 课 &middot; 速度与灵活性</span>
+
+  <div class="concept-box">
+    <strong>速度的秘密：组块学习（Chunking）</strong><br>
+    95% 的行为都是习惯。唱歌也是：<strong>重复练习 &rarr; 组块 &rarr; 变成肌肉记忆 &rarr; 想都不用想。</strong>这就是为什么 30 天课程的设计是有原因的&mdash;&mdash;30 天足够建立新的习惯。
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <h3><span class="exercise-num">5</span> 节拍器音阶练习 &middot; 20 分钟</h3>
+    </div>
+    <ol>
+      <li>用下方<strong>内置节拍器</strong>开始练习</li>
+      <li>从 <strong>70 bpm</strong> 开始</li>
+      <li>用&ldquo;U&mdash;&mdash;&rdquo;的音做音阶练习：慢 2 次 &rarr; 快 3 次 &rarr; 慢 1 次</li>
+      <li>保证每个音<strong>先准再快</strong>&mdash;&mdash;不准就退回更慢</li>
+      <li>完美后才允许自己<strong>加快一格</strong>（可以 5 bpm 一格）</li>
+      <li>追求三十二分之一拍、六十四分之一拍的精准度</li>
+    </ol>
+    <p><strong>声音速度与灵活度三个维度</strong>：音准准确度、音与音一次到位、快速而准确。像阿里拳王一样：&ldquo;像蝴蝶飘，像蜜蜂蛰。&rdquo;</p>
+    <div class="audio-player" data-src="../audio/速度与灵活度.mp3">
+      <button class="play-btn" onclick="toggleAudio(this)">
+        <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-label">参考音频 &middot; 速度与灵活度示范</div>
+        <div class="progress-bar" onclick="seekAudio(this, event)"><div class="progress-fill"></div></div>
+      </div>
+      <span class="time-display">0:00</span>
+    </div>
+  </div>
+
+  <!-- Built-in Metronome -->
+  <div class="metronome" id="metronome">
+    <h3>内置节拍器</h3>
+    <div class="metro-ts">
+      <button class="metro-ts-btn active" data-ts="4" onclick="setTimeSig(4, this)">4/4</button>
+      <button class="metro-ts-btn" data-ts="3" onclick="setTimeSig(3, this)">3/4</button>
+      <button class="metro-ts-btn" data-ts="6" onclick="setTimeSig(6, this)">6/8</button>
+    </div>
+    <div class="metro-beats" id="metroBeats">
+      <div class="metro-beat strong"></div>
+      <div class="metro-beat"></div>
+      <div class="metro-beat"></div>
+      <div class="metro-beat"></div>
+    </div>
+    <div class="metro-bpm">
+      <button class="metro-bpm-btn" onclick="adjustBPM(-5)">-</button>
+      <div>
+        <div class="metro-bpm-value" id="bpmValue">70</div>
+        <div class="metro-bpm-unit">BPM</div>
+      </div>
+      <button class="metro-bpm-btn" onclick="adjustBPM(5)">+</button>
+    </div>
+    <input type="range" class="metro-slider" id="bpmSlider" min="40" max="200" value="70" oninput="setBPM(this.value)">
+    <div class="metro-controls">
+      <button class="metro-play-btn" id="metroPlayBtn" onclick="toggleMetronome()">
+        <svg width="22" height="22" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DAILY TRACKER ==================== -->
+<section>
+  <h2>每日打卡</h2>
+  <p>点击格子标记完成。每天完成全部四个步骤后，记录你的感受。</p>
+  <div class="progress-tracker">
+    <h3>本周进度</h3>
+    <div class="day-grid" id="dayGrid">
+      <div class="day-cell" data-day="1" onclick="toggleDay(this)"><div class="day-num">1</div><div class="day-label">Day</div></div>
+      <div class="day-cell" data-day="2" onclick="toggleDay(this)"><div class="day-num">2</div><div class="day-label">Day</div></div>
+      <div class="day-cell" data-day="3" onclick="toggleDay(this)"><div class="day-num">3</div><div class="day-label">Day</div></div>
+      <div class="day-cell" data-day="4" onclick="toggleDay(this)"><div class="day-num">4</div><div class="day-label">Day</div></div>
+      <div class="day-cell" data-day="5" onclick="toggleDay(this)"><div class="day-num">5</div><div class="day-label">Day</div></div>
+      <div class="day-cell" data-day="6" onclick="toggleDay(this)"><div class="day-num">6</div><div class="day-label">Day</div></div>
+      <div class="day-cell" data-day="7" onclick="toggleDay(this)"><div class="day-num">7</div><div class="day-label">休息</div></div>
+    </div>
+    <p style="color: var(--muted); font-size: 0.85rem; margin: 0;">一周六次练习 + 一天休息，让声带肌肉成长</p>
+  </div>
+</section>
+
+<section class="tips-section">
+  <h3>声音健康提醒</h3>
+  <ul class="checklist" id="healthChecklist">
+    <li onclick="toggleCheck(this)">今天喝了 3000cc+ 水</li>
+    <li onclick="toggleCheck(this)">昨晚睡了 8 小时</li>
+    <li onclick="toggleCheck(this)">练习前没有喝酒、抽烟、大叫</li>
+    <li onclick="toggleCheck(this)">吸气没有声音（用鼻子，像闻花）</li>
+    <li onclick="toggleCheck(this)">全程没有喉咙疼痛或不适</li>
+  </ul>
+</section>
+
+<footer>
+  <p>基于王力宏 30 天唱歌课程（Day 01&ndash;06）提炼</p>
+</footer>
+
+<script>
+// ========== Audio Players ==========
+const audioPlayers = {};
+const playSVG = '<svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>';
+const pauseSVG = '<svg width="16" height="16" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/></svg>';
+
+document.querySelectorAll('.audio-player').forEach((player, i) => {
+  const audio = new Audio(player.dataset.src);
+  audio.preload = 'metadata';
+  audioPlayers[i] = { audio, player };
+
+  audio.addEventListener('timeupdate', () => {
+    const pct = (audio.currentTime / audio.duration) * 100 || 0;
+    player.querySelector('.progress-fill').style.width = pct + '%';
+    const cur = formatTime(audio.currentTime);
+    const dur = isFinite(audio.duration) ? formatTime(audio.duration) : '0:00';
+    player.querySelector('.time-display').textContent = cur + ' / ' + dur;
+  });
+
+  audio.addEventListener('ended', () => {
+    player.querySelector('.play-btn').innerHTML = playSVG;
+    player.querySelector('.progress-fill').style.width = '0%';
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    player.querySelector('.time-display').textContent = '0:00 / ' + formatTime(audio.duration);
+  });
+});
+
+function toggleAudio(btn) {
+  const player = btn.closest('.audio-player');
+  const idx = [...document.querySelectorAll('.audio-player')].indexOf(player);
+  const { audio } = audioPlayers[idx];
+
+  // Pause all other players
+  Object.entries(audioPlayers).forEach(([k, v]) => {
+    if (+k !== idx && !v.audio.paused) {
+      v.audio.pause();
+      v.player.querySelector('.play-btn').innerHTML = playSVG;
+    }
+  });
+
+  if (audio.paused) {
+    audio.play();
+    btn.innerHTML = pauseSVG;
+  } else {
+    audio.pause();
+    btn.innerHTML = playSVG;
+  }
+}
+
+function seekAudio(bar, e) {
+  const player = bar.closest('.audio-player');
+  const idx = [...document.querySelectorAll('.audio-player')].indexOf(player);
+  const { audio } = audioPlayers[idx];
+  const rect = bar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) {
+    audio.currentTime = pct * audio.duration;
+  }
+}
+
+function formatTime(s) {
+  if (!isFinite(s)) return '0:00';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+// ========== Metronome ==========
+let metroCtx = null;
+let metroPlaying = false;
+let metroBPM = 70;
+let metroBeats = 4;
+let metroCurrentBeat = 0;
+let metroTimer = null;
+let metroNextNoteTime = 0;
+const metroScheduleAhead = 0.1;
+const metroLookahead = 25;
+
+function getMetroCtx() {
+  if (!metroCtx) metroCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return metroCtx;
+}
+
+function setTimeSig(beats, btn) {
+  metroBeats = beats;
+  document.querySelectorAll('.metro-ts-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBeats();
+  if (metroPlaying) { stopMetronome(); startMetronome(); }
+}
+
+function renderBeats() {
+  const container = document.getElementById('metroBeats');
+  container.innerHTML = '';
+  for (let i = 0; i < metroBeats; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'metro-beat' + (i === 0 ? ' strong' : '');
+    container.appendChild(dot);
+  }
+}
+
+function adjustBPM(delta) {
+  setBPM(Math.max(40, Math.min(200, metroBPM + delta)));
+  document.getElementById('bpmSlider').value = metroBPM;
+}
+
+function setBPM(val) {
+  metroBPM = parseInt(val);
+  document.getElementById('bpmValue').textContent = metroBPM;
+  document.getElementById('bpmSlider').value = metroBPM;
+}
+
+function toggleMetronome() {
+  if (metroPlaying) {
+    stopMetronome();
+  } else {
+    startMetronome();
+  }
+}
+
+function startMetronome() {
+  const ctx = getMetroCtx();
+  if (ctx.state === 'suspended') ctx.resume();
+  metroPlaying = true;
+  metroCurrentBeat = 0;
+  metroNextNoteTime = ctx.currentTime;
+  document.getElementById('metroPlayBtn').innerHTML =
+    '<svg width="22" height="22" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" fill="white"/><rect x="9.5" y="2" width="3.5" height="12" fill="white"/></svg>';
+  scheduler();
+}
+
+function stopMetronome() {
+  metroPlaying = false;
+  clearTimeout(metroTimer);
+  document.getElementById('metroPlayBtn').innerHTML =
+    '<svg width="22" height="22" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14" fill="white"/></svg>';
+  document.querySelectorAll('.metro-beat').forEach(b => b.classList.remove('active'));
+}
+
+function scheduler() {
+  if (!metroPlaying) return;
+  const ctx = getMetroCtx();
+  while (metroNextNoteTime < ctx.currentTime + metroScheduleAhead) {
+    scheduleNote(metroCurrentBeat, metroNextNoteTime);
+    const secondsPerBeat = 60.0 / metroBPM;
+    metroNextNoteTime += secondsPerBeat;
+    metroCurrentBeat = (metroCurrentBeat + 1) % metroBeats;
+  }
+  metroTimer = setTimeout(scheduler, metroLookahead);
+}
+
+function scheduleNote(beat, time) {
+  const ctx = getMetroCtx();
+  const isStrong = beat === 0;
+
+  // Sound
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.value = isStrong ? 1200 : 800;
+  gain.gain.setValueAtTime(isStrong ? 0.6 : 0.35, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(time);
+  osc.stop(time + 0.06);
+
+  // Visual (schedule with setTimeout relative to now)
+  const delay = (time - ctx.currentTime) * 1000;
+  setTimeout(() => {
+    if (!metroPlaying) return;
+    document.querySelectorAll('.metro-beat').forEach((b, i) => {
+      b.classList.toggle('active', i === beat);
+    });
+  }, Math.max(0, delay));
+}
+
+// ========== Daily Tracker ==========
+function toggleDay(el) {
+  el.classList.toggle('completed');
+  saveState();
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  saveState();
+}
+
+function saveState() {
+  const days = {};
+  document.querySelectorAll('.day-cell').forEach(cell => {
+    days[cell.dataset.day] = cell.classList.contains('completed');
+  });
+  const checks = {};
+  document.querySelectorAll('.checklist li').forEach((li, i) => {
+    checks[i] = li.classList.contains('done');
+  });
+  localStorage.setItem('vocal-daily', JSON.stringify({
+    days, checks,
+    date: new Date().toISOString().split('T')[0]
+  }));
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem('vocal-daily');
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    const today = new Date().toISOString().split('T')[0];
+    if (state.date !== today) {
+      localStorage.removeItem('vocal-daily');
+      return;
+    }
+    if (state.days) {
+      document.querySelectorAll('.day-cell').forEach(cell => {
+        if (state.days[cell.dataset.day]) cell.classList.add('completed');
+      });
+    }
+    if (state.checks) {
+      document.querySelectorAll('.checklist li').forEach((li, i) => {
+        if (state.checks[i]) li.classList.add('done');
+      });
+    }
+  } catch {}
+}
+
+loadState();
+</script>
+</body>
+</html>
