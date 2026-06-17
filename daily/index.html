@@ -107,6 +107,95 @@
   .exercise-section.completed {
     opacity: 0.55;
   }
+  .exercise-section.skipped {
+    opacity: 0.35;
+    order: 999;
+  }
+  .exercise-section.skipped .exercise-inner { pointer-events: none; }
+  .skip-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .skip-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .skip-btn.is-skipped {
+    background: var(--border);
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  /* Config panel */
+  .config-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+  }
+  .config-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .config-toggle:hover { color: var(--accent); }
+  .config-toggle .arrow { transition: transform 0.2s; display: inline-block; }
+  .config-toggle.open .arrow { transform: rotate(90deg); }
+  .config-body {
+    display: none;
+    padding: 0 1.25rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .config-body.open { display: block; }
+  .config-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .config-row:last-child { border-bottom: none; }
+  .config-row .cfg-name { font-weight: 600; flex: 1; }
+  .config-row .cfg-time { color: var(--muted); margin: 0 1rem; font-variant-numeric: tabular-nums; }
+  .cfg-switch {
+    position: relative;
+    width: 36px; height: 20px;
+    flex-shrink: 0;
+  }
+  .cfg-switch input { opacity: 0; width: 0; height: 0; }
+  .cfg-switch .slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .cfg-switch .slider::before {
+    content: "";
+    position: absolute;
+    width: 16px; height: 16px;
+    left: 2px; bottom: 2px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+  }
+  .cfg-switch input:checked + .slider { background: var(--success); }
+  .cfg-switch input:checked + .slider::before { transform: translateX(16px); }
   .exercise {
     padding: 0;
     margin: 0;
@@ -620,23 +709,31 @@
 <div class="page-header">
   <div class="tag">DAILY ROUTINE</div>
   <h1>每日声乐练习例程</h1>
-  <p class="subtitle">六天课程的精华浓缩为每日 1 小时的固定流程，持续 30 天建立肌肉记忆</p>
+  <p class="subtitle">六天课程的精华浓缩为每日 30 分钟的固定流程，持续 30 天建立肌肉记忆</p>
 </div>
 
 <section class="routine-overview">
   <h2>练习流程</h2>
   <p>四个步骤，从暖嗓到精进，循序渐进</p>
-  <div class="flow">
-    <span class="flow-step">三度哼唱 <span class="time-badge">10min</span></span>
+  <div class="flow" id="flowOverview">
+    <span class="flow-step">三度哼唱 <span class="time-badge">5min</span></span>
     <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">弹嘴唇 / Mum <span class="time-badge">15min</span></span>
+    <span class="flow-step">弹嘴唇 / Mum <span class="time-badge">7.5min</span></span>
     <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">Tee 断奏 <span class="time-badge">15min</span></span>
+    <span class="flow-step">Tee 断奏 <span class="time-badge">7.5min</span></span>
     <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">节拍器音阶 <span class="time-badge">20min</span></span>
+    <span class="flow-step">节拍器音阶 <span class="time-badge">10min</span></span>
   </div>
-  <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">总计约 60 分钟 &middot; 一周六次 &middot; 给自己一天休息日</p>
+  <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">总计约 30 分钟 &middot; 一周六次 &middot; 给自己一天休息日</p>
 </section>
+
+<!-- Config panel -->
+<div class="config-panel" id="configPanel">
+  <button class="config-toggle" onclick="toggleConfigPanel()">
+    <span class="arrow">&#9654;</span> 练习配置（启用 / 跳过 / 时长）
+  </button>
+  <div class="config-body" id="configBody"></div>
+</div>
 
 <!-- ===== Routine Control ===== -->
 <div class="routine-ctrl" id="routineCtrl">
@@ -672,9 +769,11 @@
 
 <!-- ==================== STEP 1 ==================== -->
 <section class="exercise-section" id="ex-sec-0">
+  <div class="exercise-inner">
   <div class="exercise">
     <div class="exercise-header">
-      <h3><span class="exercise-num">1</span> 三度哼唱（暖嗓） &middot; 10 分钟</h3>
+      <h3><span class="exercise-num">1</span> 三度哼唱（暖嗓） &middot; 5 分钟</h3>
+      <button class="skip-btn" onclick="toggleSkip(0)">跳过</button>
     </div>
     <span class="source-tag">来源：第 2 课 &middot; 听力与模仿</span>
     <div class="concept-box">
@@ -707,13 +806,16 @@
       <strong>安全守则</strong>：不应有任何疼痛与吃力。喉咙发痒想咳嗽 &rarr; 立刻停 &rarr; 休息几秒 &rarr; 深呼吸 &rarr; 重来。低音别挖、高音别勉强。
     </div>
   </div>
+  </div><!-- /exercise-inner -->
 </section>
 
 <!-- ==================== STEP 2 ==================== -->
 <section class="exercise-section" id="ex-sec-1">
+  <div class="exercise-inner">
   <div class="exercise">
     <div class="exercise-header">
-      <h3><span class="exercise-num">2</span> 弹嘴唇 &middot; 7 分钟</h3>
+      <h3><span class="exercise-num">2</span> 弹嘴唇 &middot; 3.5 分钟</h3>
+      <button class="skip-btn" onclick="toggleSkip(1)">跳过</button>
     </div>
     <span class="source-tag">来源：第 3 课 &middot; 声音的五个元素</span>
     <div class="concept-box">
@@ -743,12 +845,15 @@
       <span class="time-display">0:00</span>
     </div>
   </div>
+  </div><!-- /exercise-inner -->
 </section>
 
 <section class="exercise-section" id="ex-sec-2">
+  <div class="exercise-inner">
   <div class="exercise">
     <div class="exercise-header">
-      <h3><span class="exercise-num">3</span> 十二度 Mum 练习 &middot; 8 分钟</h3>
+      <h3><span class="exercise-num">3</span> 十二度 Mum 练习 &middot; 4 分钟</h3>
+      <button class="skip-btn" onclick="toggleSkip(2)">跳过</button>
     </div>
     <span class="source-tag">来源：第 4 课 &middot; 胸部区混声区头部区</span>
     <div class="concept-box">
@@ -779,13 +884,16 @@
       <span class="time-display">0:00</span>
     </div>
   </div>
+  </div><!-- /exercise-inner -->
 </section>
 
 <!-- ==================== STEP 3 ==================== -->
 <section class="exercise-section" id="ex-sec-3">
+  <div class="exercise-inner">
   <div class="exercise">
     <div class="exercise-header">
-      <h3><span class="exercise-num">4</span> Tee 断奏练习 &middot; 15 分钟</h3>
+      <h3><span class="exercise-num">4</span> Tee 断奏练习 &middot; 7.5 分钟</h3>
+      <button class="skip-btn" onclick="toggleSkip(3)">跳过</button>
     </div>
     <span class="source-tag">来源：第 5 课 &middot; 扩大音域</span>
     <div class="concept-box">
@@ -816,13 +924,16 @@
       <span class="time-display">0:00</span>
     </div>
   </div>
+  </div><!-- /exercise-inner -->
 </section>
 
 <!-- ==================== STEP 4 ==================== -->
 <section class="exercise-section" id="ex-sec-4">
+  <div class="exercise-inner">
   <div class="exercise">
     <div class="exercise-header">
-      <h3><span class="exercise-num">5</span> 速度与灵活度 &middot; 20 分钟</h3>
+      <h3><span class="exercise-num">5</span> 速度与灵活度 &middot; 10 分钟</h3>
+      <button class="skip-btn" onclick="toggleSkip(4)">跳过</button>
     </div>
     <span class="source-tag">来源：第 6 课 &middot; 速度与灵活性</span>
     <div class="concept-box">
@@ -883,9 +994,8 @@
       </button>
     </div>
   </div>
+  </div><!-- /exercise-inner -->
 </section>
-
-<!-- ==================== DAILY TRACKER ==================== -->
 <section>
   <h2>每日打卡</h2>
   <p>点击格子标记完成。每天完成全部四个步骤后，记录你的感受。</p>
@@ -921,68 +1031,138 @@
 
 <script>
 // ================================================================
-// EXERCISE CONFIG
+// CONFIG LOADING
 // ================================================================
-const EXERCISES = [
-  { id: 0, name: '三度哼唱',   practiceMin: 10, src: '../audio/三度哼唱.mp3' },
-  { id: 1, name: '弹嘴唇',     practiceMin: 7,  src: '../audio/弹嘴唇.mp3' },
-  { id: 2, name: '十二度Mum',  practiceMin: 8,  src: '../audio/十二度Mum.mp3' },
-  { id: 3, name: 'Tee断奏',    practiceMin: 15, src: '../audio/Tee五度断奏.mp3' },
-  { id: 4, name: '速度与灵活度', practiceMin: 20, src: '../audio/速度与灵活度.mp3' },
-];
-
-const ROUND_REST_SEC = 5;      // rest between rounds
-const EXERCISE_REST_SEC = 15;  // rest between exercises
+let CONFIG = null;
+let EXERCISES = [];
+let ROUND_REST_SEC = 5;
+let EXERCISE_REST_SEC = 15;
 
 const playSVG = '<svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>';
 const pauseSVG = '<svg width="16" height="16" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12"/><rect x="9.5" y="2" width="3.5" height="12"/></svg>';
 
-// ================================================================
-// AUDIO OBJECTS
-// ================================================================
 const audios = [];
-const audioDurations = [];  // seconds, filled on loadedmetadata
-const roundCounts = [];     // calculated after metadata loads
+const audioDurations = [];
+const roundCounts = [];
+const skipState = [];
 
-EXERCISES.forEach((ex, i) => {
-  const a = new Audio(ex.src);
-  a.preload = 'metadata';
-  audios.push(a);
+async function loadConfig() {
+  try {
+    const res = await fetch('config.json');
+    CONFIG = await res.json();
+    ROUND_REST_SEC = CONFIG.roundRestSec || 5;
+    EXERCISE_REST_SEC = CONFIG.exerciseRestSec || 15;
+    CONFIG.exercises.forEach((ex, i) => {
+      EXERCISES.push({
+        id: i, name: ex.shortName || ex.name,
+        practiceMin: ex.practiceMin, src: ex.audioSrc,
+        enabled: ex.enabled !== false
+      });
+      skipState[i] = ex.enabled === false;
+    });
+    initAudios();
+    renderConfigPanel();
+    applySkipStates();
+  } catch (e) {
+    console.warn('Config load failed, using defaults:', e);
+    EXERCISES.push(
+      { id: 0, name: '三度哼唱', practiceMin: 5, src: '../audio/三度哼唱.mp3' },
+      { id: 1, name: '弹嘴唇', practiceMin: 3.5, src: '../audio/弹嘴唇.mp3' },
+      { id: 2, name: '十二度Mum', practiceMin: 4, src: '../audio/十二度Mum.mp3' },
+      { id: 3, name: 'Tee断奏', practiceMin: 7.5, src: '../audio/Tee五度断奏.mp3' },
+      { id: 4, name: '速度与灵活度', practiceMin: 10, src: '../audio/速度与灵活度.mp3' }
+    );
+    for (let i = 0; i < 5; i++) skipState[i] = false;
+    initAudios();
+    renderConfigPanel();
+  }
+}
 
-  a.addEventListener('loadedmetadata', () => {
-    audioDurations[i] = a.duration;
-    roundCounts[i] = Math.ceil((ex.practiceMin * 60) / a.duration);
-    updateRoundLabel(i);
-    renderPips(i);
-  });
-
-  a.addEventListener('timeupdate', () => {
-    const player = document.getElementById('player-' + i);
-    if (!player) return;
-    const pct = (a.currentTime / a.duration) * 100 || 0;
-    player.querySelector('.progress-fill').style.width = pct + '%';
-    const cur = fmtTime(a.currentTime);
-    const dur = isFinite(a.duration) ? fmtTime(a.duration) : '0:00';
-    player.querySelector('.time-display').textContent = cur + ' / ' + dur;
-  });
-
-  a.addEventListener('ended', () => {
-    if (!routineRunning || routinePaused) {
-      // Manual mode: just reset UI
+function initAudios() {
+  EXERCISES.forEach((ex, i) => {
+    const a = new Audio(ex.src);
+    a.preload = 'metadata';
+    audios[i] = a;
+    a.addEventListener('loadedmetadata', () => {
+      audioDurations[i] = a.duration;
+      roundCounts[i] = Math.max(1, Math.ceil((ex.practiceMin * 60) / a.duration));
+      updateRoundLabel(i);
+      renderPips(i);
+      renderConfigPanel();
+    });
+    a.addEventListener('timeupdate', () => {
       const player = document.getElementById('player-' + i);
-      player.querySelector('.play-btn').innerHTML = playSVG;
-      player.querySelector('.progress-fill').style.width = '0%';
-      return;
-    }
-    onRoundEnded();
+      if (!player) return;
+      player.querySelector('.progress-fill').style.width = ((a.currentTime / a.duration) * 100 || 0) + '%';
+      player.querySelector('.time-display').textContent = fmtTime(a.currentTime) + ' / ' + (isFinite(a.duration) ? fmtTime(a.duration) : '0:00');
+    });
+    a.addEventListener('ended', () => {
+      if (!routineRunning || routinePaused) {
+        const player = document.getElementById('player-' + i);
+        if (player) { player.querySelector('.play-btn').innerHTML = playSVG; player.querySelector('.progress-fill').style.width = '0%'; }
+        return;
+      }
+      onRoundEnded();
+    });
   });
-});
+}
 
 function fmtTime(s) {
   if (!isFinite(s)) return '0:00';
-  const m = Math.floor(s / 60);
-  const sec = Math.floor(s % 60);
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
   return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+// ================================================================
+// CONFIG PANEL
+// ================================================================
+function toggleConfigPanel() {
+  document.getElementById('configBody').classList.toggle('open');
+  document.querySelector('.config-toggle').classList.toggle('open');
+}
+
+function renderConfigPanel() {
+  const body = document.getElementById('configBody');
+  if (!body) return;
+  body.innerHTML = '';
+  EXERCISES.forEach((ex, i) => {
+    const row = document.createElement('div');
+    row.className = 'config-row';
+    const t = ex.practiceMin % 1 === 0 ? ex.practiceMin + ' min' : ex.practiceMin.toFixed(1) + ' min';
+    const rounds = roundCounts[i] ? roundCounts[i] + ' 轮' : '...';
+    row.innerHTML =
+      '<span class="cfg-name">' + ex.name + '</span>' +
+      '<span class="cfg-time">' + t + ' &middot; ' + rounds + '</span>' +
+      '<label class="cfg-switch"><input type="checkbox" ' + (skipState[i] ? '' : 'checked') +
+      ' onchange="toggleSkip(' + i + ', !this.checked)"><span class="slider"></span></label>';
+    body.appendChild(row);
+  });
+}
+
+// ================================================================
+// SKIP / ENABLE
+// ================================================================
+function toggleSkip(idx, forceSkip) {
+  const skip = forceSkip !== undefined ? forceSkip : !skipState[idx];
+  skipState[idx] = skip;
+  EXERCISES[idx].enabled = !skip;
+  applySkipStates();
+  const cb = document.querySelectorAll('#configBody input[type="checkbox"]');
+  if (cb[idx]) cb[idx].checked = !skip;
+}
+
+function applySkipStates() {
+  EXERCISES.forEach((_, i) => {
+    const sec = document.getElementById('ex-sec-' + i);
+    if (!sec) return;
+    sec.classList.toggle('skipped', skipState[i]);
+    const btn = sec.querySelector('.skip-btn');
+    if (btn) btn.classList.toggle('is-skipped', skipState[i]);
+  });
+}
+
+function getEnabledIndices() {
+  return EXERCISES.map((_, i) => i).filter(i => !skipState[i]);
 }
 
 // ================================================================
@@ -994,155 +1174,99 @@ function updateRoundLabel(i) {
 }
 
 function renderPips(i) {
-  const container = document.getElementById('round-pips-' + i);
-  if (!container) return;
-  container.innerHTML = '';
-  const n = roundCounts[i] || 0;
-  for (let r = 0; r < n; r++) {
-    const pip = document.createElement('div');
-    pip.className = 'round-pip';
-    pip.dataset.round = r;
-    container.appendChild(pip);
+  const c = document.getElementById('round-pips-' + i);
+  if (!c) return;
+  c.innerHTML = '';
+  for (let r = 0; r < (roundCounts[i] || 0); r++) {
+    const p = document.createElement('div');
+    p.className = 'round-pip';
+    c.appendChild(p);
   }
 }
 
-function updatePips(i, currentRound) {
-  const container = document.getElementById('round-pips-' + i);
-  if (!container) return;
-  container.querySelectorAll('.round-pip').forEach((pip, r) => {
-    pip.classList.remove('done', 'now');
-    if (r < currentRound) pip.classList.add('done');
-    else if (r === currentRound) pip.classList.add('now');
-  });
-}
-
-function clearAllPips() {
-  EXERCISES.forEach((_, i) => {
-    const container = document.getElementById('round-pips-' + i);
-    if (container) container.querySelectorAll('.round-pip').forEach(p => p.classList.remove('done', 'now'));
+function updatePips(i, cur) {
+  const c = document.getElementById('round-pips-' + i);
+  if (!c) return;
+  c.querySelectorAll('.round-pip').forEach((p, r) => {
+    p.classList.remove('done', 'now');
+    if (r < cur) p.classList.add('done');
+    else if (r === cur) p.classList.add('now');
   });
 }
 
 // ================================================================
 // ROUTINE STATE MACHINE
 // ================================================================
-let routineRunning = false;
-let routinePaused = false;
-let currentExIdx = 0;
-let currentRound = 0;
-let restTimer = null;
-let restRemaining = 0;
+let routineRunning = false, routinePaused = false;
+let currentExIdx = 0, currentRound = 0;
+let restTimer = null, restRemaining = 0;
+let enabledQueue = [];
 
 function startRoutine() {
-  if (routineRunning) {
-    // If already running, this button is hidden; safety return
-    return;
-  }
+  if (routineRunning) return;
+  enabledQueue = getEnabledIndices();
+  if (enabledQueue.length === 0) return;
   routineRunning = true;
   routinePaused = false;
-  currentExIdx = 0;
   currentRound = 0;
-
-  // Reset all pips
-  EXERCISES.forEach((_, i) => renderPips(i));
-
-  // Show status bar
+  enabledQueue.forEach(i => renderPips(i));
   document.getElementById('statusBar').style.display = 'block';
   document.getElementById('routineCtrl').style.display = 'none';
-
-  // Start first exercise
-  beginExercise(0);
+  beginExercise(enabledQueue[0]);
 }
 
 function beginExercise(idx) {
   currentExIdx = idx;
   currentRound = 0;
-
-  // Highlight section
+  const qPos = enabledQueue.indexOf(idx);
   document.querySelectorAll('.exercise-section').forEach((sec, i) => {
     sec.classList.remove('active');
-    if (i < idx) sec.classList.add('completed');
+    if (skipState[i]) return;
+    const ip = enabledQueue.indexOf(i);
+    if (ip >= 0 && ip < qPos) sec.classList.add('completed');
     else sec.classList.remove('completed');
   });
   const sec = document.getElementById('ex-sec-' + idx);
-  if (sec) {
-    sec.classList.add('active');
-    sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  // Update routine dots
+  if (sec) { sec.classList.add('active'); sec.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   updateRoutineDots();
-
-  // Play first round
   playRound(idx, 0);
 }
 
 function playRound(exIdx, round) {
   currentExIdx = exIdx;
   currentRound = round;
-
-  // Update pips
   updatePips(exIdx, round);
-
-  // Update status bar
   const ex = EXERCISES[exIdx];
   document.getElementById('statusText').textContent =
-    ex.name + '  ·  第 ' + (round + 1) + '/' + (roundCounts[exIdx] || '?') + ' 轮';
-
-  // Dim other players, activate this one
+    ex.name + '  \u00b7  第 ' + (round + 1) + '/' + (roundCounts[exIdx] || '?') + ' 轮';
   EXERCISES.forEach((_, i) => {
     const p = document.getElementById('player-' + i);
     if (p) p.classList.toggle('dim', i !== exIdx);
   });
-
-  // Play audio
   const audio = audios[exIdx];
   audio.currentTime = 0;
-
-  // Pause all other audios
-  audios.forEach((a, i) => { if (i !== exIdx) a.pause(); });
-
-  // Update play button
+  audios.forEach((a, i) => { if (i !== exIdx && a) a.pause(); });
   const player = document.getElementById('player-' + exIdx);
   if (player) player.querySelector('.play-btn').innerHTML = pauseSVG;
-
-  audio.play().catch(err => {
-    console.warn('Audio play failed:', err);
-    // User interaction may be needed
+  audio.play().catch(() => {
     document.getElementById('statusText').textContent = '请点击任意位置后重试';
-    document.body.addEventListener('click', function retry() {
-      audio.play();
-      document.body.removeEventListener('click', retry);
-    }, { once: true });
+    document.body.addEventListener('click', function r() { audio.play(); document.body.removeEventListener('click', r); }, { once: true });
   });
 }
 
 function onRoundEnded() {
   if (!routineRunning || routinePaused) return;
-
-  const exIdx = currentExIdx;
-  const totalRounds = roundCounts[exIdx] || 1;
-
-  if (currentRound + 1 < totalRounds) {
-    // More rounds in this exercise → rest then next round
+  const exIdx = currentExIdx, total = roundCounts[exIdx] || 1;
+  const qPos = enabledQueue.indexOf(exIdx);
+  if (currentRound + 1 < total) {
     currentRound++;
-    startRest(ROUND_REST_SEC, '下一轮', '第 ' + (currentRound + 1) + '/' + totalRounds + ' 轮', () => {
-      playRound(exIdx, currentRound);
-    });
+    startRest(ROUND_REST_SEC, '下一轮', '第 ' + (currentRound + 1) + '/' + total + ' 轮', () => playRound(exIdx, currentRound));
   } else {
-    // All rounds done for this exercise
-    // Mark pips all done
-    updatePips(exIdx, totalRounds);
-
-    if (exIdx + 1 < EXERCISES.length) {
-      // Move to next exercise
-      const nextIdx = exIdx + 1;
-      const nextName = EXERCISES[nextIdx].name;
-      startRest(EXERCISE_REST_SEC, '下一步', nextName, () => {
-        beginExercise(nextIdx);
-      });
+    updatePips(exIdx, total);
+    if (qPos + 1 < enabledQueue.length) {
+      const next = enabledQueue[qPos + 1];
+      startRest(EXERCISE_REST_SEC, '下一步', EXERCISES[next].name, () => beginExercise(next));
     } else {
-      // All exercises done!
       finishRoutine();
     }
   }
@@ -1150,169 +1274,117 @@ function onRoundEnded() {
 
 function startRest(seconds, label, nextInfo, callback) {
   restRemaining = seconds;
-  const overlay = document.getElementById('restOverlay');
-  overlay.style.display = 'block';
+  const ov = document.getElementById('restOverlay');
+  ov.style.display = 'block';
   document.getElementById('restLabel').textContent = label;
   document.getElementById('restNum').textContent = restRemaining;
   document.getElementById('restNext').textContent = nextInfo;
-
-  // Update status bar too
-  document.getElementById('statusText').textContent =
-    '休息中  ·  ' + restRemaining + 's  ·  ' + nextInfo;
-
-  // Pause audio during rest
-  audios.forEach(a => a.pause());
-
+  document.getElementById('statusText').textContent = '休息中  \u00b7  ' + restRemaining + 's  \u00b7  ' + nextInfo;
+  audios.forEach(a => { if (a) a.pause(); });
   clearInterval(restTimer);
   restTimer = setInterval(() => {
-    if (routinePaused) return; // freeze countdown while paused
+    if (routinePaused) return;
     restRemaining--;
     document.getElementById('restNum').textContent = restRemaining;
-    document.getElementById('statusText').textContent =
-      '休息中  ·  ' + restRemaining + 's  ·  ' + nextInfo;
-
-    if (restRemaining <= 0) {
-      clearInterval(restTimer);
-      overlay.style.display = 'none';
-      callback();
-    }
+    document.getElementById('statusText').textContent = '休息中  \u00b7  ' + restRemaining + 's  \u00b7  ' + nextInfo;
+    if (restRemaining <= 0) { clearInterval(restTimer); ov.style.display = 'none'; callback(); }
   }, 1000);
 }
 
 function finishRoutine() {
   routineRunning = false;
   routinePaused = false;
-
   document.getElementById('statusBar').style.display = 'none';
   document.getElementById('restOverlay').style.display = 'none';
-
-  // Mark all sections completed
   document.querySelectorAll('.exercise-section').forEach(sec => {
     sec.classList.remove('active');
-    sec.classList.add('completed');
+    if (!sec.classList.contains('skipped')) sec.classList.add('completed');
   });
-
-  // Un-dim players
   EXERCISES.forEach((_, i) => {
     const p = document.getElementById('player-' + i);
-    if (p) {
-      p.classList.remove('dim');
-      p.querySelector('.play-btn').innerHTML = playSVG;
-      p.querySelector('.progress-fill').style.width = '0%';
-    }
+    if (p) { p.classList.remove('dim'); p.querySelector('.play-btn').innerHTML = playSVG; p.querySelector('.progress-fill').style.width = '0%'; }
   });
-
-  // Show control with "completed" state
   const ctrl = document.getElementById('routineCtrl');
   ctrl.style.display = 'block';
   ctrl.querySelector('.routine-ctrl-title').textContent = '练习完成!';
   document.getElementById('routineStartBtn').textContent = '再来一次';
-  document.getElementById('routineStartBtn').onclick = () => {
-    location.reload();
-  };
-
+  document.getElementById('routineStartBtn').onclick = () => location.reload();
   updateRoutineDots();
 }
 
 // ================================================================
-// PAUSE / RESUME ROUTINE
+// PAUSE / RESUME
 // ================================================================
 function toggleRoutinePause() {
   if (!routineRunning) return;
   routinePaused = !routinePaused;
-
   const btn = document.getElementById('statusPauseBtn');
   if (routinePaused) {
     btn.textContent = '继续';
-    // Pause audio
-    audios.forEach(a => a.pause());
+    audios.forEach(a => { if (a) a.pause(); });
     document.getElementById('statusText').textContent = '已暂停';
   } else {
     btn.textContent = '暂停';
-    // Resume audio if we're in a playing phase (not resting)
-    const overlay = document.getElementById('restOverlay');
-    if (overlay.style.display === 'none' || overlay.style.display === '') {
-      // We're in playing phase - resume audio
-      audios[currentExIdx].play();
+    const ov = document.getElementById('restOverlay');
+    if (ov.style.display === 'none' || ov.style.display === '') {
+      if (audios[currentExIdx]) audios[currentExIdx].play();
       const ex = EXERCISES[currentExIdx];
-      document.getElementById('statusText').textContent =
-        ex.name + '  ·  第 ' + (currentRound + 1) + '/' + (roundCounts[currentExIdx] || '?') + ' 轮';
+      document.getElementById('statusText').textContent = ex.name + '  \u00b7  第 ' + (currentRound + 1) + '/' + (roundCounts[currentExIdx] || '?') + ' 轮';
     }
-    // If resting, the rest timer's interval checks routinePaused and skips decrement
   }
 }
 
 // ================================================================
-// MANUAL PLAY (when routine not running)
+// MANUAL PLAY
 // ================================================================
 function toggleManualPlay(idx) {
-  if (routineRunning && !routinePaused) return; // routine controls playback
-
+  if (routineRunning && !routinePaused) return;
   const audio = audios[idx];
+  if (!audio) return;
   const player = document.getElementById('player-' + idx);
-
-  // Pause all others
   audios.forEach((a, i) => {
-    if (i !== idx && !a.paused) {
+    if (i !== idx && a && !a.paused) {
       a.pause();
-      document.getElementById('player-' + i).querySelector('.play-btn').innerHTML = playSVG;
+      const p = document.getElementById('player-' + i);
+      if (p) p.querySelector('.play-btn').innerHTML = playSVG;
     }
   });
-
-  if (audio.paused) {
-    audio.play();
-    player.querySelector('.play-btn').innerHTML = pauseSVG;
-  } else {
-    audio.pause();
-    player.querySelector('.play-btn').innerHTML = playSVG;
-  }
+  if (audio.paused) { audio.play(); if (player) player.querySelector('.play-btn').innerHTML = pauseSVG; }
+  else { audio.pause(); if (player) player.querySelector('.play-btn').innerHTML = playSVG; }
 }
 
 function seekAudio(bar, e, idx) {
   const audio = audios[idx];
+  if (!audio) return;
   const rect = bar.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  if (isFinite(audio.duration)) {
-    audio.currentTime = pct * audio.duration;
-  }
+  if (isFinite(audio.duration)) audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
 
 // ================================================================
-// ROUTINE DOTS (overview in control panel)
+// ROUTINE DOTS
 // ================================================================
 function updateRoutineDots() {
-  const container = document.getElementById('routineDots');
-  container.innerHTML = '';
-  EXERCISES.forEach((ex, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'routine-dot';
-    dot.title = ex.name;
-    if (i < currentExIdx) dot.classList.add('done');
-    else if (i === currentExIdx && routineRunning) dot.classList.add('now');
-    container.appendChild(dot);
+  const c = document.getElementById('routineDots');
+  c.innerHTML = '';
+  const qPos = enabledQueue.indexOf(currentExIdx);
+  enabledQueue.forEach((exI, qi) => {
+    const d = document.createElement('div');
+    d.className = 'routine-dot';
+    d.title = EXERCISES[exI].name;
+    if (routineRunning && qi < qPos) d.classList.add('done');
+    else if (routineRunning && qi === qPos) d.classList.add('now');
+    c.appendChild(d);
   });
 }
 
-// Initial render
-updateRoutineDots();
-
 // ================================================================
-// METRONOME (unchanged)
+// METRONOME
 // ================================================================
-let metroCtx = null;
-let metroPlaying = false;
-let metroBPM = 70;
-let metroBeats = 4;
-let metroCurrentBeat = 0;
-let metroTimer = null;
-let metroNextNoteTime = 0;
-const metroScheduleAhead = 0.1;
-const metroLookahead = 25;
+let metroCtx = null, metroPlaying = false, metroBPM = 70, metroBeats = 4;
+let metroCurrentBeat = 0, metroTimer = null, metroNextNoteTime = 0;
+const metroScheduleAhead = 0.1, metroLookahead = 25;
 
-function getMetroCtx() {
-  if (!metroCtx) metroCtx = new (window.AudioContext || window.webkitAudioContext)();
-  return metroCtx;
-}
+function getMetroCtx() { if (!metroCtx) metroCtx = new (window.AudioContext || window.webkitAudioContext)(); return metroCtx; }
 
 function setTimeSig(beats, btn) {
   metroBeats = beats;
@@ -1323,47 +1395,30 @@ function setTimeSig(beats, btn) {
 }
 
 function renderBeats() {
-  const container = document.getElementById('metroBeats');
-  container.innerHTML = '';
+  const c = document.getElementById('metroBeats');
+  c.innerHTML = '';
   for (let i = 0; i < metroBeats; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'metro-beat' + (i === 0 ? ' strong' : '');
-    container.appendChild(dot);
+    const d = document.createElement('div');
+    d.className = 'metro-beat' + (i === 0 ? ' strong' : '');
+    c.appendChild(d);
   }
 }
 
-function adjustBPM(delta) {
-  setBPM(Math.max(40, Math.min(200, metroBPM + delta)));
-  document.getElementById('bpmSlider').value = metroBPM;
-}
-
-function setBPM(val) {
-  metroBPM = parseInt(val);
-  document.getElementById('bpmValue').textContent = metroBPM;
-  document.getElementById('bpmSlider').value = metroBPM;
-}
-
-function toggleMetronome() {
-  if (metroPlaying) stopMetronome();
-  else startMetronome();
-}
+function adjustBPM(d) { setBPM(Math.max(40, Math.min(200, metroBPM + d))); document.getElementById('bpmSlider').value = metroBPM; }
+function setBPM(v) { metroBPM = parseInt(v); document.getElementById('bpmValue').textContent = metroBPM; document.getElementById('bpmSlider').value = metroBPM; }
+function toggleMetronome() { metroPlaying ? stopMetronome() : startMetronome(); }
 
 function startMetronome() {
   const ctx = getMetroCtx();
   if (ctx.state === 'suspended') ctx.resume();
-  metroPlaying = true;
-  metroCurrentBeat = 0;
-  metroNextNoteTime = ctx.currentTime;
-  document.getElementById('metroPlayBtn').innerHTML =
-    '<svg width="22" height="22" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" fill="white"/><rect x="9.5" y="2" width="3.5" height="12" fill="white"/></svg>';
+  metroPlaying = true; metroCurrentBeat = 0; metroNextNoteTime = ctx.currentTime;
+  document.getElementById('metroPlayBtn').innerHTML = '<svg width="22" height="22" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" fill="white"/><rect x="9.5" y="2" width="3.5" height="12" fill="white"/></svg>';
   scheduler();
 }
 
 function stopMetronome() {
-  metroPlaying = false;
-  clearTimeout(metroTimer);
-  document.getElementById('metroPlayBtn').innerHTML =
-    '<svg width="22" height="22" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14" fill="white"/></svg>';
+  metroPlaying = false; clearTimeout(metroTimer);
+  document.getElementById('metroPlayBtn').innerHTML = '<svg width="22" height="22" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14" fill="white"/></svg>';
   document.querySelectorAll('.metro-beat').forEach(b => b.classList.remove('active'));
 }
 
@@ -1372,8 +1427,7 @@ function scheduler() {
   const ctx = getMetroCtx();
   while (metroNextNoteTime < ctx.currentTime + metroScheduleAhead) {
     scheduleNote(metroCurrentBeat, metroNextNoteTime);
-    const secondsPerBeat = 60.0 / metroBPM;
-    metroNextNoteTime += secondsPerBeat;
+    metroNextNoteTime += 60.0 / metroBPM;
     metroCurrentBeat = (metroCurrentBeat + 1) % metroBeats;
   }
   metroTimer = setTimeout(scheduler, metroLookahead);
@@ -1382,24 +1436,14 @@ function scheduler() {
 function scheduleNote(beat, time) {
   const ctx = getMetroCtx();
   const isStrong = beat === 0;
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  osc.type = 'sine';
-  osc.frequency.value = isStrong ? 1200 : 800;
+  const osc = ctx.createOscillator(), gain = ctx.createGain();
+  osc.type = 'sine'; osc.frequency.value = isStrong ? 1200 : 800;
   gain.gain.setValueAtTime(isStrong ? 0.6 : 0.35, time);
   gain.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-  osc.start(time);
-  osc.stop(time + 0.06);
-
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(time); osc.stop(time + 0.06);
   const delay = (time - ctx.currentTime) * 1000;
-  setTimeout(() => {
-    if (!metroPlaying) return;
-    document.querySelectorAll('.metro-beat').forEach((b, i) => {
-      b.classList.toggle('active', i === beat);
-    });
-  }, Math.max(0, delay));
+  setTimeout(() => { if (!metroPlaying) return; document.querySelectorAll('.metro-beat').forEach((b, i) => b.classList.toggle('active', i === beat)); }, Math.max(0, delay));
 }
 
 // ================================================================
@@ -1409,18 +1453,10 @@ function toggleDay(el) { el.classList.toggle('completed'); saveState(); }
 function toggleCheck(el) { el.classList.toggle('done'); saveState(); }
 
 function saveState() {
-  const days = {};
-  document.querySelectorAll('.day-cell').forEach(cell => {
-    days[cell.dataset.day] = cell.classList.contains('completed');
-  });
-  const checks = {};
-  document.querySelectorAll('.checklist li').forEach((li, i) => {
-    checks[i] = li.classList.contains('done');
-  });
-  localStorage.setItem('vocal-daily', JSON.stringify({
-    days, checks,
-    date: new Date().toISOString().split('T')[0]
-  }));
+  const days = {}, checks = {};
+  document.querySelectorAll('.day-cell').forEach(c => { days[c.dataset.day] = c.classList.contains('completed'); });
+  document.querySelectorAll('.checklist li').forEach((li, i) => { checks[i] = li.classList.contains('done'); });
+  localStorage.setItem('vocal-daily', JSON.stringify({ days, checks, date: new Date().toISOString().split('T')[0] }));
 }
 
 function loadState() {
@@ -1428,25 +1464,16 @@ function loadState() {
     const raw = localStorage.getItem('vocal-daily');
     if (!raw) return;
     const state = JSON.parse(raw);
-    const today = new Date().toISOString().split('T')[0];
-    if (state.date !== today) {
-      localStorage.removeItem('vocal-daily');
-      return;
-    }
-    if (state.days) {
-      document.querySelectorAll('.day-cell').forEach(cell => {
-        if (state.days[cell.dataset.day]) cell.classList.add('completed');
-      });
-    }
-    if (state.checks) {
-      document.querySelectorAll('.checklist li').forEach((li, i) => {
-        if (state.checks[i]) li.classList.add('done');
-      });
-    }
+    if (state.date !== new Date().toISOString().split('T')[0]) { localStorage.removeItem('vocal-daily'); return; }
+    if (state.days) document.querySelectorAll('.day-cell').forEach(c => { if (state.days[c.dataset.day]) c.classList.add('completed'); });
+    if (state.checks) document.querySelectorAll('.checklist li').forEach((li, i) => { if (state.checks[i]) li.classList.add('done'); });
   } catch {}
 }
 
-loadState();
+// ================================================================
+// INIT
+// ================================================================
+loadConfig().then(() => loadState());
 </script>
 </body>
 </html>

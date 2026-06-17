@@ -1,0 +1,53 @@
+{
+  "routineName": "每日声乐练习例程",
+  "subtitle": "六天课程的精华浓缩为每日固定流程，持续 30 天建立肌肉记忆",
+  "roundRestSec": 5,
+  "exerciseRestSec": 15,
+  "exercises": [
+    {
+      "name": "三度哼唱（暖嗓）",
+      "shortName": "三度哼唱",
+      "practiceMin": 5,
+      "stepLabel": "Step 1",
+      "source": "来源：第 2 课 · 听力与模仿",
+      "audioSrc": "../audio/三度哼唱.mp3",
+      "enabled": true
+    },
+    {
+      "name": "弹嘴唇",
+      "shortName": "弹嘴唇",
+      "practiceMin": 3.5,
+      "stepLabel": "Step 2a",
+      "source": "来源：第 3 课 · 声音的五个元素",
+      "audioSrc": "../audio/弹嘴唇.mp3",
+      "enabled": true
+    },
+    {
+      "name": "十二度 Mum 练习",
+      "shortName": "十二度Mum",
+      "practiceMin": 4,
+      "stepLabel": "Step 2b",
+      "source": "来源：第 4 课 · 胸部区混声区头部区",
+      "audioSrc": "../audio/十二度Mum.mp3",
+      "enabled": true
+    },
+    {
+      "name": "Tee 断奏练习",
+      "shortName": "Tee断奏",
+      "practiceMin": 7.5,
+      "stepLabel": "Step 3",
+      "source": "来源：第 5 课 · 扩大音域",
+      "audioSrc": "../audio/Tee五度断奏.mp3",
+      "enabled": true
+    },
+    {
+      "name": "速度与灵活度",
+      "shortName": "速度与灵活度",
+      "practiceMin": 10,
+      "stepLabel": "Step 4",
+      "source": "来源：第 6 课 · 速度与灵活性",
+      "audioSrc": "../audio/速度与灵活度.mp3",
+      "enabled": true
+    }
+  ]
+}
