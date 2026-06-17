@@ -1,0 +1,8 @@
+{
+  "name": "singing-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter pitch-trainer dev",
+    "build": "pnpm --filter pitch-trainer build && rm -rf app && cp -r pitch-trainer/dist app"
+  }
+}

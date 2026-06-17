@@ -1,2 +1,9 @@
 .DS_Store
 *.log
+
+# Dependencies
+node_modules
+
+# Build output
+pitch-trainer/dist
+app/
