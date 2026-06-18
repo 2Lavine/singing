@@ -4,130 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第 6 课：速度与灵活性</title>
-<style>
-  :root {
-    --bg: #faf9f6;
-    --text: #2c2c2c;
-    --accent: #c45a3d;
-    --muted: #6b6b6b;
-    --card-bg: #fff;
-    --border: #e8e4df;
-    --highlight: #fef6f0;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.8;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-  }
-  .lesson-header {
-    text-align: center;
-    padding: 3rem 0 2rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2rem;
-  }
-  .lesson-num { font-size: 0.85rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; }
-  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .objective { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0.75rem auto 0; }
-  h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent); display: inline-block; }
-  h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #4a4a4a; }
-  p { margin-bottom: 1rem; }
-  .concept-box {
-    background: var(--highlight);
-    border-left: 3px solid var(--accent);
-    padding: 1rem 1.25rem;
-    margin: 1.25rem 0;
-    border-radius: 0 6px 6px 0;
-  }
-  .concept-box strong { color: var(--accent); }
-  .practice {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-  }
-  .practice h3 { margin-top: 0; display: flex; align-items: center; gap: 0.5rem; }
-  .practice h3::before { content: "🎤"; font-size: 1.2rem; }
-  .practice ol { padding-left: 1.25rem; }
-  .practice li { margin-bottom: 0.5rem; }
-  .habit-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem;
-    margin: 1rem 0;
-  }
-  .habit-card h4 { margin: 0 0 0.5rem; color: var(--accent); }
-  .quiz {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 2rem 0;
-  }
-  .quiz h3 { margin-top: 0; }
-  .quiz .q { margin-bottom: 1.25rem; }
-  .quiz .q p { font-weight: 600; margin-bottom: 0.5rem; }
-  .quiz label { display: block; padding: 0.35rem 0; cursor: pointer; }
-  .quiz input[type="radio"] { margin-right: 0.5rem; }
-  .quiz button {
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    margin-top: 0.5rem;
-  }
-  .quiz button:hover { opacity: 0.9; }
-  .feedback { display: none; margin-top: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.9rem; }
-  .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
-  .feedback.wrong { background: #fbe9e7; color: #c62828; display: block; }
-  .reminder {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    margin: 2rem 0;
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-  .reminder::before { content: "💬 有问题？"; font-weight: 700; color: var(--text); display: block; margin-bottom: 0.25rem; }
-  .week-summary {
-    background: linear-gradient(135deg, #fef6f0 0%, #faf9f6 100%);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 2rem 0;
-    text-align: center;
-  }
-  .week-summary h2 { border: none; display: block; margin-top: 0; }
-  .path { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
-  .path span { background: var(--card-bg); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border); }
-  .path span.done { background: var(--accent); color: #fff; border-color: var(--accent); }
-  footer {
-    margin-top: 4rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.85rem;
-    display: flex;
-    justify-content: space-between;
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../content.css">
 </head>
 <body>
 
 <div class="lesson-header">
-  <div class="lesson-num">课程 6 / 6 · 第一周完结</div>
+  <div class="lesson-num">课程 6 / 26</div>
   <h1>速度与灵活性</h1>
   <p class="objective">学习目标：理解声音速度与灵活度的三个维度，掌握组块学习（Chunking）方法，建立用节拍器训练的习惯</p>
 </div>

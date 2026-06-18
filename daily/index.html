@@ -4,20 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>每日声乐练习例程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../content.css">
 <style>
   :root {
-    --bg: #faf9f6;
-    --text: #2c2c2c;
-    --accent: #c45a3d;
-    --muted: #6b6b6b;
-    --card-bg: #fff;
-    --border: #e8e4df;
-    --highlight: #fef6f0;
-    --success: #6b8f71;
+    --bg: #F5F0EB;
+    --text: #2D3436;
+    --accent: #D97757;
+    --accent-hover: #C86A4C;
+    --muted: #8a8580;
+    --card-bg: #FFFFFF;
+    --border: #E0DBD4;
+    --highlight: rgba(217, 119, 87, 0.06);
+    --success: #6B8F71;
+    --ink-secondary: #6B6B6B;
+    --hairline: #E0DBD4;
+    --serif: "Noto Serif SC", "Source Serif 4", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC", "PingFang SC", sans-serif;
+    font-family: var(--sans);
     background: var(--bg);
     color: var(--text);
     line-height: 1.8;
@@ -37,6 +46,7 @@
     color: var(--accent);
     margin-bottom: 0.5rem;
   }
+  h1, h2, h3 { font-family: var(--serif); }
   h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
   .subtitle {
     color: var(--muted);
@@ -77,7 +87,7 @@
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 600;
-    border: 1px solid #f0e0d4;
+    border: 1px solid var(--hairline);
   }
   .flow-arrow { color: var(--muted); font-size: 1.2rem; }
   .time-badge {
@@ -102,7 +112,7 @@
   }
   .exercise-section.active {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(196, 90, 61, 0.1);
+    box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1);
   }
   .exercise-section.completed {
     opacity: 0.55;
@@ -266,7 +276,7 @@
   .routine-dot.now {
     border-color: var(--accent);
     background: var(--accent);
-    box-shadow: 0 0 0 3px rgba(196, 90, 61, 0.2);
+    box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.2);
   }
   .routine-start-btn {
     display: inline-flex;
@@ -281,9 +291,9 @@
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.15s;
-    box-shadow: 0 2px 10px rgba(196, 90, 61, 0.25);
+    box-shadow: 0 2px 10px rgba(217, 119, 87, 0.25);
   }
-  .routine-start-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(196, 90, 61, 0.3); }
+  .routine-start-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(217, 119, 87, 0.3); }
   .routine-start-btn:active { transform: translateY(0); }
 
   /* ===== Round info ===== */
@@ -318,14 +328,14 @@
     animation: pip-pulse 1.5s ease-in-out infinite;
   }
   @keyframes pip-pulse {
-    0%, 100% { box-shadow: 0 0 0 2px rgba(196, 90, 61, 0.15); }
-    50% { box-shadow: 0 0 0 5px rgba(196, 90, 61, 0.08); }
+    0%, 100% { box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.15); }
+    50% { box-shadow: 0 0 0 5px rgba(217, 119, 87, 0.08); }
   }
 
   /* ===== Audio player ===== */
   .audio-player {
     background: var(--highlight);
-    border: 1px solid #f0e0d4;
+    border: 1px solid var(--hairline);
     border-radius: 8px;
     padding: 0.75rem 1rem;
     margin: 0.5rem 0 0.25rem;
@@ -359,7 +369,7 @@
   .audio-player .progress-bar {
     width: 100%;
     height: 4px;
-    background: #e8e4df;
+    background: var(--hairline);
     border-radius: 2px;
     cursor: pointer;
     position: relative;
@@ -430,7 +440,7 @@
     font-weight: 600;
     text-align: center;
     z-index: 150;
-    box-shadow: 0 2px 8px rgba(196, 90, 61, 0.3);
+    box-shadow: 0 2px 8px rgba(217, 119, 87, 0.3);
   }
   .status-bar .status-pause-btn {
     display: inline-block;
@@ -462,7 +472,7 @@
     margin: 1.25rem 0;
     border-radius: 8px;
   }
-  .warning-box strong { color: #c45a3d; }
+  .warning-box strong { color: var(--accent); }
   .source-tag {
     font-size: 0.75rem;
     color: var(--muted);
@@ -504,17 +514,17 @@
   .metro-beat.active {
     background: var(--accent);
     transform: scale(1.3);
-    box-shadow: 0 0 12px rgba(196, 90, 61, 0.4);
+    box-shadow: 0 0 12px rgba(217, 119, 87, 0.4);
   }
   .metro-beat.strong.active {
     background: var(--accent);
     transform: scale(1.5);
-    box-shadow: 0 0 16px rgba(196, 90, 61, 0.5);
+    box-shadow: 0 0 16px rgba(217, 119, 87, 0.5);
   }
   .metro-beat.strong {
     width: 22px; height: 22px;
     border-color: #d4cec7;
-    background: #e8e4df;
+    background: var(--hairline);
   }
   .metro-bpm {
     display: flex;
@@ -586,7 +596,7 @@
     align-items: center;
     justify-content: center;
     transition: transform 0.1s;
-    box-shadow: 0 2px 8px rgba(196, 90, 61, 0.3);
+    box-shadow: 0 2px 8px rgba(217, 119, 87, 0.3);
   }
   .metro-play-btn:hover { transform: scale(1.05); }
   .metro-play-btn:active { transform: scale(0.95); }
@@ -702,6 +712,43 @@
     .metro-beats { gap: 0.6rem; }
     .rest-overlay { bottom: 1rem; right: 1rem; left: 1rem; min-width: auto; }
   }
+
+  /* ===== Phase Selector ===== */
+  .phase-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+  .phase-btn {
+    flex: 1;
+    min-width: 100px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  .phase-btn:hover { border-color: var(--accent); }
+  .phase-btn.active {
+    border-color: var(--accent);
+    background: rgba(217, 119, 87, 0.08);
+    box-shadow: 0 0 0 2px rgba(217, 119, 87, 0.12);
+  }
+  .phase-btn .phase-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+  }
+  .phase-btn .phase-sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    display: block;
+  }
 </style>
 </head>
 <body>
@@ -709,8 +756,50 @@
 <div class="page-header">
   <div class="tag">DAILY ROUTINE</div>
   <h1>每日声乐练习例程</h1>
-  <p class="subtitle">六天课程的精华浓缩为每日 30 分钟的固定流程，持续 30 天建立肌肉记忆</p>
+  <p class="subtitle">分阶段每日练习流程，持续 30 天建立肌肉记忆</p>
 </div>
+
+<!-- Phase Selector -->
+<div class="phase-selector" id="phaseSelector"></div>
+
+<!-- Dynamic exercise container (populated by JS) -->
+<div id="dynamicExercises"></div>
+
+<!-- Config panel -->
+<div class="config-panel" id="configPanel">
+  <button class="config-toggle" onclick="toggleConfigPanel()">
+    <span class="arrow">&#9654;</span> 练习配置（启用 / 跳过 / 时长）
+  </button>
+  <div class="config-body" id="configBody"></div>
+</div>
+
+
+<!-- ===== Routine Control ===== -->
+<div class="routine-ctrl" id="routineCtrl">
+  <div class="routine-ctrl-title">练习进度</div>
+  <div class="routine-dots" id="routineDots"></div>
+  <button class="routine-start-btn" id="routineStartBtn" onclick="startRoutine()">开始练习</button>
+  <p style="color: var(--muted); font-size: 0.8rem; margin: 0.75rem 0 0;">音频会自动循环播放，轮间休息 5 秒，步骤间休息 15 秒</p>
+</div>
+
+
+<!-- Status bar (visible during routine) -->
+<div class="status-bar" id="statusBar">
+  <span id="statusText"></span>
+  <button class="status-pause-btn" id="statusPauseBtn" onclick="toggleRoutinePause()">暂停</button>
+</div>
+
+
+<!-- Rest countdown overlay -->
+<div class="rest-overlay" id="restOverlay">
+  <div class="rest-label" id="restLabel">休息</div>
+  <div class="rest-num" id="restNum">5</div>
+  <div class="rest-next" id="restNext"></div>
+</div>
+
+
+
+<div id="phase1Content">
 
 <section class="routine-overview">
   <h2>练习流程</h2>
@@ -726,36 +815,9 @@
   </div>
   <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">总计约 30 分钟 &middot; 一周六次 &middot; 给自己一天休息日</p>
 </section>
+</div><!-- /phase1Content -->
 
-<!-- Config panel -->
-<div class="config-panel" id="configPanel">
-  <button class="config-toggle" onclick="toggleConfigPanel()">
-    <span class="arrow">&#9654;</span> 练习配置（启用 / 跳过 / 时长）
-  </button>
-  <div class="config-body" id="configBody"></div>
-</div>
-
-<!-- ===== Routine Control ===== -->
-<div class="routine-ctrl" id="routineCtrl">
-  <div class="routine-ctrl-title">练习进度</div>
-  <div class="routine-dots" id="routineDots"></div>
-  <button class="routine-start-btn" id="routineStartBtn" onclick="startRoutine()">开始练习</button>
-  <p style="color: var(--muted); font-size: 0.8rem; margin: 0.75rem 0 0;">音频会自动循环播放，轮间休息 5 秒，步骤间休息 15 秒</p>
-</div>
-
-<!-- Status bar (visible during routine) -->
-<div class="status-bar" id="statusBar">
-  <span id="statusText"></span>
-  <button class="status-pause-btn" id="statusPauseBtn" onclick="toggleRoutinePause()">暂停</button>
-</div>
-
-<!-- Rest countdown overlay -->
-<div class="rest-overlay" id="restOverlay">
-  <div class="rest-label" id="restLabel">休息</div>
-  <div class="rest-num" id="restNum">5</div>
-  <div class="rest-next" id="restNext"></div>
-</div>
-
+<div id="phase1Exercises">
 <section>
   <h2>开始前：放松与呼吸</h2>
   <p>在开始任何声音练习之前，先花 1&ndash;2 分钟让身体进入状态：</p>
@@ -996,6 +1058,9 @@
   </div>
   </div><!-- /exercise-inner -->
 </section>
+
+</div><!-- /phase1Exercises -->
+
 <section>
   <h2>每日打卡</h2>
   <p>点击格子标记完成。每天完成全部四个步骤后，记录你的感受。</p>
@@ -1026,7 +1091,7 @@
 </section>
 
 <footer>
-  <p>基于王力宏 30 天唱歌课程（Day 01&ndash;06）提炼</p>
+  <p>基于王力宏 30 天唱歌课程提炼，分 4 个阶段系统练习</p>
 </footer>
 
 <script>
@@ -1034,6 +1099,8 @@
 // CONFIG LOADING
 // ================================================================
 let CONFIG = null;
+let PHASES = [];
+let currentPhase = 1;
 let EXERCISES = [];
 let ROUND_REST_SEC = 5;
 let EXERCISE_REST_SEC = 15;
@@ -1046,35 +1113,35 @@ const audioDurations = [];
 const roundCounts = [];
 const skipState = [];
 
+// Helper: find element by ID within the currently active exercise container
+function activeEl(id) {
+  const containerId = currentPhase === 1 ? 'phase1Exercises' : 'dynamicExercises';
+  return document.getElementById(containerId)?.querySelector('#' + id) || document.getElementById(id);
+}
+
 async function loadConfig() {
   try {
-    const res = await fetch('config.json');
+    const base = window.location.pathname;
+    const cfgUrl = (base.endsWith('/') ? base : base + '/') + 'config.json';
+    const res = await fetch(cfgUrl);
     CONFIG = await res.json();
     ROUND_REST_SEC = CONFIG.roundRestSec || 5;
     EXERCISE_REST_SEC = CONFIG.exerciseRestSec || 15;
-    CONFIG.exercises.forEach((ex, i) => {
-      EXERCISES.push({
-        id: i, name: ex.shortName || ex.name,
-        practiceMin: ex.practiceMin, src: ex.audioSrc,
-        enabled: ex.enabled !== false
-      });
-      skipState[i] = ex.enabled === false;
-    });
-    initAudios();
-    renderConfigPanel();
-    applySkipStates();
+    PHASES = CONFIG.phases || [];
+    selectPhase(1);
   } catch (e) {
     console.warn('Config load failed, using defaults:', e);
-    EXERCISES.push(
-      { id: 0, name: '三度哼唱', practiceMin: 5, src: '../audio/三度哼唱.mp3' },
-      { id: 1, name: '弹嘴唇', practiceMin: 3.5, src: '../audio/弹嘴唇.mp3' },
-      { id: 2, name: '十二度Mum', practiceMin: 4, src: '../audio/十二度Mum.mp3' },
-      { id: 3, name: 'Tee断奏', practiceMin: 7.5, src: '../audio/Tee五度断奏.mp3' },
-      { id: 4, name: '速度与灵活度', practiceMin: 10, src: '../audio/速度与灵活度.mp3' }
-    );
-    for (let i = 0; i < 5; i++) skipState[i] = false;
-    initAudios();
-    renderConfigPanel();
+    PHASES = [{
+      id: 1, name: '基础', subtitle: '课程 1-6',
+      exercises: [
+        { id: 0, shortName: '三度哼唱', practiceMin: 5, audioSrc: '../audio/三度哼唱.mp3', enabled: true },
+        { id: 1, shortName: '弹嘴唇', practiceMin: 3.5, audioSrc: '../audio/弹嘴唇.mp3', enabled: true },
+        { id: 2, shortName: '十二度Mum', practiceMin: 4, audioSrc: '../audio/十二度Mum.mp3', enabled: true },
+        { id: 3, shortName: 'Tee断奏', practiceMin: 7.5, audioSrc: '../audio/Tee五度断奏.mp3', enabled: true },
+        { id: 4, shortName: '速度与灵活度', practiceMin: 10, audioSrc: '../audio/速度与灵活度.mp3', enabled: true }
+      ]
+    }];
+    selectPhase(1);
   }
 }
 
@@ -1091,14 +1158,14 @@ function initAudios() {
       renderConfigPanel();
     });
     a.addEventListener('timeupdate', () => {
-      const player = document.getElementById('player-' + i);
+      const player = activeEl('player-' + i);
       if (!player) return;
       player.querySelector('.progress-fill').style.width = ((a.currentTime / a.duration) * 100 || 0) + '%';
       player.querySelector('.time-display').textContent = fmtTime(a.currentTime) + ' / ' + (isFinite(a.duration) ? fmtTime(a.duration) : '0:00');
     });
     a.addEventListener('ended', () => {
       if (!routineRunning || routinePaused) {
-        const player = document.getElementById('player-' + i);
+        const player = activeEl('player-' + i);
         if (player) { player.querySelector('.play-btn').innerHTML = playSVG; player.querySelector('.progress-fill').style.width = '0%'; }
         return;
       }
@@ -1153,7 +1220,7 @@ function toggleSkip(idx, forceSkip) {
 
 function applySkipStates() {
   EXERCISES.forEach((_, i) => {
-    const sec = document.getElementById('ex-sec-' + i);
+    const sec = activeEl('ex-sec-' + i);
     if (!sec) return;
     sec.classList.toggle('skipped', skipState[i]);
     const btn = sec.querySelector('.skip-btn');
@@ -1169,12 +1236,12 @@ function getEnabledIndices() {
 // ROUND PIPS & LABELS
 // ================================================================
 function updateRoundLabel(i) {
-  const el = document.getElementById('round-label-' + i);
+  const el = activeEl('round-label-' + i);
   if (el && roundCounts[i]) el.textContent = '共 ' + roundCounts[i] + ' 轮';
 }
 
 function renderPips(i) {
-  const c = document.getElementById('round-pips-' + i);
+  const c = activeEl('round-pips-' + i);
   if (!c) return;
   c.innerHTML = '';
   for (let r = 0; r < (roundCounts[i] || 0); r++) {
@@ -1185,7 +1252,7 @@ function renderPips(i) {
 }
 
 function updatePips(i, cur) {
-  const c = document.getElementById('round-pips-' + i);
+  const c = activeEl('round-pips-' + i);
   if (!c) return;
   c.querySelectorAll('.round-pip').forEach((p, r) => {
     p.classList.remove('done', 'now');
@@ -1219,14 +1286,14 @@ function beginExercise(idx) {
   currentExIdx = idx;
   currentRound = 0;
   const qPos = enabledQueue.indexOf(idx);
-  document.querySelectorAll('.exercise-section').forEach((sec, i) => {
+  (currentPhase === 1 ? document.getElementById('phase1Exercises') : document.getElementById('dynamicExercises')).querySelectorAll('.exercise-section').forEach((sec, i) => {
     sec.classList.remove('active');
     if (skipState[i]) return;
     const ip = enabledQueue.indexOf(i);
     if (ip >= 0 && ip < qPos) sec.classList.add('completed');
     else sec.classList.remove('completed');
   });
-  const sec = document.getElementById('ex-sec-' + idx);
+  const sec = activeEl('ex-sec-' + idx);
   if (sec) { sec.classList.add('active'); sec.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   updateRoutineDots();
   playRound(idx, 0);
@@ -1240,13 +1307,13 @@ function playRound(exIdx, round) {
   document.getElementById('statusText').textContent =
     ex.name + '  \u00b7  第 ' + (round + 1) + '/' + (roundCounts[exIdx] || '?') + ' 轮';
   EXERCISES.forEach((_, i) => {
-    const p = document.getElementById('player-' + i);
+    const p = activeEl('player-' + i);
     if (p) p.classList.toggle('dim', i !== exIdx);
   });
   const audio = audios[exIdx];
   audio.currentTime = 0;
   audios.forEach((a, i) => { if (i !== exIdx && a) a.pause(); });
-  const player = document.getElementById('player-' + exIdx);
+  const player = activeEl('player-' + exIdx);
   if (player) player.querySelector('.play-btn').innerHTML = pauseSVG;
   audio.play().catch(() => {
     document.getElementById('statusText').textContent = '请点击任意位置后重试';
@@ -1296,12 +1363,12 @@ function finishRoutine() {
   routinePaused = false;
   document.getElementById('statusBar').style.display = 'none';
   document.getElementById('restOverlay').style.display = 'none';
-  document.querySelectorAll('.exercise-section').forEach(sec => {
+  (currentPhase === 1 ? document.getElementById('phase1Exercises') : document.getElementById('dynamicExercises')).querySelectorAll('.exercise-section').forEach(sec => {
     sec.classList.remove('active');
     if (!sec.classList.contains('skipped')) sec.classList.add('completed');
   });
   EXERCISES.forEach((_, i) => {
-    const p = document.getElementById('player-' + i);
+    const p = activeEl('player-' + i);
     if (p) { p.classList.remove('dim'); p.querySelector('.play-btn').innerHTML = playSVG; p.querySelector('.progress-fill').style.width = '0%'; }
   });
   const ctrl = document.getElementById('routineCtrl');
@@ -1341,11 +1408,11 @@ function toggleManualPlay(idx) {
   if (routineRunning && !routinePaused) return;
   const audio = audios[idx];
   if (!audio) return;
-  const player = document.getElementById('player-' + idx);
+  const player = activeEl('player-' + idx);
   audios.forEach((a, i) => {
     if (i !== idx && a && !a.paused) {
       a.pause();
-      const p = document.getElementById('player-' + i);
+      const p = activeEl('player-' + i);
       if (p) p.querySelector('.play-btn').innerHTML = playSVG;
     }
   });
@@ -1468,6 +1535,126 @@ function loadState() {
     if (state.days) document.querySelectorAll('.day-cell').forEach(c => { if (state.days[c.dataset.day]) c.classList.add('completed'); });
     if (state.checks) document.querySelectorAll('.checklist li').forEach((li, i) => { if (state.checks[i]) li.classList.add('done'); });
   } catch {}
+}
+
+// ================================================================
+// PHASE SELECTOR & DYNAMIC RENDERING
+// ================================================================
+function selectPhase(phaseId) {
+  currentPhase = phaseId;
+  const phase = PHASES.find(p => p.id === phaseId);
+  if (!phase) return;
+
+  // Reset audio state
+  audios.forEach(a => { if (a) { a.pause(); a.currentTime = 0; } });
+  audios.length = 0; audioDurations.length = 0; roundCounts.length = 0;
+  EXERCISES.length = 0; skipState.length = 0;
+
+  // Rebuild EXERCISES from phase data
+  phase.exercises.forEach((ex, i) => {
+    EXERCISES.push({
+      id: i, name: ex.shortName || ex.name,
+      practiceMin: ex.practiceMin, src: ex.audioSrc,
+      enabled: ex.enabled !== false
+    });
+    skipState[i] = ex.enabled === false;
+  });
+
+  // Render phase selector buttons
+  renderPhaseSelector();
+
+  // Show/hide phase-specific content
+  const p1 = document.getElementById('phase1Content');
+  const p1ex = document.getElementById('phase1Exercises');
+  const dyn = document.getElementById('dynamicExercises');
+
+  if (phaseId === 1) {
+    if (p1) p1.style.display = '';
+    if (p1ex) p1ex.style.display = '';
+    if (dyn) dyn.innerHTML = '';
+    initAudios();
+  } else {
+    if (p1) p1.style.display = 'none';
+    if (p1ex) p1ex.style.display = 'none';
+    renderDynamicExercises(phase);
+    initAudios();
+  }
+
+  // Config panel and routine control always visible
+  renderConfigPanel();
+  applySkipStates();
+
+  // Reset routine state
+  if (routineRunning) { routineRunning = false; routinePaused = false; }
+  document.getElementById('statusBar').style.display = 'none';
+  const ctrl = document.getElementById('routineCtrl');
+  if (ctrl) {
+    ctrl.style.display = '';
+    ctrl.querySelector('.routine-ctrl-title').textContent = '练习进度';
+    const btn = document.getElementById('routineStartBtn');
+    btn.textContent = '开始练习';
+    btn.onclick = startRoutine;
+  }
+}
+
+function renderPhaseSelector() {
+  const container = document.getElementById('phaseSelector');
+  if (!container) return;
+  container.innerHTML = '';
+  PHASES.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'phase-btn' + (p.id === currentPhase ? ' active' : '');
+    btn.innerHTML = '<span class="phase-name">' + p.name + '</span>' +
+      '<span class="phase-sub">' + p.subtitle + '</span>';
+    btn.onclick = () => selectPhase(p.id);
+    container.appendChild(btn);
+  });
+}
+
+function renderDynamicExercises(phase) {
+  const container = document.getElementById('dynamicExercises');
+  if (!container) return;
+
+  const totalMin = phase.exercises.reduce((s, e) => s + e.practiceMin, 0);
+  let html = '<section class="routine-overview"><h2>' + phase.name + '阶段练习</h2>' +
+    '<p>' + phase.exercises.length + ' 个练习，约 ' + totalMin + ' 分钟</p></section>';
+
+  phase.exercises.forEach((ex, i) => {
+    html += '<section class="exercise-section" id="ex-sec-' + i + '">' +
+      '<div class="exercise-inner"><div class="exercise">' +
+      '<div class="exercise-header"><h3><span class="exercise-num">' + (i + 1) + '</span> ' +
+      ex.name + ' &middot; ' + ex.practiceMin + ' 分钟</h3>' +
+      '<button class="skip-btn" id="skip-' + i + '" onclick="toggleSkip(' + i + ')">跳过</button></div>';
+
+    if (ex.source) html += '<span class="source-tag">' + ex.source + '</span>';
+
+    if (ex.concept) {
+      html += '<div class="concept-box"><strong>要点</strong><br>' + ex.concept + '</div>';
+    }
+
+    if (ex.instructions && ex.instructions.length) {
+      html += '<ol>';
+      ex.instructions.forEach(inst => { html += '<li>' + inst + '</li>'; });
+      html += '</ol>';
+    }
+
+    html += '<div class="round-row">' +
+      '<span class="round-label" id="round-label-' + i + '">...</span>' +
+      '<div class="round-pips" id="round-pips-' + i + '"></div></div>';
+
+    if (ex.audioSrc) {
+      html += '<div class="audio-player" id="player-' + i + '" data-src="' + ex.audioSrc + '">' +
+        '<button class="play-btn" onclick="toggleManualPlay(' + i + ')">' +
+        '<svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg></button>' +
+        '<div class="track-info"><div class="track-label">参考音频 &middot; 跟着练</div>' +
+        '<div class="progress-bar" onclick="seekAudio(this, event, ' + i + ')"><div class="progress-fill"></div></div></div>' +
+        '<span class="time-display">0:00</span></div>';
+    }
+
+    html += '</div></div></section>';
+  });
+
+  container.innerHTML = html;
 }
 
 // ================================================================

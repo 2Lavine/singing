@@ -17,7 +17,7 @@ function loadCompleted(): Set<string> {
 }
 
 export default function LessonList({ onSelect, onBack }: Props) {
-  const [completed, setCompleted] = useState<Set<string>>(loadCompleted);
+  const [completed, setCompleted] = useState<Set<string>>(() => loadCompleted());
 
   useEffect(() => {
     setCompleted(loadCompleted());
@@ -61,5 +61,3 @@ export default function LessonList({ onSelect, onBack }: Props) {
     </div>
   );
 }
-
-export { loadCompleted as loadLessonProgress, PROGRESS_KEY as LESSON_PROGRESS_KEY };

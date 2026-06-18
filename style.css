@@ -122,6 +122,61 @@ html, body {
   color: var(--accent);
 }
 
+/* ========== Subgroup (collapsible phase sections) ========== */
+.nav-subgroup {
+  margin-top: 0.15rem;
+}
+
+.nav-subgroup-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.5rem 0.45rem 1.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s, color 0.12s;
+}
+
+.nav-subgroup-title:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.subgroup-arrow {
+  font-size: 0.6rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  width: 0.8rem;
+  text-align: center;
+}
+
+.nav-subgroup.expanded .subgroup-arrow {
+  transform: rotate(90deg);
+}
+
+.subgroup-range {
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.nav-subgroup-items {
+  display: none;
+}
+
+.nav-subgroup.expanded .nav-subgroup-items {
+  display: block;
+}
+
+.nav-subgroup-items .nav-item.sub {
+  padding-left: 3.25rem;
+  font-size: 0.78rem;
+}
+
 .sidebar-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--hairline);

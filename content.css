@@ -1,0 +1,303 @@
+/* content.css — Shared styles for all iframe content pages (courses, daily, welcome) */
+/* Design system matches sidebar shell (style.css) */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+:root {
+  --bg: #F5F0EB;
+  --surface: #FFFFFF;
+  --accent: #D97757;
+  --accent-soft: rgba(217, 119, 87, 0.10);
+  --accent-border: rgba(217, 119, 87, 0.28);
+  --accent-hover: #C86A4C;
+  --success: #6B8F71;
+  --error: #C7554D;
+  --ink: #2D3436;
+  --ink-secondary: #6B6B6B;
+  --muted: #8a8580;
+  --hairline: #E0DBD4;
+  --hairline-hover: #C8C2B6;
+  --highlight: rgba(217, 119, 87, 0.06);
+  --shadow-sm: 0 1px 3px rgba(45, 52, 54, 0.06);
+  --shadow-md: 0 4px 16px rgba(45, 52, 54, 0.08), 0 1px 4px rgba(45, 52, 54, 0.04);
+  --radius: 9px;
+  --radius-sm: 6px;
+  --serif: "Noto Serif SC", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.8;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography ─── */
+
+h1, h2, h3 {
+  font-family: var(--serif);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--ink-secondary);
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ─── Lesson Header ─── */
+
+.lesson-header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 2rem;
+}
+
+.lesson-num {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.objective {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0.75rem auto 0;
+}
+
+/* ─── Concept Box (callout) ─── */
+
+.concept-box {
+  background: var(--highlight);
+  border-left: 3px solid var(--accent);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.concept-box strong {
+  color: var(--accent);
+}
+
+/* ─── Practice Block ─── */
+
+.practice {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.practice h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.practice h3::before {
+  content: "\1F3A4";
+  font-size: 1.2rem;
+}
+
+.practice ol {
+  padding-left: 1.25rem;
+}
+
+.practice li {
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Quiz Block ─── */
+
+.quiz {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.quiz h3 {
+  margin-top: 0;
+}
+
+.quiz .q {
+  margin-bottom: 1.25rem;
+}
+
+.quiz .q p {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.quiz label {
+  display: block;
+  padding: 0.35rem 0;
+  cursor: pointer;
+}
+
+.quiz input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.quiz button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.15s;
+}
+
+.quiz button:hover {
+  background: var(--accent-hover);
+}
+
+.feedback {
+  display: none;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+
+.feedback.correct {
+  background: rgba(107, 143, 113, 0.12);
+  color: var(--success);
+  display: block;
+}
+
+.feedback.wrong {
+  background: rgba(199, 85, 77, 0.12);
+  color: var(--error);
+  display: block;
+}
+
+/* ─── Reminder Box ─── */
+
+.reminder {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.reminder::before {
+  content: "\1F4AC 有问题？";
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ─── Footer ─── */
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+  color: var(--muted);
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+  }
+
+  .lesson-header {
+    padding: 2rem 0 1.5rem;
+  }
+}

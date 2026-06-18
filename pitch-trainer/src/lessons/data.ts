@@ -19,7 +19,7 @@ export interface AudioExample {
 
 export interface QuizItem {
   question: string;
-  notes: ReturnType<typeof n>[];
+  notes?: ReturnType<typeof n>[];
   options: string[];
   answer: number;
 }

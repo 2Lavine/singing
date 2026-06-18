@@ -1,53 +1,436 @@
 {
   "routineName": "每日声乐练习例程",
-  "subtitle": "六天课程的精华浓缩为每日固定流程，持续 30 天建立肌肉记忆",
+  "subtitle": "分阶段每日练习流程，持续 30 天建立肌肉记忆",
   "roundRestSec": 5,
   "exerciseRestSec": 15,
-  "exercises": [
+  "phases": [
     {
-      "name": "三度哼唱（暖嗓）",
-      "shortName": "三度哼唱",
-      "practiceMin": 5,
-      "stepLabel": "Step 1",
-      "source": "来源：第 2 课 · 听力与模仿",
-      "audioSrc": "../audio/三度哼唱.mp3",
-      "enabled": true
+      "id": 1,
+      "name": "基础",
+      "subtitle": "课程 1-6",
+      "exercises": [
+        {
+          "name": "三度哼唱（暖嗓）",
+          "shortName": "三度哼唱",
+          "practiceMin": 5,
+          "stepLabel": "Step 1",
+          "source": "来源：第 2 课 · 听力与模仿",
+          "audioSrc": "../audio/三度哼唱.mp3",
+          "enabled": true,
+          "instructions": [
+            "嘴唇轻闭，用「嗯——」的哼唱",
+            "从低音开始往上，再从上往下回到低音",
+            "保持最舒服、最轻、最柔顺的声音",
+            "注意感受脸部的振动（嘴巴、鼻腔）",
+            "感受共鸣的转换：低音胸腔 → 高音头部 → 回到胸腔"
+          ],
+          "concept": "就像举重第一组先做空的——让血液开始循环到声带，慢慢启动那五对控制声带的肌肉。这是力宏起床后做的第一个练习。"
+        },
+        {
+          "name": "弹嘴唇",
+          "shortName": "弹嘴唇",
+          "practiceMin": 3.5,
+          "stepLabel": "Step 2a",
+          "source": "来源：第 3 课 · 声音的五个元素",
+          "audioSrc": "../audio/弹嘴唇.mp3",
+          "enabled": true,
+          "instructions": [
+            "单手或双手把脸颊的肉轻轻提起来",
+            "嘴唇闭合，用气流吹开——brrrrrr——",
+            "越慢越好，越放松越好",
+            "保持气流等速——不是忽快忽慢",
+            "弹嘴唇时后面的母音是「呃」"
+          ],
+          "concept": "哼唱（最少气，声带闭合）→ 弹嘴唇（多一点气，快速哼↔呃）。每次嘴唇闭合把声音停住，产生喉咙里的气压，让声带维持闭合度。"
+        },
+        {
+          "name": "十二度 Mum 练习",
+          "shortName": "十二度Mum",
+          "practiceMin": 4,
+          "stepLabel": "Step 2b",
+          "source": "来源：第 4 课 · 胸部区混声区头部区",
+          "audioSrc": "../audio/十二度Mum.mp3",
+          "enabled": true,
+          "instructions": [
+            "嘴唇轻闭发 Mmm——，然后打开到「呃——」",
+            "M 的部分 = 在哼唱（感受脸部鼻腔振动）",
+            "「呃」的部分 = 在唱歌（那个笨笨的声音）",
+            "从低音开始，上行 12 度穿过换声区，再下行回来",
+            "全程保持嘴唇放松、下巴放松",
+            "目标是一个声音——从胸部区到换声区到头部区，平顺连贯"
+          ],
+          "concept": "换声区是一座需要搭建的桥梁。当它又强壮又坚固，你就可以在上面跑来跑去、跳来跳去。本质上只是一个肌肉协调问题。"
+        },
+        {
+          "name": "Tee 断奏练习",
+          "shortName": "Tee断奏",
+          "practiceMin": 7.5,
+          "stepLabel": "Step 3",
+          "source": "来源：第 5 课 · 扩大音域",
+          "audioSrc": "../audio/Tee五度断奏.mp3",
+          "enabled": true,
+          "instructions": [
+            "用 Tee 这个音（短促、清晰）",
+            "在五度音程范围内做断奏——每个音快速碰一下就走",
+            "从舒服的音区开始，逐步向上/向下扩展",
+            "关键是：快速碰一下 → 快速放掉",
+            "宁可短而准，不要长而勉强"
+          ],
+          "concept": "增强式训练（Plyometrics）：奥运选手用又短又快的爆发性动作让肌肉快速到极限，然后快速放松。应用到声音：先快速碰一下高音，然后快速放掉。"
+        },
+        {
+          "name": "速度与灵活度",
+          "shortName": "速度与灵活度",
+          "practiceMin": 10,
+          "stepLabel": "Step 4",
+          "source": "来源：第 6 课 · 速度与灵活性",
+          "audioSrc": "../audio/速度与灵活度.mp3",
+          "enabled": true,
+          "instructions": [
+            "用内置节拍器开始练习",
+            "从 70 bpm 开始",
+            "用 U—— 的音做音阶练习：慢 2 次 → 快 3 次 → 慢 1 次",
+            "保证每个音先准再快——不准就退回更慢",
+            "完美后才允许自己加快一格（5 bpm）"
+          ],
+          "concept": "速度的秘密是组块学习（Chunking）：95% 的行为都是习惯。重复练习 → 组块 → 变成肌肉记忆 → 想都不用想。"
+        }
+      ]
     },
     {
-      "name": "弹嘴唇",
-      "shortName": "弹嘴唇",
-      "practiceMin": 3.5,
-      "stepLabel": "Step 2a",
-      "source": "来源：第 3 课 · 声音的五个元素",
-      "audioSrc": "../audio/弹嘴唇.mp3",
-      "enabled": true
+      "id": 2,
+      "name": "应用",
+      "subtitle": "课程 7-13",
+      "exercises": [
+        {
+          "name": "三度哼唱（暖嗓）",
+          "shortName": "三度哼唱",
+          "practiceMin": 5,
+          "stepLabel": "暖嗓",
+          "source": "每阶段都从暖嗓开始",
+          "audioSrc": "../audio/三度哼唱.mp3",
+          "enabled": true,
+          "instructions": [
+            "嘴唇轻闭，用「嗯——」的哼唱",
+            "从低音往上，再从高音回到低音",
+            "保持最轻、最柔顺的声音",
+            "感受共鸣的转换"
+          ],
+          "concept": "暖嗓是所有练习的第一步，让声带和肌肉进入状态。"
+        },
+        {
+          "name": "布娃娃放松法",
+          "shortName": "布娃娃",
+          "practiceMin": 5,
+          "stepLabel": "放松",
+          "source": "来源：第 7 课 · 真正学会唱一首歌",
+          "audioSrc": "../audio/布娃娃.mp3",
+          "enabled": true,
+          "instructions": [
+            "想象布娃娃——没有骨头、没有肌肉",
+            "把手举起来摸天空",
+            "慢慢弯腰往下，像个布娃娃往下掉",
+            "可以晃来晃去",
+            "倒立状态后，吸气吸饱",
+            "慢慢吐气，感受脊椎一节一节变直",
+            "重复 3-4 次"
+          ],
+          "concept": "演出前身体因为肾上腺素紧张——心跳加速、手变冰凉。布娃娃放松法让全身彻底松弛，是表演前的必备仪式。"
+        },
+        {
+          "name": "五度 AEIOU",
+          "shortName": "AEIOU",
+          "practiceMin": 5,
+          "stepLabel": "母音",
+          "source": "来源：第 10 课 · 练习视频",
+          "audioSrc": "../audio/AEIOU五度.mp3",
+          "enabled": true,
+          "instructions": [
+            "在五度音程范围内，依次唱 A-E-I-O-U 五个母音",
+            "每个母音唱 4 拍",
+            "注意每个母音的嘴形变化：A（大嘴）→ E（扁嘴）→ I（微笑）→ O（圆嘴）→ U（噘嘴）",
+            "保持气流的稳定和等速",
+            "每个母音重复 3 次后换下一个"
+          ],
+          "concept": "五个母音是声音的调色板。不同的嘴形变化训练你的声带在不同形状下保持稳定的声音。"
+        },
+        {
+          "name": "三度 Fi Bi Ki",
+          "shortName": "FiBiKi",
+          "practiceMin": 5,
+          "stepLabel": "辅音",
+          "source": "来源：第 11 课 · 练习视频",
+          "audioSrc": "../audio/三度FiBiKi.mp3",
+          "enabled": true,
+          "instructions": [
+            "在三度音程范围内，用 Fi-Bi-Ki 三个音节",
+            "每个音节唱 2 拍",
+            "Fi：用上牙齿轻咬下唇，感受气流的摩擦",
+            "Bi：双唇闭合后弹开，感受嘴唇的爆发力",
+            "Ki：舌根抬起，感受舌头的灵活性",
+            "三个音节轮流唱，从低到高再回来"
+          ],
+          "concept": "辅音训练让咬字更清晰。Fi（气流）、Bi（嘴唇爆发）、Ki（舌头灵活）分别训练不同的发音器官。"
+        },
+        {
+          "name": "八度滑音",
+          "shortName": "八度滑音",
+          "practiceMin": 5,
+          "stepLabel": "音域",
+          "source": "来源：第 12 课 · 练习视频",
+          "audioSrc": "../audio/八度滑音.mp3",
+          "enabled": true,
+          "instructions": [
+            "用「唔~」的声音，从低音滑到八度上方",
+            "像警笛一样，慢慢往上滑",
+            "不要跳跃，要连续滑行——感受每个半音",
+            "到达最高点后再慢慢滑回来",
+            "全程保持声音的连贯和稳定"
+          ],
+          "concept": "八度滑音帮助你感受整个音域的连贯性，消除换声区的断层感。"
+        },
+        {
+          "name": "弹嘴唇 12 度",
+          "shortName": "弹嘴唇12度",
+          "practiceMin": 5,
+          "stepLabel": "综合",
+          "source": "来源：第 13 课 · 练习视频",
+          "audioSrc": "../audio/弹嘴唇12度.mp3",
+          "enabled": true,
+          "instructions": [
+            "和基础弹嘴唇一样，但扩展到 12 度音程",
+            "从低音弹到 12 度上方再回来",
+            "保持嘴唇放松，气流等速",
+            "感受从胸腔共鸣到头部共鸣的转换",
+            "注意换声区的平滑过渡"
+          ],
+          "concept": "12 度是八度加五度，跨越更广的音域。在弹嘴唇的保护下训练大跨度音程。"
+        }
+      ]
     },
     {
-      "name": "十二度 Mum 练习",
-      "shortName": "十二度Mum",
-      "practiceMin": 4,
-      "stepLabel": "Step 2b",
-      "source": "来源：第 4 课 · 胸部区混声区头部区",
-      "audioSrc": "../audio/十二度Mum.mp3",
-      "enabled": true
+      "id": 3,
+      "name": "表演",
+      "subtitle": "课程 14-20",
+      "exercises": [
+        {
+          "name": "三度哼唱（暖嗓）",
+          "shortName": "三度哼唱",
+          "practiceMin": 5,
+          "stepLabel": "暖嗓",
+          "source": "每阶段都从暖嗓开始",
+          "audioSrc": "../audio/三度哼唱.mp3",
+          "enabled": true,
+          "instructions": [
+            "嘴唇轻闭，用「嗯——」的哼唱",
+            "从低音往上，再从高音回到低音",
+            "保持最轻、最柔顺的声音"
+          ],
+          "concept": "暖嗓是所有练习的第一步。"
+        },
+        {
+          "name": "五度哈嘿",
+          "shortName": "哈嘿",
+          "practiceMin": 5,
+          "stepLabel": "力量",
+          "source": "来源：第 15 课 · 练习视频",
+          "audioSrc": "../audio/五度哈嘿.mp3",
+          "enabled": true,
+          "instructions": [
+            "在五度音程范围内，用「哈！」和「嘿！」交替",
+            "「哈」：嘴大张，声音从腹部往上冲",
+            "「嘿」：嘴形更紧凑，声音更集中",
+            "每个音 2 拍，交替唱 8 次为一轮",
+            "注意感受腹部每次发力的感觉",
+            "声音要有力度但不要喊"
+          ],
+          "concept": "哈嘿练习训练声音的力量和冲击力。来自腹部的爆发力让声音有穿透力，但喉咙要保持放松。"
+        },
+        {
+          "name": "嗯~哈~啊~",
+          "shortName": "嗯哈啊",
+          "practiceMin": 5,
+          "stepLabel": "情感",
+          "source": "来源：第 16 课 · 练习视频",
+          "audioSrc": "../audio/嗯哈啊.mp3",
+          "enabled": true,
+          "instructions": [
+            "用「嗯~」的声音，在五度范围内慢慢滑行",
+            "加入情感——想象你在叹一口气",
+            "然后转到「哈~」，嘴形打开",
+            "最后到「啊~」，完全打开",
+            "三个声音连起来：嗯~哈~啊~，像波浪一样",
+            "让声音带上你想要表达的情感"
+          ],
+          "concept": "从闭合（嗯）到半开（哈）到全开（啊），训练声音在不同开合度下保持情感表达。唱歌不只是发声，更是表达。"
+        },
+        {
+          "name": "内~内~内~",
+          "shortName": "内内内",
+          "practiceMin": 5,
+          "stepLabel": "塑造",
+          "source": "来源：第 17 课 · 练习视频",
+          "audioSrc": "../audio/内内内.mp3",
+          "enabled": true,
+          "instructions": [
+            "用「内~」这个音，在音阶上上下移动",
+            "舌尖轻触上齿龈，发出清晰的 n 音",
+            "然后打开到 ei 的母音",
+            "在五度和八度范围内练习",
+            "注意每次 n 的接触要轻而快"
+          ],
+          "concept": "用声音塑造情感——「内」这个音结合了鼻音的共鸣和母音的开合，训练声音的细腻控制力。"
+        },
+        {
+          "name": "两个母音 Uh 和 Yi",
+          "shortName": "Uh-Yi",
+          "practiceMin": 5,
+          "stepLabel": "母音",
+          "source": "来源：第 18 课 · 练习视频",
+          "audioSrc": "../audio/两个母音UhYi.mp3",
+          "enabled": true,
+          "instructions": [
+            "只用两个母音：Uh（深沉的）和 Yi（明亮的）",
+            "Uh：嘴巴打开，喉咙深处发声",
+            "Yi：嘴巴扁平，声音靠前",
+            "在音阶上交替唱 Uh-Yi-Uh-Yi",
+            "感受两种母音在共鸣位置上的差异",
+            "保持声音的稳定和连贯"
+          ],
+          "concept": "母音的变化是声音色彩的调色板。Uh 暗沉温暖，Yi 明亮集中。掌握两种极端，中间的母音自然就能控制。"
+        },
+        {
+          "name": "说话像唱歌",
+          "shortName": "说话唱歌",
+          "practiceMin": 10,
+          "stepLabel": "融合",
+          "source": "来源：第 19 课 · 练习视频",
+          "audioSrc": "../audio/说话像唱歌.mp3",
+          "enabled": true,
+          "instructions": [
+            "选一句你要唱的歌词",
+            "先用正常说话的方式念出来",
+            "然后逐渐加入音高——像念经一样",
+            "再加大音程变化——像朗诵一样",
+            "最后完全唱出来",
+            "感受「说话」和「唱歌」之间的连续性",
+            "目标是：说话和唱歌之间没有断层"
+          ],
+          "concept": "说话、唱歌、演戏三合一。最好的歌手让你听不出「说话」和「唱歌」的边界——声音是一个整体。"
+        }
+      ]
     },
     {
-      "name": "Tee 断奏练习",
-      "shortName": "Tee断奏",
-      "practiceMin": 7.5,
-      "stepLabel": "Step 3",
-      "source": "来源：第 5 课 · 扩大音域",
-      "audioSrc": "../audio/Tee五度断奏.mp3",
-      "enabled": true
-    },
-    {
-      "name": "速度与灵活度",
-      "shortName": "速度与灵活度",
-      "practiceMin": 10,
-      "stepLabel": "Step 4",
-      "source": "来源：第 6 课 · 速度与灵活性",
-      "audioSrc": "../audio/速度与灵活度.mp3",
-      "enabled": true
+      "id": 4,
+      "name": "进阶",
+      "subtitle": "课程 21-26",
+      "exercises": [
+        {
+          "name": "三度哼唱（暖嗓）",
+          "shortName": "三度哼唱",
+          "practiceMin": 5,
+          "stepLabel": "暖嗓",
+          "source": "每阶段都从暖嗓开始",
+          "audioSrc": "../audio/三度哼唱.mp3",
+          "enabled": true,
+          "instructions": [
+            "嘴唇轻闭，用「嗯——」的哼唱",
+            "从低音往上，再从高音回到低音",
+            "保持最轻、最柔顺的声音"
+          ],
+          "concept": "暖嗓是所有练习的第一步。"
+        },
+        {
+          "name": "嘿 ng 儿",
+          "shortName": "嘿ng儿",
+          "practiceMin": 5,
+          "stepLabel": "共鸣",
+          "source": "来源：第 20 课 · 练习视频",
+          "audioSrc": "../audio/嘿ng儿.mp3",
+          "enabled": true,
+          "instructions": [
+            "用「嘿」的音开始，然后滑到 ng 的鼻音",
+            "「嘿」：短促有力，从腹部发力",
+            "ng：嘴唇闭合，声音从鼻腔出来",
+            "交替唱 嘿-ng-嘿-ng",
+            "感受胸腔共鸣和鼻腔共鸣的切换",
+            "最后加上儿化音「儿」，训练舌头灵活性"
+          ],
+          "concept": "嘿（胸腔爆发）→ ng（鼻腔共鸣）→ 儿（舌头灵活），三个动作串联训练不同的发声器官。"
+        },
+        {
+          "name": "八度跳远 Mum",
+          "shortName": "八度跳远",
+          "practiceMin": 5,
+          "stepLabel": "跨度",
+          "source": "来源：第 22 课 · 练习视频",
+          "audioSrc": "../audio/八度跳远Mum.mp3",
+          "enabled": true,
+          "instructions": [
+            "用 Mum 的音，从低音跳到八度上方",
+            "不是滑行，是直接跳——像跳远一样",
+            "跳上去后保持住，感受高音的位置",
+            "然后跳回来——准确落到低音",
+            "反复练习，让八度跳跃变得精准",
+            "进阶：尝试十二度跳跃"
+          ],
+          "concept": "八度跳远训练大音程跳跃的精准度。真正的歌手能精确控制音高的大幅跳跃，而不是靠滑行过渡。"
+        },
+        {
+          "name": "席琳迪翁练习",
+          "shortName": "席琳迪翁",
+          "practiceMin": 5,
+          "stepLabel": "和声",
+          "source": "来源：第 23 课 · 练习视频",
+          "audioSrc": "../audio/席琳迪翁.mp3",
+          "enabled": true,
+          "instructions": [
+            "播放一首你熟悉的歌（推荐席琳迪翁的歌）",
+            "不要唱主旋律——唱和声部分",
+            "先听 2-3 遍，找到和声的音",
+            "然后跟着唱和声，保持在主旋律的上方或下方",
+            "注意不要「跑」到主旋律去",
+            "这是训练你的耳朵独立性的最佳方法"
+          ],
+          "concept": "旋律、和声与合唱——唱和声要求你的耳朵能同时听到主旋律和自己的声音，保持独立不被带跑。"
+        },
+        {
+          "name": "九度喂~噢~",
+          "shortName": "九度喂噢",
+          "practiceMin": 5,
+          "stepLabel": "音域",
+          "source": "来源：第 24 课 · 练习视频",
+          "audioSrc": "../audio/九度喂噢.mp3",
+          "enabled": true,
+          "instructions": [
+            "用「喂~」的音从低音开始",
+            "滑到九度上方，母音变成「噢~」",
+            "喂（低音）→ 噢（高音），感受嘴形的变化",
+            "然后慢慢滑回来，噢 → 喂",
+            "注意九度比八度多一个全音，要唱到位",
+            "反复练习，让九度跨度变得自然"
+          ],
+          "concept": "九度练习进一步扩展你的可用音域。「喂」和「噢」的母音变化配合音高变化，训练声音在大跨度下的控制力。"
+        },
+        {
+          "name": "柔软练习（进阶）",
+          "shortName": "柔软进阶",
+          "practiceMin": 10,
+          "stepLabel": "综合",
+          "source": "来源：第 25 课 · 练习视频",
+          "audioSrc": "../audio/柔软进阶.mp3",
+          "enabled": true,
+          "instructions": [
+            "用你最舒服的声音开始哼唱",
+            "慢慢加入各种音程跳跃：三度、五度、八度、十二度",
+            "像做瑜伽一样——每个动作慢慢来，到位后保持",
+            "感受声带的拉伸和放松",
+            "如果某个音程感觉紧或痛，停下来休息",
+            "目标是让整个音域的声音都像瑜伽一样柔软灵活"
+          ],
+          "concept": "力气与技巧的进阶融合——不是蛮力，而是精确的控制力。像瑜伽一样，柔软中蕴含力量。"
+        }
+      ]
     }
   ]
 }

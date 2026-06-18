@@ -247,6 +247,7 @@ h1, h2, h3 {
   background: var(--surface-alt);
 }
 
+.mode-singing .mode-icon { color: #e06050; }
 .mode-lessons .mode-icon { color: var(--accent); }
 .mode-levels .mode-icon { color: var(--accent); }
 .mode-free .mode-icon { color: var(--success); }

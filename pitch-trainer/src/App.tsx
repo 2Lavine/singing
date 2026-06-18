@@ -74,7 +74,13 @@ export default function App() {
   }
 
   if (page === 'lesson-view' && activeLesson) {
-    return <LessonView lesson={activeLesson} onComplete={completeLesson} onBack={() => setPage('lessons')} />;
+    return (
+      <LessonView
+        lesson={activeLesson}
+        onComplete={completeLesson}
+        onBack={() => setPage('lessons')}
+      />
+    );
   }
 
   return (

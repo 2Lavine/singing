@@ -22,6 +22,7 @@ function Quiz({ quiz, onAnswer }: { quiz: QuizItem; onAnswer: (correct: boolean)
   };
 
   const playQuizAudio = () => {
+    if (!quiz.notes || quiz.notes.length === 0) return;
     ensureAudioContext();
     quiz.notes.forEach((note, i) => {
       setTimeout(() => playNote(note, 'piano', 1.0), i * 700);
@@ -31,9 +32,11 @@ function Quiz({ quiz, onAnswer }: { quiz: QuizItem; onAnswer: (correct: boolean)
   return (
     <div className="quiz-box">
       <p className="quiz-question">{quiz.question}</p>
-      <button className="play-btn primary small" onClick={playQuizAudio}>
-        ▶ 播放
-      </button>
+      {quiz.notes && quiz.notes.length > 0 && (
+        <button className="play-btn primary small" onClick={playQuizAudio}>
+          ▶ 播放
+        </button>
+      )}
       <div className="quiz-options">
         {quiz.options.map((opt, i) => {
           let cls = 'quiz-option';
