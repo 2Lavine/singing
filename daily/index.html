@@ -1616,25 +1616,49 @@ function renderDynamicExercises(phase) {
   if (!container) return;
 
   const totalMin = phase.exercises.reduce((s, e) => s + e.practiceMin, 0);
-  let html = '<section class="routine-overview"><h2>' + phase.name + '阶段练习</h2>' +
-    '<p>' + phase.exercises.length + ' 个练习，约 ' + totalMin + ' 分钟</p></section>';
 
+  // --- Flow overview (matching Phase 1 style) ---
+  let html = '<section class="routine-overview"><h2>' + phase.name + '阶段练习流程</h2>' +
+    '<p>' + phase.exercises.length + ' 个步骤，循序渐进</p>' +
+    '<div class="flow">';
+  phase.exercises.forEach((ex, i) => {
+    if (i > 0) html += '<span class="flow-arrow">&rarr;</span>';
+    html += '<span class="flow-step">' + ex.shortName +
+      ' <span class="time-badge">' + ex.practiceMin + 'min</span></span>';
+  });
+  html += '</div>' +
+    '<p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">' +
+    '总计约 ' + totalMin + ' 分钟</p></section>';
+
+  // --- Warm-up reminder (Phase 1 has this in phase1Exercises; Phase 2-4 need it here) ---
+  html += '<section>' +
+    '<h2>开始前：放松与呼吸</h2>' +
+    '<p>在开始声音练习之前，先花 1&ndash;2 分钟让身体进入状态：</p>' +
+    '<ul style="padding-left: 1.25rem;">' +
+    '<li><strong>放松清单</strong>：肩膀放 &rarr; 脖子放 &rarr; 脸部放 &rarr; 下巴放 &rarr; 舌头放 &rarr; 嘴唇放</li>' +
+    '<li>站起来抖一抖，让紧绷感释放</li>' +
+    '<li>做 3 次腹式呼吸：鼻吸（肚子变大气球）&rarr; 嘴吐（肚子匀速内缩）</li>' +
+    '<li>吸气不要有声音，尽量用鼻子（像闻玫瑰花一样）</li>' +
+    '</ul></section>';
+
+  // --- Exercises ---
   phase.exercises.forEach((ex, i) => {
     html += '<section class="exercise-section" id="ex-sec-' + i + '">' +
       '<div class="exercise-inner"><div class="exercise">' +
       '<div class="exercise-header"><h3><span class="exercise-num">' + (i + 1) + '</span> ' +
       ex.name + ' &middot; ' + ex.practiceMin + ' 分钟</h3>' +
-      '<button class="skip-btn" id="skip-' + i + '" onclick="toggleSkip(' + i + ')">跳过</button></div>';
+      '<button class="skip-btn" onclick="toggleSkip(' + i + ')">跳过</button></div>';
 
     if (ex.source) html += '<span class="source-tag">' + ex.source + '</span>';
 
     if (ex.concept) {
-      html += '<div class="concept-box"><strong>要点</strong><br>' + ex.concept + '</div>';
+      var title = ex.conceptTitle || '要点';
+      html += '<div class="concept-box"><strong>' + title + '</strong><br>' + ex.concept + '</div>';
     }
 
     if (ex.instructions && ex.instructions.length) {
       html += '<ol>';
-      ex.instructions.forEach(inst => { html += '<li>' + inst + '</li>'; });
+      ex.instructions.forEach(function(inst) { html += '<li>' + inst + '</li>'; });
       html += '</ol>';
     }
 
@@ -1653,6 +1677,11 @@ function renderDynamicExercises(phase) {
 
     html += '</div></div></section>';
   });
+
+  // --- Safety reminder (Phase 1 has this inside exercise 1; Phase 2-4 get a shared one) ---
+  html += '<div class="warning-box">' +
+    '<strong>安全守则</strong>：不应有任何疼痛与吃力。喉咙发痒想咳嗽 &rarr; 立刻停 &rarr; 休息几秒 &rarr; 深呼吸 &rarr; 重来。' +
+    '低音别挖、高音别勉强。每天练习时多喝温水，感到疲劳就休息。</div>';
 
   container.innerHTML = html;
 }
