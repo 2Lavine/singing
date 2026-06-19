@@ -182,7 +182,7 @@ export default function NoteGallery({ onBack }: Props) {
                     {isPlaying ? '⏸ 播放中' : isPaused ? '▶ 继续' : '▶ ' + song.name}
                   </button>
                   {(isPlaying || isPaused) && (
-                    <button className="song-stop-btn" onClick={stopSong}>✕</button>
+                    <button className="song-stop-btn" onClick={stopPlayback}>✕</button>
                   )}
                 </div>
               );
