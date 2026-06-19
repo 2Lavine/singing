@@ -1,5 +1,5 @@
 import type { NoteName } from '../types';
-import { getFrequency } from '../audio/notes';
+import { getFrequency, getMidi } from '../audio/notes';
 
 // Note factory — creates Note objects for lesson audio examples
 function n(name: NoteName, octave: number) {
@@ -8,7 +8,7 @@ function n(name: NoteName, octave: number) {
     'E': 'mi', 'F': 'fa', 'F#': 'fa#', 'G': 'sol',
     'G#': 'sol#', 'A': 'la', 'A#': 'la#', 'B': 'si',
   };
-  return { name, octave, frequency: getFrequency(name, octave), solfege: SOLFEGE[name] };
+  return { name, octave, midi: getMidi(name, octave), frequency: getFrequency(name, octave), solfege: SOLFEGE[name] };
 }
 
 export interface AudioExample {

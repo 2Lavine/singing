@@ -1743,3 +1743,87 @@ h1, h2, h3 {
   color: #e74c3c;
   border-color: #e74c3c;
 }
+
+/* ===== Quiz mode ===== */
+.quiz-toggle {
+  padding: 0.35rem 1rem;
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.quiz-toggle:hover {
+  border-color: var(--accent);
+}
+
+.quiz-toggle.active {
+  background: #6366f1;
+  color: #fff;
+  border-color: #6366f1;
+}
+
+.quiz-score {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  margin-left: 0.5rem;
+}
+
+.quiz-pct {
+  color: var(--ink-secondary);
+}
+
+.quiz-streak {
+  color: #f39c12;
+  font-weight: 700;
+}
+
+.quiz-prompt {
+  text-align: center;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+
+.quiz-prompt.correct {
+  background: #27ae6018;
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.quiz-prompt.wrong {
+  background: #e74c3c18;
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.cell-correct {
+  animation: cell-correct-pop 0.3s ease-out;
+}
+
+.cell-wrong {
+  animation: cell-shake 0.4s ease-out;
+}
+
+@keyframes cell-correct-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes cell-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
