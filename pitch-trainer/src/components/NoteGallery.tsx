@@ -46,15 +46,14 @@ export default function NoteGallery({ onBack }: Props) {
     setSelectedSongId(null);
   };
 
-  const scheduleFromIndex = (startIndex: number, startElapsedMs: number) => {
-    if (!currentSong) return;
+  const scheduleFromIndex = (song: typeof SONGS[0], startIndex: number, startElapsedMs: number) => {
     clearAllTimers();
 
-    const beatMs = 60000 / currentSong.bpm;
+    const beatMs = 60000 / song.bpm;
     let elapsed = startElapsedMs;
 
-    for (let i = startIndex; i < currentSong.notes.length; i++) {
-      const sn = currentSong.notes[i];
+    for (let i = startIndex; i < song.notes.length; i++) {
+      const sn = song.notes[i];
       const noteStartMs = elapsed;
       const durationMs = sn.duration * beatMs;
       const noteIdx = i;
@@ -95,14 +94,14 @@ export default function NoteGallery({ onBack }: Props) {
     if (selectedSongId === songId && playbackState === 'paused') {
       // Resume from pause
       const beatMs = 60000 / song.bpm;
-      scheduleFromIndex(currentNoteIndex, pauseTimeRef.current);
+      scheduleFromIndex(song, currentNoteIndex, pauseTimeRef.current);
       setPlaybackState('playing');
       startTimeRef.current = Date.now() - pauseTimeRef.current;
     } else {
       // Start fresh
       setCurrentNoteIndex(0);
       startTimeRef.current = Date.now();
-      scheduleFromIndex(0, 0);
+      scheduleFromIndex(song, 0, 0);
       setPlaybackState('playing');
     }
   };
