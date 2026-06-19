@@ -12,7 +12,7 @@
         {
           "name": "三度哼唱（暖嗓）",
           "shortName": "三度哼唱",
-          "practiceMin": 4.5,
+          "practiceMin": 2.3,
           "stepLabel": "Step 1",
           "source": "来源：第 2 课 · 听力与模仿",
           "audioSrc": "../audio/三度哼唱.mp3",
@@ -30,7 +30,7 @@
         {
           "name": "弹嘴唇",
           "shortName": "弹嘴唇",
-          "practiceMin": 4.5,
+          "practiceMin": 2.4,
           "stepLabel": "Step 2a",
           "source": "来源：第 3 课 · 声音的五个元素",
           "audioSrc": "../audio/弹嘴唇.mp3",
@@ -48,7 +48,7 @@
         {
           "name": "十二度 Mum 练习",
           "shortName": "十二度Mum",
-          "practiceMin": 5.0,
+          "practiceMin": 2.5,
           "stepLabel": "Step 2b",
           "source": "来源：第 4 课 · 胸部区混声区头部区",
           "audioSrc": "../audio/十二度Mum.mp3",
@@ -67,7 +67,7 @@
         {
           "name": "Tee 断奏练习",
           "shortName": "Tee断奏",
-          "practiceMin": 7.0,
+          "practiceMin": 2.4,
           "stepLabel": "Step 3",
           "source": "来源：第 5 课 · 扩大音域",
           "audioSrc": "../audio/Tee五度断奏.mp3",
@@ -85,7 +85,7 @@
         {
           "name": "速度与灵活度",
           "shortName": "速度与灵活度",
-          "practiceMin": 9.5,
+          "practiceMin": 3.3,
           "stepLabel": "Step 4",
           "source": "来源：第 6 课 · 速度与灵活性",
           "audioSrc": "../audio/速度与灵活度.mp3",
@@ -103,7 +103,7 @@
         {
           "name": "布娃娃放松法",
           "shortName": "布娃娃",
-          "practiceMin": 4.5,
+          "practiceMin": 2.3,
           "stepLabel": "放松",
           "source": "来源：第 7 课 · 真正学会唱一首歌",
           "audioSrc": "../audio/布娃娃.mp3",
@@ -130,7 +130,7 @@
         {
           "name": "三度哼唱（暖嗓）",
           "shortName": "三度哼唱",
-          "practiceMin": 4.5,
+          "practiceMin": 2.3,
           "stepLabel": "暖嗓",
           "source": "每阶段都从暖嗓开始",
           "audioSrc": "../audio/三度哼唱.mp3",
@@ -147,7 +147,7 @@
         {
           "name": "五度 AEIOU",
           "shortName": "AEIOU",
-          "practiceMin": 5.5,
+          "practiceMin": 1.9,
           "stepLabel": "母音",
           "source": "来源：第 10 课 · 练习视频",
           "audioSrc": "../audio/AEIOU五度.mp3",
@@ -165,7 +165,7 @@
         {
           "name": "三度 Fi Bi Ki",
           "shortName": "FiBiKi",
-          "practiceMin": 4.5,
+          "practiceMin": 2.3,
           "stepLabel": "辅音",
           "source": "来源：第 11 课 · 练习视频",
           "audioSrc": "../audio/三度FiBiKi.mp3",
@@ -184,7 +184,7 @@
         {
           "name": "啦嗯唧",
           "shortName": "啦嗯唧",
-          "practiceMin": 4.0,
+          "practiceMin": 1.4,
           "stepLabel": "舌头",
           "source": "来源：第 18 课 · 母音的变化",
           "audioSrc": "../audio/啦嗯唧.mp3",
@@ -203,7 +203,7 @@
         {
           "name": "八度滑音",
           "shortName": "八度滑音",
-          "practiceMin": 5.0,
+          "practiceMin": 2.7,
           "stepLabel": "音域",
           "source": "来源：第 12 课 · 练习视频",
           "audioSrc": "../audio/八度滑音.mp3",
@@ -221,7 +221,7 @@
         {
           "name": "弹嘴唇 12 度",
           "shortName": "弹嘴唇12度",
-          "practiceMin": 6.5,
+          "practiceMin": 3.4,
           "stepLabel": "综合",
           "source": "来源：第 13 课 · 练习视频",
           "audioSrc": "../audio/弹嘴唇12度.mp3",
@@ -246,7 +246,7 @@
         {
           "name": "三度哼唱（暖嗓）",
           "shortName": "三度哼唱",
-          "practiceMin": 4.5,
+          "practiceMin": 2.3,
           "stepLabel": "暖嗓",
           "source": "每阶段都从暖嗓开始",
           "audioSrc": "../audio/三度哼唱.mp3",
@@ -262,7 +262,7 @@
         {
           "name": "五度哈嘿",
           "shortName": "哈嘿",
-          "practiceMin": 6.0,
+          "practiceMin": 6.2,
           "stepLabel": "力量",
           "source": "来源：第 15 课 · 练习视频",
           "audioSrc": "../audio/五度哈嘿.mp3",
@@ -300,7 +300,7 @@
         {
           "name": "内~内~内~",
           "shortName": "内内内",
-          "practiceMin": 4.5,
+          "practiceMin": 2.5,
           "stepLabel": "塑造",
           "source": "来源：第 17 课 · 练习视频",
           "audioSrc": "../audio/内内内.mp3",
@@ -318,7 +318,7 @@
         {
           "name": "两个母音 Uh 和 Yi",
           "shortName": "Uh-Yi",
-          "practiceMin": 5.5,
+          "practiceMin": 1.8,
           "stepLabel": "母音",
           "source": "来源：第 18 课 · 练习视频",
           "audioSrc": "../audio/两个母音UhYi.mp3",
@@ -337,7 +337,7 @@
         {
           "name": "说话像唱歌",
           "shortName": "说话唱歌",
-          "practiceMin": 6.5,
+          "practiceMin": 2.3,
           "stepLabel": "融合",
           "source": "来源：第 19 课 · 练习视频",
           "audioSrc": "../audio/说话像唱歌.mp3",
@@ -364,7 +364,7 @@
         {
           "name": "三度哼唱（暖嗓）",
           "shortName": "三度哼唱",
-          "practiceMin": 4.5,
+          "practiceMin": 2.3,
           "stepLabel": "暖嗓",
           "source": "每阶段都从暖嗓开始",
           "audioSrc": "../audio/三度哼唱.mp3",
@@ -380,7 +380,7 @@
         {
           "name": "嘿 ng 儿",
           "shortName": "嘿ng儿",
-          "practiceMin": 4.0,
+          "practiceMin": 1.4,
           "stepLabel": "共鸣",
           "source": "来源：第 20 课 · 练习视频",
           "audioSrc": "../audio/嘿ng儿.mp3",
@@ -399,7 +399,7 @@
         {
           "name": "八度跳远 Mum",
           "shortName": "八度跳远",
-          "practiceMin": 5.5,
+          "practiceMin": 2.8,
           "stepLabel": "跨度",
           "source": "来源：第 22 课 · 练习视频",
           "audioSrc": "../audio/八度跳远Mum.mp3",
@@ -418,7 +418,7 @@
         {
           "name": "九度喂~噢~",
           "shortName": "九度喂噢",
-          "practiceMin": 6.0,
+          "practiceMin": 3.0,
           "stepLabel": "音域",
           "source": "来源：第 24 课 · 练习视频",
           "audioSrc": "../audio/九度喂噢.mp3",
@@ -437,7 +437,7 @@
         {
           "name": "席琳迪翁练习",
           "shortName": "席琳迪翁",
-          "practiceMin": 5.0,
+          "practiceMin": 5.3,
           "stepLabel": "和声",
           "source": "来源：第 23 课 · 练习视频",
           "audioSrc": "../audio/席琳迪翁.mp3",
@@ -456,7 +456,7 @@
         {
           "name": "力气进阶 12 度 Gug",
           "shortName": "力气进阶",
-          "practiceMin": 6.5,
+          "practiceMin": 3.3,
           "stepLabel": "力量",
           "source": "来源：第 26 课 · 力气与技巧（进阶）",
           "audioSrc": "../audio/力气进阶12度Gug.mp3",
@@ -475,7 +475,7 @@
         {
           "name": "速度与灵活度（进阶）",
           "shortName": "速度进阶",
-          "practiceMin": 5.5,
+          "practiceMin": 2.9,
           "stepLabel": "灵活",
           "source": "来源：第 29 课 · 歌手的心理状态",
           "audioSrc": "../audio/速度与灵活度进阶.mp3",
@@ -493,7 +493,7 @@
         {
           "name": "柔软练习（进阶）",
           "shortName": "柔软进阶",
-          "practiceMin": 7.5,
+          "practiceMin": 7.7,
           "stepLabel": "综合",
           "source": "来源：第 25 课 · 练习视频",
           "audioSrc": "../audio/柔软进阶.mp3",
