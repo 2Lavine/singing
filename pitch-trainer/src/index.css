@@ -1658,3 +1658,88 @@ h1, h2, h3 {
     grid-template-columns: repeat(6, 1fr);
   }
 }
+
+.category-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.cat-tab {
+  padding: 0.3rem 0.8rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+
+.cat-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cat-tab.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.song-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.song-btn {
+  padding: 0.3rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+
+.song-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.song-btn.playing {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.song-btn.paused {
+  background: var(--bg);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.song-stop-btn {
+  padding: 0.25rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  font-size: 0.7rem;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.song-stop-btn:hover {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}

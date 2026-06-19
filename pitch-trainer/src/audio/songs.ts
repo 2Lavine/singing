@@ -15,6 +15,7 @@ export interface SongNote {
 export interface SongDef {
   id: string;
   name: string;
+  category: SongCategory;
   bpm: number;
   notes: SongNote[];
 }
@@ -27,9 +28,19 @@ function r(duration: number = 1): SongNote {
   return { midi: -1, duration }; // rest
 }
 
+export type SongCategory = 'beginner' | 'folk' | 'pop' | 'occasion';
+
+export const CATEGORIES: { id: SongCategory; label: string; }[] = [
+  { id: 'beginner', label: '入门练习' },
+  { id: 'folk', label: '经典民歌' },
+  { id: 'pop', label: '流行热门' },
+  { id: 'occasion', label: '特定场合' },
+];
+
 export const SONGS: SongDef[] = [
   {
     id: 'twinkle',
+    category: 'beginner',
     name: '小星星',
     bpm: 100,
     notes: [
@@ -49,6 +60,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'twotigers',
+    category: 'beginner',
     name: '两只老虎',
     bpm: 120,
     notes: [
@@ -66,6 +78,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'happybirthday',
+    category: 'occasion',
     name: '生日快乐',
     bpm: 110,
     notes: [
@@ -80,6 +93,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'canghai',
+    category: 'folk',
     name: '沧海一声笑',
     bpm: 90,
     notes: [
@@ -99,6 +113,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'jasmine',
+    category: 'folk',
     name: '茉莉花',
     bpm: 80,
     notes: [
@@ -117,6 +132,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'ode',
+    category: 'beginner',
     name: '欢乐颂',
     bpm: 120,
     notes: [
@@ -133,6 +149,7 @@ export const SONGS: SongDef[] = [
 
   {
     id: 'moon',
+    category: 'folk',
     name: '月亮代表我的心',
     bpm: 72,
     notes: [
@@ -155,6 +172,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'qingtian',
+    category: 'pop',
     name: '晴天',
     bpm: 112,
     notes: [
@@ -176,6 +194,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'xiaoxingyun',
+    category: 'pop',
     name: '小幸运',
     bpm: 86,
     notes: [
@@ -196,6 +215,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'tonghua',
+    category: 'pop',
     name: '童话',
     bpm: 76,
     notes: [
@@ -215,6 +235,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'thoseyears',
+    category: 'pop',
     name: '那些年',
     bpm: 92,
     notes: [
@@ -234,6 +255,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'shinian',
+    category: 'pop',
     name: '十年',
     bpm: 92,
     notes: [
@@ -250,6 +272,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'xiaobaicai',
+    category: 'beginner',
     name: '小白菜',
     bpm: 66,
     notes: [
@@ -263,6 +286,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'liangliang',
+    category: 'pop',
     name: '凉凉',
     bpm: 76,
     notes: [
@@ -282,6 +306,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'beiying',
+    category: 'pop',
     name: '背影',
     bpm: 72,
     notes: [
@@ -299,6 +324,7 @@ export const SONGS: SongDef[] = [
   },
   {
     id: 'kongcheng',
+    category: 'pop',
     name: '空城',
     bpm: 90,
     notes: [
