@@ -1573,21 +1573,84 @@ h1, h2, h3 {
 
 /* MIDI badge in game */
 .note-midi-badge {
-  display: inline-block;
   font-size: 0.65rem;
-  font-weight: 600;
   color: var(--muted);
-  background: var(--bg);
-  border-radius: 4px;
-  padding: 0 4px;
-  margin-right: 2px;
-  vertical-align: middle;
-  line-height: 1.4;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  display: block;
+  margin-bottom: 2px;
 }
 
 /* Gallery mode card */
 .mode-gallery {
   border-left: 3px solid #6366f1;
+}
+
+
+.gallery-toolbar {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.song-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.song-btn {
+  padding: 0.25rem 0.75rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.15s;
+}
+
+.song-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.song-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.song-btn.playing {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.cell-active {
+  animation: cell-pulse 0.25s ease-out;
+}
+
+@keyframes cell-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
 }
 
 @media (max-width: 500px) {

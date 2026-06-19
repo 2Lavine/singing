@@ -362,7 +362,7 @@ export default function Game({ mode, onBack, onStartLevel }: Props) {
                 {isFilled && answer && (
                   <>
                     <span className="slot-note" style={{ color: getNoteColor(answer.name) }}>
-                      <span className="note-midi-badge">{answer.midi}</span> {getNoteLabel(answer)}
+                      {getNoteLabel(answer)}
                     </span>
                     <span className="slot-note-sub">{getSolfegeLabel(answer)}</span>
                   </>
@@ -402,8 +402,9 @@ export default function Game({ mode, onBack, onStartLevel }: Props) {
                 }}
                 disabled={isPlaying || roundComplete || levelComplete}
               >
+                <span className="note-midi-badge">{note.midi}</span>
                 <span className="note-label" style={{ color: getNoteColor(note.name) }}>
-                  <span className="note-midi-badge">{note.midi}</span> {getNoteLabel(note)}
+                  {getNoteLabel(note)}
                 </span>
                 <span className="note-label-sub">{getSolfegeLabel(note)}</span>
                 <span
