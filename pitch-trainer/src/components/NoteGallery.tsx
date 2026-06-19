@@ -40,9 +40,6 @@ export default function NoteGallery({ onBack }: Props) {
   const quizTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const currentSong = SONGS.find((s) => s.id === selectedSongId) || null;
-  const activeMidi = currentSong && currentNoteIndex >= 0
-    ? currentSong.notes[currentNoteIndex]?.midi || null
-    : null;
 
   const clearAllTimers = () => {
     timersRef.current.forEach((t) => clearTimeout(t));
