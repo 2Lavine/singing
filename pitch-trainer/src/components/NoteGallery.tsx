@@ -301,7 +301,6 @@ export default function NoteGallery({ onBack }: Props) {
           if (isQuizListening) {
             bgColor = getNoteColor(note.name) + '40';
             extraClass = 'cell-active';
-          }
           } else if (isQuizCorrect) {
             bgColor = '#27ae6040';
             borderColor = '#27ae60';
