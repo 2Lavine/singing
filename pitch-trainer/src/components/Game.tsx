@@ -150,7 +150,7 @@ export default function Game({ mode, onBack, onStartLevel }: Props) {
     (note: Note) => {
       if (isPlaying || roundComplete || levelComplete || feedbackSlot !== null) return;
 
-      if (note === sequence[currentSlot]) {
+      if (note.midi === sequence[currentSlot].midi) {
         setFeedbackSlot(currentSlot);
         setFeedbackType('correct');
         playNote(note, config.instrument, 0.5);
@@ -362,7 +362,7 @@ export default function Game({ mode, onBack, onStartLevel }: Props) {
                 {isFilled && answer && (
                   <>
                     <span className="slot-note" style={{ color: getNoteColor(answer.name) }}>
-                      {getNoteLabel(answer)}
+                      <span className="note-midi-badge">{answer.midi}</span> {getNoteLabel(answer)}
                     </span>
                     <span className="slot-note-sub">{getSolfegeLabel(answer)}</span>
                   </>
@@ -383,11 +383,11 @@ export default function Game({ mode, onBack, onStartLevel }: Props) {
         </p>
         <div className="note-buttons">
           {uniqueNotes.map((note) => {
-            const isPlayingNow = showHints && playingIndex !== null && sequence[playingIndex] === note;
+            const isPlayingNow = showHints && playingIndex !== null && sequence[playingIndex].midi === note.midi;
 
             return (
               <button
-                key={getNoteLabel(note)}
+                key={note.midi}
                 className={`note-btn ${isPlayingNow ? 'note-playing' : ''}`}
                 style={{
                   borderColor: getNoteColor(note.name),
@@ -403,7 +403,7 @@ export default function Game({ mode, onBack, onStartLevel }: Props) {
                 disabled={isPlaying || roundComplete || levelComplete}
               >
                 <span className="note-label" style={{ color: getNoteColor(note.name) }}>
-                  {getNoteLabel(note)}
+                  <span className="note-midi-badge">{note.midi}</span> {getNoteLabel(note)}
                 </span>
                 <span className="note-label-sub">{getSolfegeLabel(note)}</span>
                 <span

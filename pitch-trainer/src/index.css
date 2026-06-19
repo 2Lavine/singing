@@ -1466,3 +1466,132 @@ h1, h2, h3 {
     font-size: 0.55rem;
   }
 }
+
+/* ================================================================
+   Note Gallery
+   ================================================================ */
+.gallery-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.gallery-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.gallery-header h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.instrument-tabs {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.inst-tab {
+  padding: 0.3rem 0.75rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+
+.inst-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.inst-tab.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.gallery-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.3rem;
+  border-radius: 8px;
+  border: 1.5px solid;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  background: none;
+  min-height: 72px;
+}
+
+.gallery-cell:hover {
+  transform: scale(1.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.gallery-cell:active {
+  transform: scale(0.97);
+}
+
+.gallery-midi {
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.gallery-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gallery-solfege {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.gallery-freq {
+  font-size: 0.65rem;
+  color: var(--ink-secondary);
+  margin-top: 1px;
+}
+
+/* MIDI badge in game */
+.note-midi-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: 4px;
+  padding: 0 4px;
+  margin-right: 2px;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+/* Gallery mode card */
+.mode-gallery {
+  border-left: 3px solid #6366f1;
+}
+
+@media (max-width: 500px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

@@ -9,6 +9,7 @@ interface Props {
   onFree: () => void;
   onLevels: () => void;
   onLessons: () => void;
+  onGallery: () => void;
 }
 
 function loadProgress() {
@@ -30,7 +31,7 @@ function loadLessonProgress() {
   } catch { return 0; }
 }
 
-export default function Home({ onFree, onLevels, onLessons }: Props) {
+export default function Home({ onFree, onLevels, onLessons, onGallery }: Props) {
   const [progress, setProgress] = useState(loadProgress);
   const [lessonsDone, setLessonsDone] = useState(loadLessonProgress);
 
@@ -108,6 +109,15 @@ export default function Home({ onFree, onLevels, onLessons }: Props) {
             <span className="mode-desc">自定义音高数量、长度和乐器</span>
           </div>
         </button>
+
+        <button className="mode-card mode-gallery" onClick={onGallery}>
+          <div className="mode-icon">表</div>
+          <div className="mode-card-body">
+            <span className="mode-title">音高对照表</span>
+            <span className="mode-desc">MIDI 编码 · 音名 · 唱名 · 频率</span>
+          </div>
+        </button>
+
       </div>
     </div>
   );

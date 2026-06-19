@@ -23,6 +23,28 @@ const SOLFEGE: Record<NoteName, string> = {
   'G#': 'sol#', 'A': 'la', 'A#': 'la#', 'B': 'si',
 };
 
+
+const NOTE_TO_SEMITONE: Record<NoteName, number> = {
+  'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5,
+  'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11,
+};
+
+export function getMidi(name: NoteName, octave: number): number {
+  return (octave + 1) * 12 + NOTE_TO_SEMITONE[name];
+}
+
+export function getAllNotes(): Note[] {
+  const notes: Note[] = [];
+  for (let octave = 3; octave <= 5; octave++) {
+    for (const name of NOTE_NAMES) {
+      const midi = getMidi(name, octave);
+      const frequency = getFrequency(name, octave);
+      notes.push({ name, octave, midi, frequency, solfege: SOLFEGE[name] });
+    }
+  }
+  return notes;
+}
+
 const A4 = 440;
 const SEMITONE = 2 ** (1 / 12);
 
@@ -57,7 +79,8 @@ export function generateAvailableNotes(): Note[] {
     for (const name of NOTE_NAMES) {
       const frequency = getFrequency(name, octave);
       if (frequency >= 130 && frequency <= 660) {
-        notes.push({ name, octave, frequency, solfege: SOLFEGE[name] });
+        const midi = getMidi(name, octave);
+        notes.push({ name, octave, midi, frequency, solfege: SOLFEGE[name] });
       }
     }
   }

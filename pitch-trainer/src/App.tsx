@@ -6,12 +6,13 @@ import LevelSelect from './components/LevelSelect';
 import LessonList from './components/LessonList';
 import LessonView from './components/LessonView';
 import Game from './components/Game';
+import NoteGallery from './components/NoteGallery';
 import { useState, useCallback } from 'react';
 
 const LESSON_PROGRESS_KEY = 'pitch-trainer-lessons';
 
 export default function App() {
-  const [page, setPage] = useState<'home' | 'free-setup' | 'levels' | 'game' | 'lessons' | 'lesson-view'>('home');
+  const [page, setPage] = useState<'home' | 'free-setup' | 'levels' | 'game' | 'lessons' | 'lesson-view' | 'gallery'>('home');
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const [activeLesson, setActiveLesson] = useState<LessonDef | null>(null);
   // Key to force Game remount when navigating between levels
@@ -73,6 +74,10 @@ export default function App() {
     return <LessonList onSelect={startLesson} onBack={backToHome} />;
   }
 
+  if (page === 'gallery') {
+    return <NoteGallery onBack={backToHome} />;
+  }
+
   if (page === 'lesson-view' && activeLesson) {
     return (
       <LessonView
@@ -88,6 +93,7 @@ export default function App() {
       onFree={() => setPage('free-setup')}
       onLevels={() => setPage('levels')}
       onLessons={() => setPage('lessons')}
+      onGallery={() => setPage('gallery')}
     />
   );
 }

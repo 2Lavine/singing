@@ -3,6 +3,7 @@ export type NoteName = 'C' | 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' |
 export interface Note {
   name: NoteName;
   octave: number;
+  midi: number;
   frequency: number;
   solfege: string;
 }
