@@ -289,7 +289,7 @@ export default function NoteGallery({ onBack }: Props) {
 
       <div className="gallery-grid">
         {allNotes.map((note) => {
-          const isActive = !quizMode && activeMidi === note.midi;
+          
           const isQuizCorrect = quizMode && quizState === 'correct' && note.midi === quizNote;
           const isQuizWrong = quizMode && quizState === 'wrong' && note.midi === quizNote;
           const isQuizListening = quizMode && quizState === 'listening' && note.midi === quizNote;
@@ -301,8 +301,7 @@ export default function NoteGallery({ onBack }: Props) {
           if (isQuizListening) {
             bgColor = getNoteColor(note.name) + '40';
             extraClass = 'cell-active';
-          } else if (isActive) {
-            bgColor = getNoteColor(note.name) + '40';
+          }
           } else if (isQuizCorrect) {
             bgColor = '#27ae6040';
             borderColor = '#27ae60';
