@@ -1520,7 +1520,7 @@ h1, h2, h3 {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   gap: 6px;
 }
 
@@ -1592,6 +1592,6 @@ h1, h2, h3 {
 
 @media (max-width: 500px) {
   .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
