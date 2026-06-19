@@ -762,7 +762,27 @@
 <!-- Phase Selector -->
 <div class="phase-selector" id="phaseSelector"></div>
 
-<!-- Dynamic exercise container (populated by JS) -->
+<!-- Config panel -->
+<div class="config-panel" id="configPanel">
+  <button class="config-toggle" onclick="toggleConfigPanel()">
+    <span class="arrow">&#9654;</span> 练习配置（启用 / 跳过 / 时长）
+  </button>
+  <div class="config-body" id="configBody"></div>
+</div>
+
+
+
+
+<!-- ===== Routine Control ===== -->
+<div class="routine-ctrl" id="routineCtrl">
+  <div class="routine-ctrl-title">练习进度</div>
+  <div class="routine-dots" id="routineDots"></div>
+  <button class="routine-start-btn" id="routineStartBtn" onclick="startRoutine()">开始练习</button>
+  <p style="color: var(--muted); font-size: 0.8rem; margin: 0.75rem 0 0;">音频会自动循环播放，轮间休息 5 秒，步骤间休息 15 秒</p>
+</div>
+
+
+
 
 <!-- ===== 完整暖嗓（可选独立练习） ===== -->
 <div id="fullWarmup" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0; display: flex; align-items: center; gap: 1rem;">
@@ -781,26 +801,7 @@
     <span class="time-display" id="warmupTime">0:00</span>
   </div>
 </div>
-
 <div id="dynamicExercises"></div>
-
-<!-- Config panel -->
-<div class="config-panel" id="configPanel">
-  <button class="config-toggle" onclick="toggleConfigPanel()">
-    <span class="arrow">&#9654;</span> 练习配置（启用 / 跳过 / 时长）
-  </button>
-  <div class="config-body" id="configBody"></div>
-</div>
-
-
-<!-- ===== Routine Control ===== -->
-<div class="routine-ctrl" id="routineCtrl">
-  <div class="routine-ctrl-title">练习进度</div>
-  <div class="routine-dots" id="routineDots"></div>
-  <button class="routine-start-btn" id="routineStartBtn" onclick="startRoutine()">开始练习</button>
-  <p style="color: var(--muted); font-size: 0.8rem; margin: 0.75rem 0 0;">音频会自动循环播放，轮间休息 5 秒，步骤间休息 15 秒</p>
-</div>
-
 
 <!-- Status bar (visible during routine) -->
 <div class="status-bar" id="statusBar">
