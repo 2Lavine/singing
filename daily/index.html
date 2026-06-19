@@ -763,6 +763,25 @@
 <div class="phase-selector" id="phaseSelector"></div>
 
 <!-- Dynamic exercise container (populated by JS) -->
+
+<!-- ===== 完整暖嗓（可选独立练习） ===== -->
+<div id="fullWarmup" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0; display: flex; align-items: center; gap: 1rem;">
+  <div style="flex: 1; min-width: 0;">
+    <div style="font-family: var(--serif); font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">完整暖嗓（20 分钟）</div>
+    <div style="font-size: 0.85rem; color: var(--muted);">力宏老师的完整暖嗓流程，适合在正式练习前或单独使用</div>
+  </div>
+  <div class="audio-player" id="player-warmup" data-src="../audio/完整暖嗓.mp3" style="flex-shrink: 0; min-width: 260px; margin: 0;">
+    <button class="play-btn" onclick="toggleWarmupAudio()">
+      <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+    </button>
+    <div class="track-info">
+      <div class="track-label">20 分钟完整暖嗓</div>
+      <div class="progress-bar" onclick="seekWarmup(this, event)"><div class="progress-fill" id="warmupProgress"></div></div>
+    </div>
+    <span class="time-display" id="warmupTime">0:00</span>
+  </div>
+</div>
+
 <div id="dynamicExercises"></div>
 
 <!-- Config panel -->
@@ -1059,6 +1078,46 @@
   </div><!-- /exercise-inner -->
 </section>
 
+
+<!-- ==================== STEP 5 ==================== -->
+<section class="exercise-section" id="ex-sec-5">
+  <div class="exercise-inner">
+  <div class="exercise">
+    <div class="exercise-header">
+      <h3><span class="exercise-num">6</span> 布娃娃放松法 &middot; 5 分钟</h3>
+      <button class="skip-btn" onclick="toggleSkip(5)">跳过</button>
+    </div>
+    <span class="source-tag">来源：第 7 课 &middot; 真正学会唱一首歌</span>
+    <div class="concept-box">
+      <strong>演出前的仪式</strong><br>
+      演出前身体因为肾上腺素紧张——心跳加速、手变冰凉。布娃娃放松法让全身彻底松弛，是表演前的必备仪式。
+    </div>
+    <ol>
+      <li>想象布娃娃——没有骨头、没有肌肉</li>
+      <li>把手举起来摸天空</li>
+      <li>慢慢弯腰往下，像个布娃娃往下掉</li>
+      <li>可以晃来晃去</li>
+      <li>倒立状态后，吸气吸饱</li>
+      <li>慢慢吐气，感受脊椎一节一节变直</li>
+      <li>重复 3-4 次</li>
+    </ol>
+    <div class="round-row">
+      <span class="round-label" id="round-label-5">共 3 轮</span>
+      <div class="round-pips" id="round-pips-5"></div>
+    </div>
+    <div class="audio-player" id="player-5" data-src="../audio/布娃娃.mp3">
+      <button class="play-btn" onclick="toggleManualPlay(5)">
+        <svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>
+      </button>
+      <div class="track-info">
+        <div class="track-label">参考音频 &middot; 跟着练</div>
+        <div class="progress-bar" onclick="seekAudio(this, event, 5)"><div class="progress-fill"></div></div>
+      </div>
+      <span class="time-display">0:00</span>
+    </div>
+  </div>
+  </div><!-- /exercise-inner -->
+</section>
 </div><!-- /phase1Exercises -->
 
 <section>
@@ -1139,7 +1198,8 @@ async function loadConfig() {
         { id: 1, shortName: '弹嘴唇', practiceMin: 3.5, audioSrc: '../audio/弹嘴唇.mp3', enabled: true },
         { id: 2, shortName: '十二度Mum', practiceMin: 4, audioSrc: '../audio/十二度Mum.mp3', enabled: true },
         { id: 3, shortName: 'Tee断奏', practiceMin: 7.5, audioSrc: '../audio/Tee五度断奏.mp3', enabled: true },
-        { id: 4, shortName: '速度与灵活度', practiceMin: 10, audioSrc: '../audio/速度与灵活度.mp3', enabled: true }
+        { id: 4, shortName: '速度与灵活度', practiceMin: 10, audioSrc: '../audio/速度与灵活度.mp3', enabled: true },
+        { id: 5, shortName: '布娃娃', practiceMin: 5, audioSrc: '../audio/布娃娃.mp3', enabled: true }
       ]
     }];
     selectPhase(1);
@@ -1427,6 +1487,40 @@ function seekAudio(bar, e, idx) {
   const rect = bar.getBoundingClientRect();
   if (isFinite(audio.duration)) audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
+
+// ================================================================
+// WARMUP AUDIO (standalone 20-min warmup)
+// ================================================================
+let warmupAudio = null;
+function getWarmupAudio() {
+  if (!warmupAudio) {
+    warmupAudio = new Audio('../audio/完整暖嗓.mp3');
+    warmupAudio.preload = 'metadata';
+    warmupAudio.addEventListener('timeupdate', () => {
+      const fill = document.getElementById('warmupProgress');
+      const time = document.getElementById('warmupTime');
+      if (fill && warmupAudio.duration) fill.style.width = (warmupAudio.currentTime / warmupAudio.duration * 100) + '%';
+      if (time) time.textContent = formatTime(warmupAudio.currentTime);
+    });
+    warmupAudio.addEventListener('ended', () => {
+      const btn = document.querySelector('#player-warmup .play-btn');
+      if (btn) btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>';
+    });
+  }
+  return warmupAudio;
+}
+function toggleWarmupAudio() {
+  const a = getWarmupAudio();
+  const btn = document.querySelector('#player-warmup .play-btn');
+  if (a.paused) { a.play(); if (btn) btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" fill="white"/><rect x="9.5" y="2" width="3.5" height="12" fill="white"/></svg>'; }
+  else { a.pause(); if (btn) btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16"><polygon points="4,2 14,8 4,14"/></svg>'; }
+}
+function seekWarmup(bar, e) {
+  const a = getWarmupAudio();
+  const rect = bar.getBoundingClientRect();
+  if (isFinite(a.duration)) a.currentTime = ((e.clientX - rect.left) / rect.width) * a.duration;
+}
+
 
 // ================================================================
 // ROUTINE DOTS
