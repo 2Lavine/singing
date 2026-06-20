@@ -36,7 +36,10 @@ export default function NoteGallery({ onBack }: Props) {
   const [quizState, setQuizState] = useState<QuizState>('idle');
   const [quizNote, setQuizNote] = useState<number | null>(null); // midi
   const [quizScore, setQuizScore] = useState({ correct: 0, wrong: 0 });
+  const [quizGuesses, setQuizGuesses] = useState<number[]>([]);
+  const [quizHint, setQuizHint] = useState<string>('');
   const [quizStreak, setQuizStreak] = useState(0);
+  const MAX_GUESSES = 5;
   const quizTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 
@@ -114,12 +117,13 @@ export default function NoteGallery({ onBack }: Props) {
     const idx = Math.floor(Math.random() * allNotes.length);
     const note = allNotes[idx];
     setQuizNote(note.midi);
+    setQuizGuesses([]);
+    setQuizHint('');
     setQuizState('listening');
 
     ensureAudioContext();
     playNote(note, instrument, 1.2);
 
-    // After note plays, wait for answer
     quizTimerRef.current = setTimeout(() => {
       setQuizState('waiting');
     }, 1500);
@@ -127,24 +131,38 @@ export default function NoteGallery({ onBack }: Props) {
 
   const handleQuizGuess = (midi: number) => {
     if (quizState !== 'waiting') return;
+    if (quizGuesses.includes(midi)) return; // already guessed
+
+    const newGuesses = [...quizGuesses, midi];
+    setQuizGuesses(newGuesses);
 
     if (midi === quizNote) {
       setQuizState('correct');
       setQuizScore((s) => ({ ...s, correct: s.correct + 1 }));
       setQuizStreak((s) => s + 1);
-      // Auto-advance after delay
-      quizTimerRef.current = setTimeout(() => {
-        startQuizRound();
-      }, 1200);
-    } else {
+      quizTimerRef.current = setTimeout(() => startQuizRound(), 1500);
+      return;
+    }
+
+    // Wrong guess — give hint
+    const remaining = MAX_GUESSES - newGuesses.length;
+
+    if (remaining <= 0) {
+      // Out of guesses — reveal answer
       setQuizState('wrong');
       setQuizScore((s) => ({ ...s, wrong: s.wrong + 1 }));
+      setQuizGuesses([]);
+      setQuizHint('');
       setQuizStreak(0);
-      // Show correct answer briefly, then next round
-      quizTimerRef.current = setTimeout(() => {
-        startQuizRound();
-      }, 2000);
+      quizTimerRef.current = setTimeout(() => startQuizRound(), 2500);
+      return;
     }
+
+    // Build hint
+    const targetNote = allNotes.find((n) => n.midi === quizNote);
+    const direction = midi < quizNote! ? '再高一点' : '再低一点';
+    const octaveRow = targetNote ? `C${targetNote.octave}-B${targetNote.octave}` : '';
+    setQuizHint(`${direction}  ·  ${octaveRow} 行  ·  还剩 ${remaining} 次`);
   };
 
   const toggleQuiz = () => {
@@ -158,6 +176,8 @@ export default function NoteGallery({ onBack }: Props) {
       // Turn on
       setQuizMode(true);
       setQuizScore({ correct: 0, wrong: 0 });
+      setQuizGuesses([]);
+      setQuizHint('');
       setQuizStreak(0);
       // Start first round after a beat
       setTimeout(() => startQuizRound(), 500);
@@ -271,16 +291,23 @@ export default function NoteGallery({ onBack }: Props) {
       </div>
 
       {quizMode && quizState === 'listening' && (
-        <div className="quiz-prompt">🎵 正在播放一个音，仔细听...</div>
+        <div className="quiz-prompt">正在播放一个音，仔细听...</div>
       )}
       {quizMode && quizState === 'waiting' && (
-        <div className="quiz-prompt">👆 点击你认为正确的那个音</div>
+        <div className="quiz-prompt">
+          {quizHint
+            ? quizHint
+            : `点击你认为正确的音（最多 ${MAX_GUESSES} 次机会）`}
+        </div>
       )}
       {quizMode && quizState === 'correct' && (
-        <div className="quiz-prompt correct">✅ 正确！{quizStreak >= 3 ? ` 连对 ${quizStreak} 次！` : ''}</div>
+        <div className="quiz-prompt correct">
+          正确！{quizStreak >= 3 ? `连对 ${quizStreak} 次！` : ''}
+          {quizGuesses.length > 1 ? ` 用了 ${quizGuesses.length} 次` : ' 一次命中！'}
+        </div>
       )}
       {quizMode && quizState === 'wrong' && (
-        <div className="quiz-prompt wrong">❌ 不对，正确答案已标出</div>
+        <div className="quiz-prompt wrong">机会用完了，正确答案已标出</div>
       )}
 
       <div className="gallery-grid">
