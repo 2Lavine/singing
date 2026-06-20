@@ -39,7 +39,6 @@ export default function NoteGallery({ onBack }: Props) {
   const [quizStreak, setQuizStreak] = useState(0);
   const quizTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const currentSong = SONGS.find((s) => s.id === selectedSongId) || null;
 
   const clearAllTimers = () => {
     timersRef.current.forEach((t) => clearTimeout(t));
