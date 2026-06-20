@@ -288,16 +288,12 @@ export default function NoteGallery({ onBack }: Props) {
           
           const isQuizCorrect = quizMode && quizState === 'correct' && note.midi === quizNote;
           const isQuizWrong = quizMode && quizState === 'wrong' && note.midi === quizNote;
-          const isQuizListening = quizMode && quizState === 'listening' && note.midi === quizNote;
-
+          
           let bgColor = getNoteColor(note.name) + '14';
           let borderColor = getNoteColor(note.name);
           let extraClass = '';
 
-          if (isQuizListening) {
-            bgColor = getNoteColor(note.name) + '40';
-            extraClass = 'cell-active';
-          } else if (isQuizCorrect) {
+          if (isQuizCorrect) {
             bgColor = '#27ae6040';
             borderColor = '#27ae60';
             extraClass = 'cell-correct';
